@@ -1,0 +1,51 @@
+{
+  "name": "@specter/client",
+  "version": "1.0.0",
+  "description": "Specter client",
+  "keywords": [
+    "Specter",
+    "client",
+    "data",
+    "fetch",
+    "layer"
+  ],
+  "author": "Yosuke Furukawa <yosuke.furukawa@gmail.com>",
+  "homepage": "https://github.com/recruit-tech/specter",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "browser": "lib/browser/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/recruit-tech/specter.git"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "npm link @specter/specter && tsc -d"
+  },
+  "bugs": {
+    "url": "https://github.com/recruit-tech/specter/issues"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "@types/jest": "^24.0.11",
+    "express": "^4.16.4",
+    "isomorphic-unfetch": "^3.0.0",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.3"
+  },
+  "dependencies": {
+    "@types/node-fetch": "^2.3.2",
+    "unfetch": "^4.1.0"
+  },
+  "peerDependencies": {
+    "@specter/specter": "^1.0.0"
+  }
+}
