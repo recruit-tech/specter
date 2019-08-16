@@ -4,7 +4,5 @@
     "target": "es5",
     "outDir": "./lib"
   },
-  "include": [
-    "./src"
-  ]
- }
+  "include": ["./src"]
+}

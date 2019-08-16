@@ -89,6 +89,16 @@ var SpecterClient = /** @class */ (function () {
             });
         });
     };
+    SpecterClient.prototype.execute = function (request) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                if (!request.method) {
+                    throw new Error("Request method is not found.");
+                }
+                return [2 /*return*/, this.executeRequest(request.method, request)];
+            });
+        });
+    };
     SpecterClient.prototype.create = function (request) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {

@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": { "*": ["types/*"] },
@@ -9,7 +9,5 @@
     "outDir": "./dist",
     "jsx": "react"
   },
-  "include": [
-    "."
-  ]
- }
+  "include": ["."]
+}

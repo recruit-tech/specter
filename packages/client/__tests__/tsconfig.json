@@ -4,7 +4,5 @@
     "target": "es2018",
     "outDir": "./lib"
   },
-  "include": [
-    "./src"
-  ]
- }
+  "include": ["./src"]
+}

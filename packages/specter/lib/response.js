@@ -8,5 +8,14 @@ class SpecterResponse {
     setStatus(status) {
         this.status = status;
     }
+    setNextReqs(...reqs) {
+        this.header = {
+            ...this.header,
+            "x-specter-next-reqs": reqs.map(req => req.toString())
+        };
+    }
+    setError(error) {
+        this.error = error;
+    }
 }
 exports.default = SpecterResponse;
