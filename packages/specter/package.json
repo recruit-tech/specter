@@ -19,7 +19,8 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "tsc -d"
+    "build": "tsc -d",
+    "prepublish": "npm run build"
   },
   "bugs": {
     "url": "https://github.com/recruit-tech/specter/issues"
@@ -35,5 +36,5 @@
     "jest": "^24.8.0",
     "typescript": "^3.4.3"
   },
-  "gitHead": "ccc6800e601b6e3ba119e89dc454fe5309380dee"
+  "gitHead": "0abcddffb0708d7b018d89ef8832bc64e2fc21e2"
 }
