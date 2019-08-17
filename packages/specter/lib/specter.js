@@ -19,8 +19,10 @@ class Specter {
     static isRegistered(name) {
         return Specter.services.has(name);
     }
-    // cast は外から見て絶対わからないだろうという時に使う
     static createMiddleware(options) {
+        Specter.collect = options.collect;
+        Specter.guess = options.guess;
+        Specter.guessOption = options.guessOptions;
         return async (req, res, next) => {
             try {
                 if (!req.url) {
@@ -30,17 +32,17 @@ class Specter {
                 if (!url.pathname) {
                     throw new Error("url pathname is not found.");
                 }
-                const resource = url.pathname.substr(1).split("/").shift() || "";
+                const resource = url.pathname
+                    .substr(1)
+                    .split("/")
+                    .shift();
+                if (!resource) {
+                    throw new Error("resource is not found.");
+                }
                 const request = new request_1.default(resource, req);
-                if (!request.resource) {
-                    next();
-                    return;
-                }
                 if (!Specter.isRegistered(request.resource)) {
-                    next();
-                    return;
+                    throw new Error(`resource: ${resource} is not registered.`);
                 }
-                // static じゃなくて instantiate できるオブジェクトのがtest書きやすい
                 const service = Specter.getService(request.resource);
                 const response = await service.execute(request);
                 res.status(response.status || 200);
@@ -51,6 +53,9 @@ class Specter {
                 }
                 if (response.body) {
                     res.send(response.body);
+                }
+                else {
+                    res.end(null);
                 }
             }
             catch (e) {

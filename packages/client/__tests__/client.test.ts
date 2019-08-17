@@ -5,9 +5,12 @@ import Client, { Request, Response } from "../src/browser";
 import assert from "assert";
 
 test("Todo create by browser", async () => {
-    const { server } = createApp(new Todo);
+    const { server } = createApp(new Todo());
     const { port } = await getPort(server);
-    const client = new Client({ base: `http://localhost:${port}/xhr`, fetchOptions: {} });
+    const client = new Client({
+        base: `http://localhost:${port}/xhr`,
+        fetchOptions: {}
+    });
     const request = new Request("todo", {
         headers: {},
         query: {},
@@ -15,8 +18,8 @@ test("Todo create by browser", async () => {
             task: {
                 title: "foo",
                 desc: "bar",
-                done: false,
-            },
+                done: false
+            }
         }
     });
     const res = await client.create(request);
@@ -26,7 +29,7 @@ test("Todo create by browser", async () => {
         task: {
             title: "foo",
             desc: "bar",
-            done: false,
+            done: false
         }
     });
     server.close();

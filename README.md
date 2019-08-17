@@ -16,6 +16,7 @@ $ npm i @specter/client
 ```
 
 ## 1. Setup Server
+
 Specter has an interface for express middleware.
 Specter middleware expects `body-parser` express middleware, and register Specter endpoints.
 
@@ -40,7 +41,7 @@ const client = new Client({
   // Specter Endpoint
   base: "/xhr",
   // fetch options
-  fetchOption: {},
+  fetchOption: {}
 });
 ```
 
@@ -122,5 +123,3 @@ export default class Hello extends React.Component<{count: number}, {count: numb
 
 }
 ```
-
-

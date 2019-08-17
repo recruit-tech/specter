@@ -3,13 +3,17 @@
   "private": true,
   "scripts": {
     "test": "lerna run test --parallel",
-    "build": "cd packages/specter && npm run build && npm link && cd ../client && npm run build && npm link"
+    "build": "cd packages/specter && npm run build && npm link && cd ../client && npm run build && npm link",
+    "prettier": "prettier --write \"./**/*.{ts,js,json,md}\"",
+    "lint": "eslint . --ext .js,.ts",
+    "lint-fix": "eslint . --ext .js,.ts --fix"
   },
   "devDependencies": {
     "@types/express": "^4.17.0",
     "@types/jest": "^24.0.17",
     "@types/node": "^11.13.19",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^2.0.0",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.0",

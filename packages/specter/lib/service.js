@@ -6,47 +6,52 @@ class Service {
         this.name = name;
         this.config = config;
     }
-    execute(req) {
+    async execute(req) {
+        const check = await this.preCheck(req);
+        if (!check) {
+            return Promise.reject(new Error("Precheck failed."));
+        }
+        let res;
         if (req.method === "GET" && this.read) {
-            return this.read(req);
+            res = await this.read(req);
         }
         else if (req.method === "POST" && this.create) {
-            return this.create(req);
+            res = await this.create(req);
         }
         else if (req.method === "PUT" && this.update) {
-            return this.update(req);
+            res = await this.update(req);
         }
         else if (req.method === "DELETE" && this.delete) {
-            return this.delete(req);
+            res = await this.delete(req);
         }
         else if (req.method === "HEAD" && this.exist) {
-            return this.exist(req);
+            res = await this.exist(req);
         }
-        return Promise.reject(errors_1.NotSupportedMethod);
+        if (!res) {
+            return Promise.reject(errors_1.NotSupportedMethod);
+        }
+        return res;
     }
     create(req) {
         return Promise.reject(errors_1.NotImplemented);
     }
-    ;
     read(req) {
         return Promise.reject(errors_1.NotImplemented);
     }
-    ;
     update(req) {
         return Promise.reject(errors_1.NotImplemented);
     }
-    ;
     delete(req) {
         return Promise.reject(errors_1.NotImplemented);
     }
-    ;
     exist(req) {
         return Promise.reject(errors_1.NotImplemented);
     }
-    ;
     preCheck(req) {
-        return Promise.resolve(this);
+        return Promise.resolve(true);
     }
-    ;
+    nextReqs(req, res) {
+        return Promise.resolve([]);
+    }
 }
 exports.default = Service;

@@ -1,15 +1,15 @@
 import { Request, Response, Service } from "../../src";
-export type task = { title: string, desc: string, done: boolean };
+export type task = { title: string; desc: string; done: boolean };
 export type tasks = task[];
 
 type CreateRequest = Request<{}, {}, { task: task }>;
-type CreateResponse = Response<{}, { task: task, id: number }>;
+type CreateResponse = Response<{}, { task: task; id: number }>;
 type ReadRequest = Request<{}, { id: number }, null>;
-type ReadResponse = Response<{}, { task: task, id: number }>;
+type ReadResponse = Response<{}, { task: task; id: number }>;
 type ListRequest = Request<{}, {}, null>;
-type ListResponse = Response<{}, {tasks: tasks}>;
-type UpdateRequest = Request<{}, { id: number }, { task: task}>;
-type UpdateResponse = Response<{}, { id: number, task: task}>;
+type ListResponse = Response<{}, { tasks: tasks }>;
+type UpdateRequest = Request<{}, { id: number }, { task: task }>;
+type UpdateResponse = Response<{}, { id: number; task: task }>;
 type DeleteRequest = Request<{}, { id: number }, null>;
 type DeleteResponse = Response<{}, null>;
 
@@ -21,16 +21,22 @@ export default class Todo extends Service {
   }
   async create(request: CreateRequest): Promise<CreateResponse> {
     this.todos.push(request.body.task);
-    return new Response({}, { task: request.body.task, id: this.todos.length - 1 });
+    return new Response(
+      {},
+      { task: request.body.task, id: this.todos.length - 1 }
+    );
   }
   async read(request: ReadRequest): Promise<ReadResponse> {
     const { id } = request.query;
     const todo = this.todos[id];
     if (!todo) {
-      const result = new Response({}, {
-        id,
-        task: todo,
-      });
+      const result = new Response(
+        {},
+        {
+          id,
+          task: todo
+        }
+      );
       result.setStatus(404);
       result.setError("Todo Not Found");
       return result;
@@ -46,10 +52,13 @@ export default class Todo extends Service {
     const { id } = request.query;
     const todo = this.todos[id];
     if (!todo) {
-      const result = new Response({}, {
-        id,
-        task: todo,
-      });
+      const result = new Response(
+        {},
+        {
+          id,
+          task: todo
+        }
+      );
       result.setStatus(404);
       result.setError("Todo Not Found");
       return result;

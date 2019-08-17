@@ -11,6 +11,7 @@ export default class SpecterClient {
     });
     private createPath;
     private executeRequest;
+    execute<Response extends DefaultResponse>(request: DefaultRequest): Promise<Response | DefaultResponse>;
     create<Response extends DefaultResponse>(request: DefaultRequest): Promise<Response | DefaultResponse>;
     read<Response extends DefaultResponse>(request: DefaultRequest): Promise<Response | DefaultResponse>;
     update<Response extends DefaultResponse>(request: DefaultRequest): Promise<Response | DefaultResponse>;

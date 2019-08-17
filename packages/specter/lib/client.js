@@ -8,29 +8,36 @@ class SpecterClient {
     constructor(options) {
         this.options = options;
     }
-    create(request) {
+    execute(request) {
+        if (!request.method) {
+            throw new Error("Request method not found");
+        }
+        if (!specter_1.default.isRegistered(request.resource)) {
+            throw new Error(`Service is not registered ${request.resource}`);
+        }
         const service = specter_1.default.getService(request.resource);
+        const response = service.execute(request);
+        return response;
+    }
+    create(request) {
         request.method = "POST";
-        return service.create(request);
+        return this.execute(request);
     }
     read(request) {
-        const service = specter_1.default.getService(request.resource);
         request.method = "GET";
-        return service.read(request);
+        return this.execute(request);
     }
     update(request) {
-        const service = specter_1.default.getService(request.resource);
         request.method = "PUT";
-        return service.update(request);
+        return this.execute(request);
     }
     delete(request) {
-        const service = specter_1.default.getService(request.resource);
         request.method = "DELETE";
-        return service.delete(request);
+        return this.execute(request);
     }
     exists(request) {
-        const service = specter_1.default.getService(request.resource);
-        return service.exist(request);
+        request.method = "HEAD";
+        return this.execute(request);
     }
 }
 exports.default = SpecterClient;

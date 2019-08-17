@@ -2,6 +2,7 @@
 import { IncomingMessage, IncomingHttpHeaders } from "http";
 import { Request as ExpressRequest } from "express";
 declare type Request = ExpressRequest | IncomingMessage;
+export declare type AnyRequest = SpecterRequest<{}, {}, {}>;
 export default class SpecterRequest<H extends IncomingHttpHeaders, Q extends any, B extends any> {
     resource: string;
     headers: H | IncomingHttpHeaders;
@@ -15,5 +16,7 @@ export default class SpecterRequest<H extends IncomingHttpHeaders, Q extends any
         query: Q;
         body: B;
     });
+    static parseRequest<R extends AnyRequest>(req: string): SpecterRequest<{} | IncomingHttpHeaders, {}, {}>;
+    toString(): string;
 }
 export {};
