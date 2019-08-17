@@ -47,7 +47,10 @@
     "unfetch": "^4.1.0"
   },
   "peerDependencies": {
-    "@specter/specter": "^1.0.0"
+    "@specter/specter": "latest"
   },
-  "gitHead": "0abcddffb0708d7b018d89ef8832bc64e2fc21e2"
+  "gitHead": "da82d346d7d167ba3b6052afe2c196dfd80a1709",
+  "publishConfig": {
+    "access": "public"
+  }
 }
