@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "preinstall": "npm link @specter/specter && npm link @specter/client",
     "links": "npm link @specter/specter && npm link @specter/client",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:server": "node webpack/dist/server/bundle.js",
@@ -16,13 +15,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/react": "^16.8.13",
+    "@specter/specter": "latest",
+    "@specter/client": "latest",
     "express": "^4.16.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@types/express": "^4.16.1",
+    "@types/react": "^16.8.13",
     "@types/react-dom": "^16.8.4",
     "npm-run-all": "^4.1.5",
     "ts-loader": "^5.3.3",

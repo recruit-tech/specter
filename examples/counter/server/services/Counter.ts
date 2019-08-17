@@ -8,8 +8,8 @@ export default class Counter extends Service {
         this.count = 0;
     }
     async update(
-        request: Request
-    ): Promise<Response<{}, {}, { count: number }>> {
+        request: Request<{}, {}, {}>
+    ): Promise<Response<{}, { count: number }>> {
         this.count++;
         const response = new Response(
             {},
@@ -20,8 +20,8 @@ export default class Counter extends Service {
         return response;
     }
     async read(
-        request: Request
-    ): Promise<Response> {
+        request: Request<{}, {}, {}>
+    ): Promise<Response<{}, { count: number }>> {
         const response = new Response(
             {},
             {
