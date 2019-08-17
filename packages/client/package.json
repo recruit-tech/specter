@@ -47,5 +47,6 @@
   },
   "peerDependencies": {
     "@specter/specter": "^1.0.0"
-  }
+  },
+  "gitHead": "af7c8238907a06e2f79426beceb16791efa58900"
 }
