@@ -28,7 +28,7 @@
   "scripts": {
     "test": "jest",
     "prepublish": "npm run build",
-    "build": "npm install && tsc -d"
+    "build": "tsc -d"
   },
   "bugs": {
     "url": "https://github.com/recruit-tech/specter/issues"
