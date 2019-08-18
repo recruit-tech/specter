@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "test": "lerna run test --parallel",
+    "allinstall": "lerna exec npm install",
     "build": "cd packages/specter && npm run build && npm link && cd ../client && npm run build && npm link",
     "prettier": "prettier --write \"./**/*.{ts,js,json,md}\"",
     "lint": "eslint . --ext .js,.ts",
