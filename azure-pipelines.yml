@@ -19,4 +19,5 @@ steps:
     npm install
     npm run allinstall
     npm test
+    npm run lint
   displayName: 'npm install and build'
