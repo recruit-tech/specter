@@ -5,7 +5,6 @@
     "test": "lerna run test --parallel",
     "allinstall": "lerna exec npm install",
     "build": "cd packages/specter && npm run build && npm link && cd ../client && npm run build && npm link",
-    "prettier": "prettier --write \"./**/*.{ts,js,json,md}\"",
     "lint": "eslint . --ext .js,.ts",
     "lint-fix": "eslint . --ext .js,.ts --fix",
     "prepublish": "lerna run prepublish"
@@ -18,7 +17,7 @@
     "@typescript-eslint/parser": "2.0.0",
     "eslint": "6.2.0",
     "eslint-config-prettier": "6.0.0",
-    "eslint-plugin-prettier": "3.1.0",
+    "eslint-plugin-prettier": "^3.1.0",
     "jest": "24.9.0",
     "lerna": "3.16.4",
     "prettier": "1.18.2",
