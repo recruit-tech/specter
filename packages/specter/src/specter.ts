@@ -1,19 +1,14 @@
-import Request from "./request";
 import { parse } from "url";
 import {
   Request as ExpressRequest,
   Response as ExpressResponse,
   RequestHandler
 } from "express";
-import { IncomingMessage, OutgoingMessage, IncomingHttpHeaders } from "http";
 import SpecterRequest from "./request";
 import Service from "./service";
 
 export default class Specter {
   private static services = new Map<string, Service>();
-  private static collect?: Function;
-  private static guess?: Function;
-  private static guessOption?: any;
 
   static registerService(service: Service) {
     Specter.services.set(service.name, service);
@@ -32,14 +27,7 @@ export default class Specter {
     return Specter.services.has(name);
   }
 
-  static createMiddleware(options: {
-    collect?: Function;
-    guess?: Function;
-    guessOptions?: object;
-  }): RequestHandler {
-    Specter.collect = options.collect;
-    Specter.guess = options.guess;
-    Specter.guessOption = options.guessOptions;
+  static createMiddleware(options: any): RequestHandler {
     return async (
       req: ExpressRequest,
       res: ExpressResponse,

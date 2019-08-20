@@ -1,5 +1,3 @@
-import Specter, { Client, Request, Response, Service } from "../src";
-import { AddressInfo } from "net";
 import assert from "assert";
 import fetch from "isomorphic-unfetch";
 import Todo from "./fixtures/Todo";
