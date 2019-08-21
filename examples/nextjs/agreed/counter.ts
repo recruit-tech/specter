@@ -1,4 +1,11 @@
-import { APIDef, PUT, Success200, ResponseDef, Error404, Capture } from "agreed-typed";
+import {
+  APIDef,
+  PUT,
+  Success200,
+  ResponseDef,
+  Error404,
+  Capture
+} from "agreed-typed";
 
 export type RequestBody = { count: Capture<"count", number> };
 export type ResponseBody = { results: { count: Capture<"count", number> } };
@@ -10,8 +17,7 @@ export type AgreedSampleGetAPI = APIDef<
   {}, // request query
   RequestBody, // request body
   {}, // response header
-  | ResponseDef<Success200, ResponseBody>
-  | ResponseDef<Error404, ResponseBody> // response
+  ResponseDef<Success200, ResponseBody> | ResponseDef<Error404, ResponseBody> // response
 >;
 
 const api: AgreedSampleGetAPI = {
@@ -19,20 +25,20 @@ const api: AgreedSampleGetAPI = {
     path: ["counter"],
     method: "PUT",
     body: {
-      count: "{:count}",
-    },
+      count: "{:count}"
+    }
   },
   response: {
     status: 200,
     body: {
       results: {
-        count: "{:count}",
-      },
+        count: "{:count}"
+      }
     },
     values: {
-      count: 123,
-    },
-  },
+      count: 123
+    }
+  }
 };
 
 module.exports = api;

@@ -2,7 +2,7 @@
   "name": "with-typescript-styled-components",
   "version": "1.0.0",
   "scripts": {
-    "dev": "npm run dev:agreed & next",
+    "dev": "npm run dev:agreed & ts-node server.ts",
     "build": "next build",
     "start": "next start",
     "dev:agreed": "agreed-server --path ./agreed/agreed.ts --port 8080"
@@ -10,6 +10,7 @@
   "dependencies": {
     "@specter/client": "0.0.6",
     "@specter/specter": "0.0.6",
+    "express": "^4.17.1",
     "isomorphic-unfetch": "^3.0.0",
     "next": "latest",
     "react": "16.8.6",
@@ -25,7 +26,8 @@
     "agreed": "^3.2.2",
     "agreed-typed": "^1.0.1",
     "babel-plugin-styled-components": "^1.10.0",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "ts-node": "^8.3.0"
   },
   "license": "ISC"
 }
