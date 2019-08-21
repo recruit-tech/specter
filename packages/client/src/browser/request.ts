@@ -37,7 +37,7 @@ export default class SpecterRequest<
     });
   }
 
-  static toRequest(req: string): SpecterRequest<any, any, any> {
+  static parseRequest(req: string): SpecterRequest<any, any, any> {
     const r = JSON.parse(req);
     return new SpecterRequest(r.resource, {
       headers: r.headers,
