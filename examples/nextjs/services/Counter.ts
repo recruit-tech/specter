@@ -3,13 +3,15 @@ import { Request, Response } from "@specter/client";
 import { RequestBody, ResponseBody } from "../agreed/counter";
 import fetch from "isomorphic-unfetch";
 
+export type CounterResponse = Response<{}, { count: number }>;
+
 export default class Counter extends Service {
   constructor(config: object) {
     super("counter", config);
   }
   async update(
     request: Request<{}, {}, RequestBody>
-  ): Promise<Response<{}, { count: number }>> {
+  ): Promise<CounterResponse> {
     const res = await fetch("http://localhost:8080/counter", {
       method: "PUT",
       body: JSON.stringify({

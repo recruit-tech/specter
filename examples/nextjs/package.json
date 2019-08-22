@@ -1,15 +1,15 @@
 {
-  "name": "with-typescript-styled-components",
+  "name": "nextsample",
   "version": "1.0.0",
   "scripts": {
-    "dev": "npm run dev:agreed & ts-node server.ts",
+    "dev": "npm run dev:agreed & ts-node --project ./tsconfig.server.json server.ts",
     "build": "next build",
     "start": "next start",
     "dev:agreed": "agreed-server --path ./agreed/agreed.ts --port 8080"
   },
   "dependencies": {
-    "@specter/client": "0.0.6",
-    "@specter/specter": "0.0.6",
+    "@specter/client": "latest",
+    "@specter/specter": "latest",
     "express": "^4.17.1",
     "isomorphic-unfetch": "^3.0.0",
     "next": "latest",

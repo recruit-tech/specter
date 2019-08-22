@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Client, { Request, Response } from "@specter/client";
+import Client, { Request } from "@specter/client";
 import { RequestBody } from "../agreed/counter";
+import { CounterResponse } from "../services/Counter";
 
 const Title = styled.h1`
   color: red;
@@ -21,7 +22,6 @@ page.getInitialProps = async () => {
       count: 1
     }
   });
-  type CounterResponse = Response<{}, { count: number }>;
   const data = await client.update<CounterResponse>(request);
   return { count: data.body.count };
 };
