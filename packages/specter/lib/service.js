@@ -50,8 +50,5 @@ class Service {
     preCheck(req) {
         return Promise.resolve(true);
     }
-    nextReqs(req, res) {
-        return Promise.resolve([]);
-    }
 }
 exports.default = Service;

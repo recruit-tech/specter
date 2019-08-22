@@ -8,7 +8,7 @@ class SpecterClient {
     constructor(options) {
         this.options = options;
     }
-    execute(request) {
+    execute(request, restype) {
         if (!request.method) {
             throw new Error("Request method not found");
         }

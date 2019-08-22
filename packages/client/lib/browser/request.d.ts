@@ -12,5 +12,5 @@ export default class SpecterRequest<H extends any, Q extends any, B extends any>
         method?: string;
     });
     toHeader(): string;
-    static toRequest(req: string): SpecterRequest<any, any, any>;
+    static parseRequest(req: string): SpecterRequest<any, any, any>;
 }

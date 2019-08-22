@@ -22,10 +22,10 @@ export default class SpecterClient {
     return path;
   }
 
-  private async executeRequest(
+  private async executeRequest<Res extends DefaultResponse>(
     method: string,
     request: DefaultRequest
-  ): Promise<DefaultResponse> {
+  ): Promise<Res> {
     const path = this.createPath(request);
     const body = request.body ? JSON.stringify(request.body) : null;
     const head = {
@@ -43,12 +43,12 @@ export default class SpecterClient {
     const json = await response.json();
     const headers = response.headers;
     const result = new SpecterResponse<any, any>(headers, json);
-    return result;
+    return result as Res;
   }
 
   async execute<Response extends DefaultResponse>(
     request: DefaultRequest
-  ): Promise<Response | DefaultResponse> {
+  ): Promise<Response> {
     if (!request.method) {
       throw new Error("Request method is not found.");
     }
@@ -57,25 +57,25 @@ export default class SpecterClient {
 
   async create<Response extends DefaultResponse>(
     request: DefaultRequest
-  ): Promise<Response | DefaultResponse> {
+  ): Promise<Response> {
     return this.executeRequest("POST", request);
   }
 
   async read<Response extends DefaultResponse>(
     request: DefaultRequest
-  ): Promise<Response | DefaultResponse> {
+  ): Promise<Response> {
     return this.executeRequest("GET", request);
   }
 
   async update<Response extends DefaultResponse>(
     request: DefaultRequest
-  ): Promise<Response | DefaultResponse> {
+  ): Promise<Response> {
     return this.executeRequest("PUT", request);
   }
 
   async delete<Response extends DefaultResponse>(
     request: DefaultRequest
-  ): Promise<Response | DefaultResponse> {
+  ): Promise<Response> {
     return this.executeRequest("DELETE", request);
   }
 

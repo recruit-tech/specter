@@ -20,9 +20,6 @@ class Specter {
         return Specter.services.has(name);
     }
     static createMiddleware(options) {
-        Specter.collect = options.collect;
-        Specter.guess = options.guess;
-        Specter.guessOption = options.guessOptions;
         return async (req, res, next) => {
             try {
                 if (!req.url) {
