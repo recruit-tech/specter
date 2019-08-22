@@ -18,7 +18,7 @@ var SpecterRequest = /** @class */ (function () {
             method: this.method
         });
     };
-    SpecterRequest.toRequest = function (req) {
+    SpecterRequest.parseRequest = function (req) {
         var r = JSON.parse(req);
         return new SpecterRequest(r.resource, {
             headers: r.headers,

@@ -22,7 +22,7 @@ page.getInitialProps = async () => {
     }
   });
   type CounterResponse = Response<{}, { count: number }>;
-  const data: CounterResponse = await client.update<CounterResponse>(request);
+  const data = await client.update<CounterResponse>(request);
   return { count: data.body.count };
 };
 export default page

@@ -11,11 +11,11 @@ export default class SpecterClient {
     });
     private createPath;
     private executeRequest;
-    execute<Response extends DefaultResponse>(request: DefaultRequest): Promise<Response | DefaultResponse>;
-    create<Response extends DefaultResponse>(request: DefaultRequest): Promise<Response | DefaultResponse>;
-    read<Response extends DefaultResponse>(request: DefaultRequest): Promise<Response | DefaultResponse>;
-    update<Response extends DefaultResponse>(request: DefaultRequest): Promise<Response | DefaultResponse>;
-    delete<Response extends DefaultResponse>(request: DefaultRequest): Promise<Response | DefaultResponse>;
+    execute<Response extends DefaultResponse>(request: DefaultRequest): Promise<Response>;
+    create<Response extends DefaultResponse>(request: DefaultRequest): Promise<Response>;
+    read<Response extends DefaultResponse>(request: DefaultRequest): Promise<Response>;
+    update<Response extends DefaultResponse>(request: DefaultRequest): Promise<Response>;
+    delete<Response extends DefaultResponse>(request: DefaultRequest): Promise<Response>;
     exists(request: DefaultRequest): Promise<boolean>;
 }
 export {};

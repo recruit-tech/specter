@@ -8,13 +8,12 @@ export default class Service {
     name: string;
     config: any;
     constructor(name: string, config: any);
-    execute(req: DefaultRequest): Promise<DefaultResponse>;
-    create(req: DefaultRequest): Promise<DefaultResponse>;
-    read(req: DefaultRequest): Promise<DefaultResponse>;
-    update(req: DefaultRequest): Promise<DefaultResponse>;
-    delete(req: DefaultRequest): Promise<DefaultResponse>;
-    exist(req: DefaultRequest): Promise<DefaultResponse>;
+    execute<Response extends DefaultResponse>(req: DefaultRequest): Promise<Response>;
+    create<Response extends DefaultResponse>(req: DefaultRequest): Promise<DefaultResponse>;
+    read<Response extends DefaultResponse>(req: DefaultRequest): Promise<DefaultResponse>;
+    update<Response extends DefaultResponse>(req: DefaultRequest): Promise<DefaultResponse>;
+    delete<Response extends DefaultResponse>(req: DefaultRequest): Promise<DefaultResponse>;
+    exist<Response extends DefaultResponse>(req: DefaultRequest): Promise<DefaultResponse>;
     preCheck(req: DefaultRequest): Promise<boolean>;
-    nextReqs(req: DefaultRequest, res: DefaultResponse): Promise<DefaultRequest[]>;
 }
 export {};

@@ -13,8 +13,9 @@ export default class SpecterClient {
   }
 
   execute<Res extends DefaultResponse>(
-    request: DefaultRequest
-  ): Promise<Res | DefaultResponse> {
+    request: DefaultRequest,
+    restype?: { new (): Res }
+  ): Promise<Res> {
     if (!request.method) {
       throw new Error("Request method not found");
     }
@@ -22,7 +23,7 @@ export default class SpecterClient {
       throw new Error(`Service is not registered ${request.resource}`);
     }
     const service = Specter.getService(request.resource);
-    const response = service.execute(request);
+    const response = service.execute<Res>(request);
     return response;
   }
 
