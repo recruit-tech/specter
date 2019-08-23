@@ -3,13 +3,13 @@ import SpecterResponse from "./response";
 import { IncomingHttpHeaders } from "http";
 import { NotImplemented, NotSupportedMethod } from "./errors";
 
-type DefaultRequest = SpecterRequest<IncomingHttpHeaders, any, any>;
-type DefaultResponse = SpecterResponse<any, any>;
+type DefaultRequest = SpecterRequest<IncomingHttpHeaders, {}, {}>;
+type DefaultResponse = SpecterResponse<{}, {}>;
 
 export default class Service {
   name: string;
-  config: any;
-  constructor(name: string, config: any) {
+  config: {};
+  constructor(name: string, config: {}) {
     this.name = name;
     this.config = config;
   }
