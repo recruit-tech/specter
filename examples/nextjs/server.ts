@@ -1,4 +1,5 @@
 import * as express from "express";
+import bodyParser from "body-parser";
 import next from "next";
 import Specter from "@specter/specter";
 import Counter from "./services/Counter";
@@ -10,6 +11,7 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express.default();
   Specter.registerService(new Counter({}));
+  server.use(bodyParser.json());
   server.use("/xhr", Specter.createMiddleware({}));
   server.get("*", (req, res) => {
     return handle(req, res);

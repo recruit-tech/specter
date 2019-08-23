@@ -2,6 +2,7 @@
   "name": "nextsample",
   "version": "1.0.0",
   "scripts": {
+    "test": "echo \"notest\" && exit 0",
     "dev": "npm run dev:agreed & ts-node --project ./tsconfig.server.json server.ts",
     "build": "next build",
     "start": "next start",
@@ -10,6 +11,7 @@
   "dependencies": {
     "@specter/client": "latest",
     "@specter/specter": "latest",
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "isomorphic-unfetch": "^3.0.0",
     "next": "latest",

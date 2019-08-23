@@ -29,35 +29,35 @@ export default class SpecterClient {
 
   create<Res extends DefaultResponse>(
     request: DefaultRequest
-  ): Promise<Res | DefaultResponse> {
+  ): Promise<Res> {
     request.method = "POST";
     return this.execute(request);
   }
 
   read<Res extends DefaultResponse>(
     request: DefaultRequest
-  ): Promise<Res | DefaultResponse> {
+  ): Promise<Res> {
     request.method = "GET";
     return this.execute(request);
   }
 
   update<Res extends DefaultResponse>(
     request: DefaultRequest
-  ): Promise<Res | DefaultResponse> {
+  ): Promise<Res> {
     request.method = "PUT";
     return this.execute(request);
   }
 
   delete<Res extends DefaultResponse>(
     request: DefaultRequest
-  ): Promise<Res | DefaultResponse> {
+  ): Promise<Res> {
     request.method = "DELETE";
     return this.execute(request);
   }
 
   exists<Res extends DefaultResponse>(
     request: DefaultRequest
-  ): Promise<Res | DefaultResponse> {
+  ): Promise<Res> {
     request.method = "HEAD";
     return this.execute(request);
   }

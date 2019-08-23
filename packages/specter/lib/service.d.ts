@@ -6,8 +6,8 @@ declare type DefaultRequest = SpecterRequest<IncomingHttpHeaders, any, any>;
 declare type DefaultResponse = SpecterResponse<any, any>;
 export default class Service {
     name: string;
-    config: any;
-    constructor(name: string, config: any);
+    config: {};
+    constructor(name: string, config: {});
     execute<Response extends DefaultResponse>(req: DefaultRequest): Promise<Response>;
     create<Response extends DefaultResponse>(req: DefaultRequest): Promise<DefaultResponse>;
     read<Response extends DefaultResponse>(req: DefaultRequest): Promise<DefaultResponse>;

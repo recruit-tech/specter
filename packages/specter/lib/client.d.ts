@@ -10,10 +10,10 @@ export default class SpecterClient {
     execute<Res extends DefaultResponse>(request: DefaultRequest, restype?: {
         new (): Res;
     }): Promise<Res>;
-    create<Res extends DefaultResponse>(request: DefaultRequest): Promise<Res | DefaultResponse>;
-    read<Res extends DefaultResponse>(request: DefaultRequest): Promise<Res | DefaultResponse>;
-    update<Res extends DefaultResponse>(request: DefaultRequest): Promise<Res | DefaultResponse>;
-    delete<Res extends DefaultResponse>(request: DefaultRequest): Promise<Res | DefaultResponse>;
-    exists<Res extends DefaultResponse>(request: DefaultRequest): Promise<Res | DefaultResponse>;
+    create<Res extends DefaultResponse>(request: DefaultRequest): Promise<Res>;
+    read<Res extends DefaultResponse>(request: DefaultRequest): Promise<Res>;
+    update<Res extends DefaultResponse>(request: DefaultRequest): Promise<Res>;
+    delete<Res extends DefaultResponse>(request: DefaultRequest): Promise<Res>;
+    exists<Res extends DefaultResponse>(request: DefaultRequest): Promise<Res>;
 }
 export {};
