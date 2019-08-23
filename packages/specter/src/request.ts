@@ -5,8 +5,8 @@ export type AnyRequest = SpecterRequest<{}, {}, {}>;
 
 export default class SpecterRequest<
   H extends IncomingHttpHeaders,
-  Q extends any,
-  B extends any
+  Q extends {},
+  B extends {}
 > {
   resource: string;
   headers: H | IncomingHttpHeaders;
