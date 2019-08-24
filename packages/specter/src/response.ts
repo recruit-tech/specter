@@ -6,6 +6,7 @@ export default class SpecterResponse<H extends any, B extends any> {
   header: H;
   body: B;
   error?: any;
+  requests?: SpecterRequest<any, any, any>[];
   constructor(header: H, body: B) {
     this.header = header;
     this.body = body;
@@ -18,8 +19,12 @@ export default class SpecterResponse<H extends any, B extends any> {
       ...this.header,
       "x-specter-next-reqs": reqs.map(req => req.toString())
     };
+    this.requests = reqs;
   }
   setError(error: any) {
     this.error = error;
+  }
+  getNextReqs() {
+    return this.requests;
   }
 }
