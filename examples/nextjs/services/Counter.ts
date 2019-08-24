@@ -1,5 +1,4 @@
-import { Service } from "@specter/specter";
-import { Request, Response } from "@specter/client";
+import { Service, Request, Response } from "@specter/specter";
 import { RequestBody, ResponseBody } from "../agreed/counter";
 import fetch from "isomorphic-unfetch";
 
@@ -12,6 +11,7 @@ export default class Counter extends Service {
   async update(
     request: Request<{}, {}, RequestBody>
   ): Promise<CounterResponse> {
+    console.log("request body", request.body);
     const res = await fetch("http://localhost:8080/counter", {
       method: "PUT",
       body: JSON.stringify({

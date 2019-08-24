@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "links": "npm link @specter/specter && npm link @specter/client",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"notest\" && exit 0",
     "start:server": "node webpack/dist/server/bundle.js",
     "build:client": "webpack --config webpack/client.config.js",
     "build:server": "webpack --config webpack/server.config.js",

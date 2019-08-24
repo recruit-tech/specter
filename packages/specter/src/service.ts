@@ -3,8 +3,8 @@ import SpecterResponse from "./response";
 import { IncomingHttpHeaders } from "http";
 import { NotImplemented, NotSupportedMethod } from "./errors";
 
-type DefaultRequest = SpecterRequest<IncomingHttpHeaders, {}, {}>;
-type DefaultResponse = SpecterResponse<{}, {}>;
+type DefaultRequest = SpecterRequest<IncomingHttpHeaders, any, any>;
+type DefaultResponse = SpecterResponse<any, any>;
 
 export default class Service {
   name: string;

@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "test": "lerna run test --parallel",
-    "allinstall": "lerna exec npm install",
+    "allinstall": "lerna bootstrap",
     "build": "lerna exec npm run build",
     "lint": "eslint . --ext .js,.ts",
     "lint-fix": "eslint . --ext .js,.ts --fix",

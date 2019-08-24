@@ -90,7 +90,10 @@ test("Specter send next response", async () => {
   const data = res.body;
   const headers = res.header;
   assert.strictEqual(headers.foo, "bar");
-  assert.strictEqual(headers["x-specter-next-reqs"][0], request.toString());
+  const nextReqs = res.getNextReqs();
+  if (nextReqs) {
+    assert.strictEqual(nextReqs[0].toString(), request.toString());
+  }
   assert.deepStrictEqual(data, {
     echo: "echo"
   });
