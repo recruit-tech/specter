@@ -13,9 +13,13 @@ class SpecterResponse {
             ...this.header,
             "x-specter-next-reqs": reqs.map(req => req.toString())
         };
+        this.requests = reqs;
     }
     setError(error) {
         this.error = error;
+    }
+    getNextReqs() {
+        return this.requests;
     }
 }
 exports.default = SpecterResponse;
