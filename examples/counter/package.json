@@ -33,5 +33,6 @@
   "peerDependencies": {
     "@specter/client": "latest",
     "@specter/specter": "latest"
-  }
+  },
+  "gitHead": "312af2aa9d4ddd80c0575b44e26bfbef345d5dff"
 }

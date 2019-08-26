@@ -31,5 +31,6 @@
     "lodash": "^4.17.15",
     "ts-node": "^8.3.0"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "gitHead": "312af2aa9d4ddd80c0575b44e26bfbef345d5dff"
 }
