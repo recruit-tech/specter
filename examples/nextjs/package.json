@@ -1,6 +1,6 @@
 {
   "name": "nextsample",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "scripts": {
     "test": "echo \"notest\" && exit 0",
     "dev": "npm run dev:agreed & ts-node --project ./tsconfig.server.json server.ts",
