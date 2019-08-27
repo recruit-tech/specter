@@ -34,6 +34,7 @@
     "url": "https://github.com/recruit-tech/specter/issues"
   },
   "devDependencies": {
+    "@specter/specter": "latest",
     "@types/express": "4.17.1",
     "@types/jest": "24.0.18",
     "@types/node-fetch": "2.5.0",
@@ -44,7 +45,6 @@
     "typescript": "3.5.3"
   },
   "dependencies": {
-    "@specter/specter": "latest",
     "unfetch": "^4.1.0"
   },
   "peerDependencies": {
