@@ -64,5 +64,5 @@ class Specter {
         };
     }
 }
-Specter.services = new Map();
 exports.default = Specter;
+Specter.services = new Map();
