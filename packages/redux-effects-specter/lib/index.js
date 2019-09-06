@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var client_1 = require("@specter/client");
+var specter_1 = require("@specter/specter");
 exports.SPECTER = "SPECTER";
 var SPECTER_READ = "read";
 var SPECTER_DELETE = "delete";
@@ -50,13 +50,13 @@ exports.specterUpdate = function (service, args) {
 };
 function reduxEffectsSpector(client) {
     return function () { return function (next) { return function (action) {
-        var actionType = action.type, payload = action.payload;
-        if (actionType !== exports.SPECTER)
+        var type = action.type, payload = action.payload;
+        if (type !== exports.SPECTER)
             return next(action);
-        var service = payload.service, method = payload.type, query = payload.query, headers = payload.headers;
+        var service = payload.service, query = payload.query, headers = payload.headers;
         switch (payload.type) {
             case SPECTER_READ: {
-                var req = new client_1.Request(service, {
+                var req = new specter_1.Request(service, {
                     headers: headers,
                     query: query,
                     body: {}
@@ -64,7 +64,7 @@ function reduxEffectsSpector(client) {
                 return client.read(req).then(function (res) { return res.body; });
             }
             case SPECTER_DELETE: {
-                var req = new client_1.Request(service, {
+                var req = new specter_1.Request(service, {
                     headers: headers,
                     query: query,
                     body: {}
@@ -72,8 +72,7 @@ function reduxEffectsSpector(client) {
                 return client.delete(req).then(function (res) { return res.body; });
             }
             case SPECTER_CREATE: {
-                console.log(service, method, headers, query, payload.body);
-                var req = new client_1.Request(service, {
+                var req = new specter_1.Request(service, {
                     headers: headers,
                     query: query,
                     body: payload.body
@@ -81,7 +80,7 @@ function reduxEffectsSpector(client) {
                 return client.create(req).then(function (res) { return res.body; });
             }
             case SPECTER_UPDATE: {
-                var req = new client_1.Request(service, {
+                var req = new specter_1.Request(service, {
                     headers: headers,
                     query: query,
                     body: payload.body

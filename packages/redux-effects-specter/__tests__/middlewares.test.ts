@@ -34,9 +34,9 @@ describe("middlewares", () => {
   it("read greet through redux middleware", async () => {
     const store = createStore();
     const resp = (await store.dispatch(
-      specterRead("greet")
-    ) as any /* redux can't deside a return type of `dispatch` */);
-    assert.deepStrictEqual(resp, { greet: 'hello' });
+        specterRead("greet")
+      )) as any /* redux can't deside a return type of `dispatch` */;
+    assert.deepStrictEqual(resp, { greet: "hello" });
   });
 
   it("create todo through redux middleware", async () => {
@@ -44,16 +44,16 @@ describe("middlewares", () => {
     const reducer = (state: typeof initialState) => state;
     const store = createStore();
     const resp = (await store.dispatch(
-      specterCreate("todo", {
-        body: {
-          task: {
-            title: "foo",
-            desc: "bar",
-            done: false
+        specterCreate("todo", {
+          body: {
+            task: {
+              title: "foo",
+              desc: "bar",
+              done: false
+            }
           }
-        }
-      })
-    ) as any /* redux can't deside a return type of `dispatch` */);
+        })
+      )) as any /* redux can't deside a return type of `dispatch` */;
     assert.deepStrictEqual(resp, {
       id: 0,
       task: {
@@ -65,6 +65,6 @@ describe("middlewares", () => {
   });
 
   afterEach(() => {
-    server.close()
-  })
+    server.close();
+  });
 });

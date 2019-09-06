@@ -1,4 +1,4 @@
-import { Request, Client } from '@specter/specter';
+import { Request, Client } from "@specter/specter";
 import { Middleware } from "redux";
 
 export const SPECTER: "SPECTER" = "SPECTER";
@@ -41,20 +41,28 @@ type SpecterAction = {
   payload: Payload<any, any, any>;
 };
 
-const createFetchAction = <H, Q, B = object>(payload: Payload<H, Q, B>): SpecterAction => ({
+const createFetchAction = <H, Q, B = object>(
+  payload: Payload<H, Q, B>
+): SpecterAction => ({
   type: SPECTER,
   payload
 });
 
-export const specterRead = <H = object, Q = object>(service: string, args: { query?: Q, headers?: H } = {}) =>
+export const specterRead = <H = object, Q = object>(
+  service: string,
+  args: { query?: Q; headers?: H } = {}
+) =>
   createFetchAction({
     type: SPECTER_READ,
     service,
     headers: args.headers || {},
-    query: args.query || {},
+    query: args.query || {}
   });
 
-export const specterDelete = <H = object, Q = object>(service: string, args: { query?: Q, headers?: H } = {}) =>
+export const specterDelete = <H = object, Q = object>(
+  service: string,
+  args: { query?: Q; headers?: H } = {}
+) =>
   createFetchAction({
     type: SPECTER_DELETE,
     service,
@@ -64,7 +72,7 @@ export const specterDelete = <H = object, Q = object>(service: string, args: { q
 
 export const specterCreate = <H = object, Q = object, B = object>(
   service: string,
-  args: { query?: Q; body?: B, headers?: H } = {}
+  args: { query?: Q; body?: B; headers?: H } = {}
 ) =>
   createFetchAction({
     type: SPECTER_CREATE,
