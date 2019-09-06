@@ -6,7 +6,7 @@ export type AnyRequest = SpecterRequest<{}, {}, {}>;
 export default class SpecterRequest<
   H extends IncomingHttpHeaders,
   Q extends any,
-  B extends any
+  B extends any = {}
 > {
   resource: string;
   headers: H | IncomingHttpHeaders;
@@ -17,7 +17,7 @@ export default class SpecterRequest<
 
   constructor(
     resource: string,
-    req: Request | { method?: string; headers: H; query: Q; body: B }
+    req: Request | { method?: string; headers: H; query: Q; body?: B }
   ) {
     this.resource = resource;
     this.method = req.method;
