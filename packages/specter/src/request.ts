@@ -30,8 +30,8 @@ export default class SpecterRequest<
     this.req = req;
   }
 
-  static parseRequest<R extends AnyRequest>(req: string) {
-    const parsed: R = JSON.parse(req);
+  static parseRequest(req: string) {
+    const parsed = JSON.parse(req);
     return new SpecterRequest(parsed.resource, {
       method: parsed.method,
       headers: parsed.headers,

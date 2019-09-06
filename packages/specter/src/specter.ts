@@ -7,6 +7,7 @@ import {
 import SpecterRequest from "./request";
 import Service from "./service";
 
+const DefaultContentType = "application/json";
 export default class Specter {
   private static services = new Map<string, Service>();
 
@@ -55,14 +56,16 @@ export default class Specter {
 
         const service = Specter.getService(request.resource);
         const response = await service.execute(request);
-        res.status(response.status || 200);
-        const header = response.header;
-        for (const key of Object.keys(header)) {
-          const value = header[key];
-          res.setHeader(key, value);
+        const header: { [key: string]: any } = {};
+
+        for (const [key, value] of Object.entries(response.header)) {
+          header[key] = value;
         }
+        header["Content-Type"] = DefaultContentType;
+        header["access-control-expose-headers"] = Object.keys(header).join(",");
+        res.writeHead(response.status || 200, header);
         if (response.body) {
-          res.send(response.body);
+          res.end(JSON.stringify(response.body));
         } else {
           res.end(null);
         }
