@@ -46,4 +46,9 @@ export default class SpecterRequest<
       method: r.method
     });
   }
+
+  static parseRequests(reqs: string): SpecterRequest<any, any, any>[] {
+    const rs = reqs.split("__sep__");
+    return rs.map(SpecterRequest.parseRequest);
+  }
 }
