@@ -67,9 +67,9 @@ var SpecterClient = /** @class */ (function () {
     };
     SpecterClient.prototype.executeRequest = function (method, request) {
         return __awaiter(this, void 0, void 0, function () {
-            var path, body, head, response, json, headers, result;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var path, body, head, response, json, h, headers, _i, _a, _b, key, value, result;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
                     case 0:
                         path = this.createPath(request);
                         body = request.body ? JSON.stringify(request.body) : null;
@@ -79,11 +79,16 @@ var SpecterClient = /** @class */ (function () {
                         }
                         return [4 /*yield*/, unfetch_1.default(path, __assign({ method: method, headers: head, body: body }, this.fetchOptions))];
                     case 1:
-                        response = _a.sent();
+                        response = _c.sent();
                         return [4 /*yield*/, response.json()];
                     case 2:
-                        json = _a.sent();
-                        headers = response.headers;
+                        json = _c.sent();
+                        h = response.headers;
+                        headers = {};
+                        for (_i = 0, _a = h.entries(); _i < _a.length; _i++) {
+                            _b = _a[_i], key = _b[0], value = _b[1];
+                            headers[key] = value;
+                        }
                         result = new response_1.default(headers, json);
                         return [2 /*return*/, result];
                 }

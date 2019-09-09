@@ -11,15 +11,15 @@ class SpecterResponse {
     setNextReqs(...reqs) {
         this.header = {
             ...this.header,
-            "x-specter-next-reqs": reqs.map(req => req.toString())
+            "x-specter-next-reqs": reqs.map(req => req.toString()).join("__sep__")
         };
-        this.requests = reqs;
+        this.nextReqs = reqs;
     }
     setError(error) {
         this.error = error;
     }
     getNextReqs() {
-        return this.requests;
+        return this.nextReqs;
     }
 }
 exports.default = SpecterResponse;

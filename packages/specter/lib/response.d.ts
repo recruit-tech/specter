@@ -5,7 +5,7 @@ export default class SpecterResponse<H extends any, B extends any> {
     header: H;
     body: B;
     error?: any;
-    requests?: SpecterRequest<any, any, any>[];
+    nextReqs?: SpecterRequest<any, any, any>[];
     constructor(header: H, body: B);
     setStatus(status: number): void;
     setNextReqs(...reqs: SpecterRequest<any, any, any>[]): void;

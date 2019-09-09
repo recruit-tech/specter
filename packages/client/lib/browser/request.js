@@ -27,6 +27,10 @@ var SpecterRequest = /** @class */ (function () {
             method: r.method
         });
     };
+    SpecterRequest.parseRequests = function (reqs) {
+        var rs = reqs.split("__sep__");
+        return rs.map(SpecterRequest.parseRequest);
+    };
     return SpecterRequest;
 }());
 exports.default = SpecterRequest;

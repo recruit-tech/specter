@@ -16,7 +16,7 @@ exports.specterRead = function (service, args) {
         type: SPECTER_READ,
         service: service,
         headers: args.headers || {},
-        query: args.query || {},
+        query: args.query || {}
     });
 };
 exports.specterDelete = function (service, args) {

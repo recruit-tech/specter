@@ -13,4 +13,5 @@ export default class SpecterRequest<H extends any, Q extends any, B extends any>
     });
     toHeader(): string;
     static parseRequest(req: string): SpecterRequest<any, any, any>;
+    static parseRequests(reqs: string): SpecterRequest<any, any, any>[];
 }

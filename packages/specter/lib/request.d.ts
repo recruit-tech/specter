@@ -16,7 +16,7 @@ export default class SpecterRequest<H extends IncomingHttpHeaders, Q extends any
         query: Q;
         body?: B;
     });
-    static parseRequest<R extends AnyRequest>(req: string): SpecterRequest<{} | IncomingHttpHeaders, {}, {}>;
+    static parseRequest(req: string): SpecterRequest<any, any, any>;
     toString(): string;
 }
 export {};

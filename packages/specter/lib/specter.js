@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const url_1 = require("url");
 const request_1 = __importDefault(require("./request"));
+const DefaultContentType = "application/json";
 class Specter {
     static registerService(service) {
         Specter.services.set(service.name, service);
@@ -42,14 +43,15 @@ class Specter {
                 }
                 const service = Specter.getService(request.resource);
                 const response = await service.execute(request);
-                res.status(response.status || 200);
-                const header = response.header;
-                for (const key of Object.keys(header)) {
-                    const value = header[key];
-                    res.setHeader(key, value);
+                const header = {};
+                for (const [key, value] of Object.entries(response.header)) {
+                    header[key] = value;
                 }
+                header["Content-Type"] = DefaultContentType;
+                header["access-control-expose-headers"] = Object.keys(header).join(",");
+                res.writeHead(response.status || 200, header);
                 if (response.body) {
-                    res.send(response.body);
+                    res.end(JSON.stringify(response.body));
                 }
                 else {
                     res.end(null);

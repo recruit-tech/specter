@@ -1,4 +1,4 @@
-import { Client } from '@specter/specter';
+import { Client } from "@specter/specter";
 import { Middleware } from "redux";
 export declare const SPECTER: "SPECTER";
 declare const SPECTER_READ: "read";
