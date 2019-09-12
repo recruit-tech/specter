@@ -36,7 +36,7 @@
     "jest": "24.9.0",
     "typescript": "3.6.2"
   },
-  "gitHead": "1cbcd2b90cf6a15dcbf56cfa5b32c2efa1a2c7ad",
+  "gitHead": "4a80643ccb7281aa35aeade07d5258830917940d",
   "publishConfig": {
     "access": "public"
   }

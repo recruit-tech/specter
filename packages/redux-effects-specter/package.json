@@ -42,5 +42,9 @@
     "@specter/client": "latest",
     "@specter/specter": "latest",
     "redux": ">= 4.0"
+  },
+  "gitHead": "4a80643ccb7281aa35aeade07d5258830917940d",
+  "publishConfig": {
+    "access": "public"
   }
 }
