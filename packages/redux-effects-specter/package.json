@@ -39,8 +39,8 @@
     "typescript": "3.6.2"
   },
   "peerDependencies": {
-    "@specter/client": ">= 0.0.10",
-    "@specter/specter": ">= 0.0.10",
+    "@specter/client": "latest",
+    "@specter/specter": "latest",
     "redux": ">= 4.0"
   }
 }
