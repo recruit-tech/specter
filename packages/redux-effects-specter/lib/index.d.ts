@@ -18,9 +18,9 @@ declare type Payload<H, Q, B = object | undefined> = {
 } | {
     type: typeof SPECTER_UPDATE;
     service: string;
-    headers: object;
-    query: H;
-    body: Q;
+    headers: H;
+    query: Q;
+    body: B;
 } | {
     type: typeof SPECTER_CREATE;
     service: string;
