@@ -12,7 +12,7 @@
   "devDependencies": {
     "@types/express": "4.17.1",
     "@types/jest": "24.0.18",
-    "@types/node": "11.13.20",
+    "@types/node": "11.13.21",
     "@typescript-eslint/eslint-plugin": "2.3.1",
     "@typescript-eslint/parser": "2.3.1",
     "eslint": "6.4.0",
