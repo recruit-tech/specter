@@ -1,6 +1,6 @@
 {
   "name": "@specter/redux-effects-specter",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "redux middleware of specter client",
   "keywords": [
     "redux",
