@@ -50,7 +50,7 @@
   "peerDependencies": {
     "@specter/specter": "latest"
   },
-  "gitHead": "4a80643ccb7281aa35aeade07d5258830917940d",
+  "gitHead": "3fba7d8acd25c057b5bdde82e3e15632b57896d1",
   "publishConfig": {
     "access": "public"
   }
