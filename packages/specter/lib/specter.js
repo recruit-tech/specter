@@ -58,9 +58,7 @@ class Specter {
                 }
             }
             catch (e) {
-                console.error(e);
-                res.status(500);
-                res.send(e);
+                next(e);
             }
             return;
         };
