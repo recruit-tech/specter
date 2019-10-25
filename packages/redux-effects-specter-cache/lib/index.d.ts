@@ -1,15 +1,24 @@
-import { Middleware, AnyAction } from "redux";
+import { Middleware } from "redux";
 import LRUCache from "lru-cache";
+import { SPECTER, Payload } from "@specter/redux-effects-specter";
+declare type SpecterAction = {
+    type: typeof SPECTER;
+    payload: Payload<any, any, any>;
+    meta?: Record<string, any>;
+    error?: boolean;
+};
 export interface CacheResolver<S extends Record<string, any>> {
-    (action: AnyAction, state: S): boolean;
+    (action: SpecterAction, state: S): boolean;
 }
 export declare type MiddlewareOption<S> = {
-    excludes?: string[];
-    fromCache?: string[];
+    excludes?: Array<string>;
+    fromCache?: CacheResolver<S>;
     toCache?: CacheResolver<S>;
     resetCache?: CacheResolver<S>;
 };
+export declare function resetCacheData(): void;
 export default function reduxEffectsSpecterCache<S = any>({ middlewareOption, cacheOption, }: {
     middlewareOption?: MiddlewareOption<S>;
     cacheOption?: LRUCache.Options<string, Record<string, any>>;
 }): Middleware;
+export {};

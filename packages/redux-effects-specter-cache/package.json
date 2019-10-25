@@ -32,11 +32,12 @@
     "url": "https://github.com/recruit-tech/specter/issues"
   },
   "dependencies": {
-    "@types/redux": "^3.6.0"
+    "@types/lru-cache": "^5.1.0",
+    "@types/redux": "^3.6.0",
+    "lru-cache": "^5.1.1"
   },
   "devDependencies": {
-    "@specter/client": "latest",
-    "@specter/specter": "latest",
+    "@specter/specter": "0.0.18",
     "@specter/redux-effects-specter": "0.0.18",
     "jest": "24.9.0",
     "redux": "4.0.4",
@@ -44,9 +45,8 @@
     "typescript": "3.6.3"
   },
   "peerDependencies": {
-    "@specter/client": "latest",
-    "@specter/specter": "latest",
-    "@specter/redux-effects-specter": "latest",
+    "@specter/specter": "0.0.18",
+    "@specter/redux-effects-specter": "0.0.18",
     "redux": ">= 4.0"
   },
   "gitHead": "3fba7d8acd25c057b5bdde82e3e15632b57896d1",
