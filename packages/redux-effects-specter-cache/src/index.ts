@@ -32,7 +32,7 @@ function createCache(cacheOption?: LRUCache.Options<string, Record<string, any>>
   return cacheInstance
 }
 
-// CAUTION: this function expected to call after call to the createCache funciton in once.
+// CAUTION: this function expected to call after the createCache execudes in once.
 // MEMO: this can call from outside middleware, and reset a cache data.
 export function resetCacheData() {
   const cache = createCache()
