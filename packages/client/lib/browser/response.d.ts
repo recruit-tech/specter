@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import SpecterRequest from "@specter/specter/lib/request";
 export default class SpecterResponse<H extends {
     "x-specter-next-reqs": string;
@@ -6,5 +5,5 @@ export default class SpecterResponse<H extends {
     header: H;
     body: B;
     constructor(header: H, body: B);
-    getNextReqs(): SpecterRequest<{} | import("http").IncomingHttpHeaders, {}, {}>[];
+    getNextReqs(): SpecterRequest<any, any, any>[];
 }
