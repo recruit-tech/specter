@@ -5,7 +5,7 @@ declare const SPECTER_READ: "read";
 declare const SPECTER_DELETE: "delete";
 declare const SPECTER_UPDATE: "update";
 declare const SPECTER_CREATE: "create";
-declare type Payload<H, Q, B = object | undefined> = {
+export declare type Payload<H, Q, B = object | undefined> = {
     type: typeof SPECTER_READ;
     service: string;
     headers: H;

@@ -1,10 +1,11 @@
 {
-  "name": "@specter/redux-effects-specter",
-  "version": "0.0.18",
-  "description": "redux middleware of specter client",
+  "name": "@specter/redux-effects-specter-cache",
+  "version": "0.0.17",
+  "description": "cache structure for redux middleware of specter",
   "keywords": [
     "redux",
-    "middleware"
+    "middleware",
+    "cache"
   ],
   "author": "Kento TSUJI <maxmellon1994@gmail.com>",
   "homepage": "https://github.com/recruit-tech/specter",
@@ -30,9 +31,13 @@
   "bugs": {
     "url": "https://github.com/recruit-tech/specter/issues"
   },
+  "dependencies": {
+    "@types/redux": "^3.6.0"
+  },
   "devDependencies": {
     "@specter/client": "latest",
     "@specter/specter": "latest",
+    "@specter/redux-effects-specter": "0.0.18",
     "jest": "24.9.0",
     "redux": "4.0.4",
     "ts-jest": "24.1.0",
@@ -41,6 +46,7 @@
   "peerDependencies": {
     "@specter/client": "latest",
     "@specter/specter": "latest",
+    "@specter/redux-effects-specter": "latest",
     "redux": ">= 4.0"
   },
   "gitHead": "3fba7d8acd25c057b5bdde82e3e15632b57896d1",

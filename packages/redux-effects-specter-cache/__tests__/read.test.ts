@@ -1,0 +1,89 @@
+import assert from "assert"
+import { Store } from "redux"
+import { specterRead, specterCreate } from "@specter/redux-effects-specter"
+import createStore from "./fixture/createStore"
+import { resetCacheData } from "../src"
+
+describe("cache middleware", () => {
+  let store: Store
+  beforeEach(() => {
+    store = createStore({})
+    resetCacheData()
+  })
+
+  it("no cache (not same servicea, read action", async () => {
+    // initial state
+    const state0 = store.getState()
+    assert.equal(state0.log.length, 0)
+
+    await store.dispatch(specterRead("greet"))
+    const state1 = store.getState()
+    assert.equal(state1.log.length, 1)
+
+    await store.dispatch(specterRead("fuga"))
+    const state2 = store.getState()
+    assert.equal(state2.log.length, 2)
+  })
+
+  it("no cache (same service, not read action)", async () => {
+    // initial state
+    const state0 = store.getState()
+    assert.equal(state0.log.length, 0)
+
+    await store.dispatch(specterRead("greet"))
+    const state1 = store.getState()
+    assert.equal(state1.log.length, 1)
+
+    await store.dispatch(specterCreate("greet"))
+    const state2 = store.getState()
+    assert.equal(state2.log.length, 2)
+  })
+
+  it("no cache with query (same service, read action, difference query)", async () => {
+    // initial state
+    const state0 = store.getState()
+    assert.equal(state0.log.length, 0)
+
+    await store.dispatch(specterRead("greet", { query: { foo: 1 } }))
+    const state1 = store.getState()
+    assert.equal(state1.log.length, 1)
+
+    await store.dispatch(specterRead("greet", { query: { foo: 2 } }))
+    const state2 = store.getState()
+    assert.equal(state2.log.length, 2)
+  })
+
+  it("hit cache (same service, read action)", async () => {
+    // initial state
+    const state0 = store.getState()
+    assert.equal(state0.log.length, 0)
+
+    // expected cachging when calling first 
+    await store.dispatch(specterRead("greet"))
+    const state1 = store.getState()
+    assert.equal(state1.log.length, 1)
+
+    // read from cache
+    await store.dispatch(specterRead("greet"))
+    const state2 = store.getState()
+    // expected log is one because, dont call dummy specter middleware
+    assert.equal(state2.log.length, 1)
+  })
+
+  it("hit cache with query (same service, read action)", async () => {
+    // initial state
+    const state0 = store.getState()
+    assert.equal(state0.log.length, 0)
+
+    // expected cachging when calling first 
+    await store.dispatch(specterRead("greet", { query: { foo: 1 } }))
+    const state1 = store.getState()
+    assert.equal(state1.log.length, 1)
+
+    // read from cache
+    await store.dispatch(specterRead("greet", { query: { foo: 1 } }))
+    const state2 = store.getState()
+    // expected log is one because, dont call dummy specter middleware
+    assert.equal(state2.log.length, 1)
+  })
+})
