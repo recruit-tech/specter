@@ -1,6 +1,6 @@
 {
   "name": "@specter/redux-effects-specter-cache",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "cache structure for redux middleware of specter",
   "keywords": [
     "redux",
