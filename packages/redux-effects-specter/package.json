@@ -36,7 +36,7 @@
     "jest": "24.9.0",
     "redux": "4.0.4",
     "ts-jest": "24.1.0",
-    "typescript": "3.6.3"
+    "typescript": "3.6.4"
   },
   "peerDependencies": {
     "@specter/client": "latest",
