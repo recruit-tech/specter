@@ -31,16 +31,14 @@
     "url": "https://github.com/recruit-tech/specter/issues"
   },
   "devDependencies": {
-    "@specter/client": "latest",
-    "@specter/specter": "latest",
+    "@specter/client": "^0.0.17",
+    "@specter/specter": "^0.0.17",
     "jest": "24.9.0",
     "redux": "4.0.4",
     "ts-jest": "24.1.0",
     "typescript": "3.6.4"
   },
   "peerDependencies": {
-    "@specter/client": "latest",
-    "@specter/specter": "latest",
     "redux": ">= 4.0"
   },
   "gitHead": "3fba7d8acd25c057b5bdde82e3e15632b57896d1",
