@@ -35,7 +35,7 @@ export function resetStore() {
 
 export default function createStore(option?: MiddlewareOption<{ log: Array<any> }>) {
   return createReduxStore<{ log: Array<any> }, any, any, any>(
-    (state, action) => {
+    (state: any, action: AnyAction) => {
       if (typeof state === "undefined") return INITIAL_STATE
       if (action.type === "reset-store") return INITIAL_STATE
       if (action.type === "logging") {
