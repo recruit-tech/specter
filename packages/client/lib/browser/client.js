@@ -53,6 +53,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var response_1 = __importDefault(require("./response"));
 var querystring_1 = require("querystring");
 var unfetch_1 = __importDefault(require("unfetch"));
+// refs: https://github.com/developit/unfetch/issues/46
+// refs: https://github.com/developit/unfetch/issues/46#issuecomment-552492844
+var fetch = unfetch_1.default.bind(window);
 var DefaultContentType = "application/json; charset=utf-8";
 var SpecterClient = /** @class */ (function () {
     function SpecterClient(options) {
@@ -77,7 +80,13 @@ var SpecterClient = /** @class */ (function () {
                         if (body && !head["Content-Type"]) {
                             head["Content-Type"] = DefaultContentType;
                         }
-                        return [4 /*yield*/, unfetch_1.default(path, __assign({ method: method, headers: head, body: body }, this.fetchOptions))];
+                        return [4 /*yield*/, (method === "GET" || method === "HEAD"
+                                ? fetch(path, __assign({ method: method, headers: head }, this.fetchOptions))
+                                : fetch(path, {
+                                    method: method,
+                                    headers: head,
+                                    body: body
+                                }))];
                     case 1:
                         response = _c.sent();
                         return [4 /*yield*/, response.json()];
@@ -140,7 +149,7 @@ var SpecterClient = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         path = this.createPath(request);
-                        return [4 /*yield*/, unfetch_1.default(path, __assign({ method: "HEAD", headers: request.headers, body: JSON.stringify(request.body) }, this.fetchOptions))];
+                        return [4 /*yield*/, fetch(path, __assign({ method: "HEAD", headers: request.headers, body: JSON.stringify(request.body) }, this.fetchOptions))];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.ok];
