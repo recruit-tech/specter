@@ -1,8 +1,11 @@
 import SpecterRequest from "./request";
 import SpecterResponse from "./response";
 import { stringify } from "querystring";
-import { pathToFileURL } from "url";
-import fetch from "unfetch";
+import xfetch from "unfetch";
+
+// refs: https://github.com/developit/unfetch/issues/46
+// refs: https://github.com/developit/unfetch/issues/46#issuecomment-552492844
+const fetch = xfetch.bind(window);
 
 type DefaultRequest = SpecterRequest<any, any, any>;
 type DefaultResponse = SpecterResponse<any, any>;
@@ -34,12 +37,17 @@ export default class SpecterClient {
     if (body && !head["Content-Type"]) {
       head["Content-Type"] = DefaultContentType;
     }
-    const response = await fetch(path, {
-      method,
-      headers: head,
-      body,
-      ...this.fetchOptions
-    });
+    const response = await (method === "GET" || method === "HEAD"
+      ? fetch(path, {
+          method,
+          headers: head,
+          ...this.fetchOptions
+        })
+      : fetch(path, {
+          method,
+          headers: head,
+          body
+        }));
 
     const json = await response.json();
     const h = response.headers as Headers & {
