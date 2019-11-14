@@ -46,7 +46,8 @@ export default class SpecterClient {
       : fetch(path, {
           method,
           headers: head,
-          body
+          body,
+          ...this.fetchOptions
         }));
 
     const json = await response.json();

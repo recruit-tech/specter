@@ -82,11 +82,7 @@ var SpecterClient = /** @class */ (function () {
                         }
                         return [4 /*yield*/, (method === "GET" || method === "HEAD"
                                 ? fetch(path, __assign({ method: method, headers: head }, this.fetchOptions))
-                                : fetch(path, {
-                                    method: method,
-                                    headers: head,
-                                    body: body
-                                }))];
+                                : fetch(path, __assign({ method: method, headers: head, body: body }, this.fetchOptions)))];
                     case 1:
                         response = _c.sent();
                         return [4 /*yield*/, response.json()];
