@@ -1,6 +1,6 @@
 {
   "name": "@specter/redux-effects-specter-cache",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "cache structure for redux middleware of specter",
   "keywords": [
     "redux",
@@ -37,16 +37,16 @@
     "lru-cache": "^5.1.1"
   },
   "devDependencies": {
-    "@specter/specter": "0.0.18",
-    "@specter/redux-effects-specter": "0.0.18",
+    "@specter/specter": "0.0.19",
+    "@specter/redux-effects-specter": "0.0.19",
     "jest": "24.9.0",
     "redux": "4.0.4",
     "ts-jest": "24.1.0",
     "typescript": "3.6.3"
   },
   "peerDependencies": {
-    "@specter/specter": "0.0.18",
-    "@specter/redux-effects-specter": "0.0.18",
+    "@specter/specter": "0.0.19",
+    "@specter/redux-effects-specter": "0.0.19",
     "redux": ">= 4.0"
   },
   "gitHead": "3fba7d8acd25c057b5bdde82e3e15632b57896d1",
