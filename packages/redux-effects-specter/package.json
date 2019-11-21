@@ -1,6 +1,6 @@
 {
   "name": "@specter/redux-effects-specter",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "redux middleware of specter client",
   "keywords": [
     "redux",
@@ -31,12 +31,12 @@
     "url": "https://github.com/recruit-tech/specter/issues"
   },
   "devDependencies": {
-    "@specter/client": "^0.0.18",
-    "@specter/specter": "^0.0.18",
+    "@specter/client": "^0.0.19",
+    "@specter/specter": "^0.0.19",
     "jest": "24.9.0",
     "redux": "4.0.4",
     "ts-jest": "24.1.0",
-    "typescript": "3.6.4"
+    "typescript": "3.7.2"
   },
   "peerDependencies": {
     "redux": ">= 4.0"

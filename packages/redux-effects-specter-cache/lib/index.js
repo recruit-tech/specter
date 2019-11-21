@@ -20,7 +20,7 @@ function resetCacheData() {
 }
 exports.resetCacheData = resetCacheData;
 function reduxEffectsSpecterCache(_a) {
-    var _b = _a.middlewareOption, middlewareOption = _b === void 0 ? {} : _b, cacheOption = _a.cacheOption;
+    var _b = _a.middlewareOption, middlewareOption = _b === void 0 ? {} : _b, _c = _a.cacheOption, cacheOption = _c === void 0 ? {} : _c;
     var excludes = middlewareOption.excludes, fromCache = middlewareOption.fromCache, toCache = middlewareOption.toCache, resetCache = middlewareOption.resetCache;
     var cache = createCache(cacheOption);
     return function (_a) {
@@ -32,10 +32,13 @@ function reduxEffectsSpecterCache(_a) {
             if (resetCache && resetCache(action, getState())) {
                 resetCacheData();
             }
-            if (type !== "read" || (type === "read" && excludes && excludes.includes(service))) {
+            if (type !== "read" ||
+                (type === "read" && excludes && excludes.includes(service))) {
                 return next(action);
             }
-            var cacheKey = "@@$" + redux_effects_specter_1.SPECTER + "/" + service + "@@" + JSON.stringify(query);
+            var cacheKey = "@@$" + redux_effects_specter_1.SPECTER + "/" + service + "@@" + JSON.stringify(query, 
+            // refs: https://github.com/recruit-tech/redux-effects-fetchr-cache/pull/3
+            Object.keys(query).sort());
             // MEMO: you can resolve cache from action and state of store.
             //       if you dont set the fromCache function, always called cache.get function.
             var manualCache = fromCache && fromCache(action, getState());
