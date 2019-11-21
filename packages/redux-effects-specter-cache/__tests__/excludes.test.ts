@@ -12,14 +12,23 @@ describe("excludes", () => {
     await store.dispatch(specterRead("greet"));
     const state1 = store.getState();
     assert.equal(state1.log.length, 1);
+    assert.deepStrictEqual(state1.log, [specterRead("greet")]);
 
     await store.dispatch(specterRead("foo"));
     const state2 = store.getState();
     assert.equal(state2.log.length, 2);
+    assert.deepStrictEqual(state2.log, [
+      specterRead("greet"),
+      specterRead("foo")
+    ]);
 
     await store.dispatch(specterRead("foo"));
     const state3 = store.getState();
     assert.equal(state3.log.length, 2);
+    assert.deepStrictEqual(state3.log, [
+      specterRead("greet"),
+      specterRead("foo")
+    ]);
   });
 
   afterEach(() => {
