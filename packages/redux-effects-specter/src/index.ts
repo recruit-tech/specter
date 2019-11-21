@@ -8,7 +8,7 @@ const SPECTER_DELETE: "delete" = "delete";
 const SPECTER_UPDATE: "update" = "update";
 const SPECTER_CREATE: "create" = "create";
 
-type Payload<H, Q, B = object | undefined> =
+export type Payload<H, Q, B = object | undefined> =
   | {
       type: typeof SPECTER_READ;
       service: string;
