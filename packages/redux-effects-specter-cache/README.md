@@ -42,7 +42,7 @@ const store = createStore(
   applyMiddleware(
     stepsMiddleware,
     specterCacheMiddleware({ cacheConfig, cacheMiddlewareConfig }),
-    specterMiddleware(fetchr)
+    specterMiddleware(client)
   )
 );
 
@@ -59,33 +59,34 @@ Creates redux middleware.
 
 ##### Arguments
 
-* `cacheConfig` *(Object)*: See
-  [lru-cahce API docs](https://www.npmjs.com/package/lru-cache)
-  for more info.
-* `options` *(Object)*:
-    * `excludes` *(Array)*: An array of the resource names to not use the cache.
-      Defaults `[]`.
-    * `fromCache` *(Function)*: Checks whether an action is target to obtain from cache.
-      Defaults `() => true`.
-        * Arguments:
-            * `action` *(Object)*: An action.
-            * `state` *(Object)*: The current state of the Store.
-        * Returns:
-            * *(Boolean)*: If `true`, uses cache to obtain the resource.
-    * `toCache` *(Function)*: Checks whether an action is target to store to cache.
-      Defaults `() => true`.
-        * Arguments:
-            * `action` *(Object)*: An action.
-            * `state` *(Object)*: The current state of the Store.
-        * Returns:
-            * *(Boolean)*: If `true`, saves the obtaining resource to cache.
-    * `resetCache` *(Function)*: reset cache if resetCache function returns true.
-      Defaults `() => false`.
-        * Arguments:
-            * `action` *(Object)*: An action.
-            * `state` *(Object)*: The current state of the Store.
-        * Returns:
-            * *(Boolean)*: If `true`, reset all cache.
+* `options` *(Object)* : LRE-cache option and middleware option
+  * `cacheConfig` *(Object)*: See
+    [lru-cahce API docs](https://www.npmjs.com/package/lru-cache)
+    for more info.
+  * `middlewareOption` *(Object)*:
+      * `excludes` *(Array)*: An array of the resource names to not use the cache.
+        Defaults `[]`.
+      * `fromCache` *(Function)*: Checks whether an action is target to obtain from cache.
+        Defaults `() => true`.
+          * Arguments:
+              * `action` *(Object)*: An action.
+              * `state` *(Object)*: The current state of the Store.
+          * Returns:
+              * *(Boolean)*: If `true`, uses cache to obtain the resource.
+      * `toCache` *(Function)*: Checks whether an action is target to store to cache.
+        Defaults `() => true`.
+          * Arguments:
+              * `action` *(Object)*: An action.
+              * `state` *(Object)*: The current state of the Store.
+          * Returns:
+              * *(Boolean)*: If `true`, saves the obtaining resource to cache.
+      * `resetCache` *(Function)*: reset cache if resetCache function returns true.
+        Defaults `() => false`.
+          * Arguments:
+              * `action` *(Object)*: An action.
+              * `state` *(Object)*: The current state of the Store.
+          * Returns:
+              * *(Boolean)*: If `true`, reset all cache.
 
 ##### Returns
 
