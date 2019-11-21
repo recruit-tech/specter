@@ -87,4 +87,3 @@ describe("cache middleware", () => {
     assert.equal(state2.log.length, 1);
   });
 });
-
