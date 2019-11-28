@@ -6,10 +6,10 @@ import { NotImplemented, NotSupportedMethod } from "./errors";
 type DefaultRequest = SpecterRequest<IncomingHttpHeaders, any, any>;
 type DefaultResponse = SpecterResponse<any, any>;
 
-export default class Service {
+export default class Service<Config = {}> {
   name: string;
-  config: {};
-  constructor(name: string, config: {}) {
+  config: Config;
+  constructor(name: string, config: Config) {
     this.name = name;
     this.config = config;
   }
