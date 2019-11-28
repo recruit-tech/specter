@@ -4,10 +4,10 @@ import SpecterResponse from "./response";
 import { IncomingHttpHeaders } from "http";
 declare type DefaultRequest = SpecterRequest<IncomingHttpHeaders, any, any>;
 declare type DefaultResponse = SpecterResponse<any, any>;
-export default class Service {
+export default class Service<Config = {}> {
     name: string;
-    config: {};
-    constructor(name: string, config: {});
+    config: Config;
+    constructor(name: string, config: Config);
     execute<Response extends DefaultResponse>(req: DefaultRequest): Promise<Response>;
     create<Response extends DefaultResponse>(req: DefaultRequest): Promise<DefaultResponse>;
     read<Response extends DefaultResponse>(req: DefaultRequest): Promise<DefaultResponse>;
