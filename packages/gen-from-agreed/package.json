@@ -1,0 +1,40 @@
+{
+  "name": "@specter/gen-from-agreed",
+  "version": "0.0.21",
+  "description": "generate service of specter from agreed definition",
+  "keywords": [],
+  "author": "Kento TSUJI <maxmellon1994@gmail.com>",
+  "homepage": "https://github.com/recruit-tech/specter",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/recruit-tech/specter.git"
+  },
+  "scripts": {
+    "test": "jest",
+    "prepublish": "npm run build",
+    "build": "tsc -d"
+  },
+  "bugs": {
+    "url": "https://github.com/recruit-tech/specter/issues"
+  },
+  "gitHead": "3fba7d8acd25c057b5bdde82e3e15632b57896d1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@agreed/typed": "0.0.6",
+    "@types/lodash.omit": "^4.5.6",
+    "lodash.omit": "^4.5.0",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.2"
+  }
+}
