@@ -2,8 +2,8 @@ import * as express from "express";
 import bodyParser from "body-parser";
 import next from "next";
 import Specter from "@specter/specter";
-import HackerNewsItem from "./services/HackerNewsItem";
-import HackerNewsList from "./services/HackerNewsList";
+import HackerNewsItem from "../services/HackerNewsItem";
+import HackerNewsList from "../services/HackerNewsList";
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
