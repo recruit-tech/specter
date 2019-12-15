@@ -5,6 +5,7 @@ Specter is a data fetch layer using speculative execution. Specter could support
 - Speculative Execution (for API fetch)
 - Universal data fetch (in server side, specter executes function call instead of http request)
 - TypeScript friendly
+- Lightweight (2.2kB gzipped, minified)
 
 # How to setup Specter
 
