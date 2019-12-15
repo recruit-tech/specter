@@ -1,0 +1,35 @@
+{
+  "name": "nextsample",
+  "version": "0.0.9",
+  "scripts": {
+    "test": "echo \"notest\" && exit 0",
+    "start": "ts-node --project ./tsconfig.server.json server.ts",
+    "build": "next build",
+    "start:prod": "NODE_ENV=production ts-node --project ./tsconfig.server.json server.ts"
+  },
+  "dependencies": {
+    "@specter/client": "latest",
+    "@specter/specter": "latest",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^9.1.5",
+    "node-cache": "^5.1.0",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "styled-components": "^4.1.3"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.137",
+    "@types/node": "12.0.12",
+    "@types/react": "16.8.23",
+    "@types/react-dom": "16.8.4",
+    "@types/styled-components": "4.1.16",
+    "babel-plugin-styled-components": "^1.10.0",
+    "lodash": "^4.17.15",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.7.3"
+  },
+  "license": "ISC",
+  "gitHead": "1cbcd2b90cf6a15dcbf56cfa5b32c2efa1a2c7ad"
+}
