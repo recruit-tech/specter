@@ -19,7 +19,7 @@
     "eslint-config-prettier": "6.9.0",
     "eslint-plugin-prettier": "3.1.2",
     "jest": "24.9.0",
-    "lerna": "3.20.1",
+    "lerna": "3.20.2",
     "prettier": "1.19.1",
     "ts-jest": "24.2.0",
     "typescript": "3.7.2"
