@@ -40,7 +40,7 @@
     "@specter/redux-effects-specter": "^0.0.22",
     "@specter/specter": "^0.0.22",
     "jest": "24.9.0",
-    "redux": "4.0.4",
+    "redux": "4.0.5",
     "ts-jest": "24.3.0",
     "typescript": "3.6.3"
   },
