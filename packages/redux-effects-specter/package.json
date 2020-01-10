@@ -36,7 +36,7 @@
     "jest": "24.9.0",
     "redux": "4.0.4",
     "ts-jest": "24.3.0",
-    "typescript": "3.7.2"
+    "typescript": "3.7.4"
   },
   "peerDependencies": {
     "redux": ">= 4.0"
