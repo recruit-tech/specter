@@ -42,7 +42,7 @@
     "jest": "24.9.0",
     "redux": "4.0.5",
     "ts-jest": "24.3.0",
-    "typescript": "3.7.4"
+    "typescript": "3.7.5"
   },
   "peerDependencies": {
     "@specter/redux-effects-specter": "0.0.19",
