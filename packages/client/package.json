@@ -40,7 +40,7 @@
     "@types/node-fetch": "2.5.4",
     "express": "4.17.1",
     "isomorphic-unfetch": "3.0.0",
-    "jest": "24.9.0",
+    "jest": "25.1.0",
     "ts-jest": "24.3.0",
     "typescript": "3.7.5"
   },
