@@ -12,8 +12,11 @@ type DefaultResponse = SpecterResponse<any, any>;
 const DefaultContentType = "application/json; charset=utf-8";
 export default class SpecterClient {
   base: string;
-  fetchOptions: object;
-  constructor(options: { base: string; fetchOptions: object }) {
+  fetchOptions: { headers?: Record<string, string> } & Record<string, any>;
+  constructor(options: {
+    base: string;
+    fetchOptions: { headers?: Record<string, string> } & Record<string, any>;
+  }) {
     this.base = options.base;
     this.fetchOptions = options.fetchOptions;
   }
@@ -31,8 +34,10 @@ export default class SpecterClient {
   ): Promise<Res> {
     const path = this.createPath(request);
     const body = request.body ? JSON.stringify(request.body) : null;
+    const { headers: defaultHeaders, ...options } = this.fetchOptions;
     const head = {
-      ...request.headers
+      ...defaultHeaders,
+      ...request.headers,
     };
     if (body && !head["Content-Type"]) {
       head["Content-Type"] = DefaultContentType;
@@ -41,13 +46,13 @@ export default class SpecterClient {
       ? fetch(path, {
           method,
           headers: head,
-          ...this.fetchOptions
+          ...options,
         })
       : fetch(path, {
           method,
           headers: head,
           body,
-          ...this.fetchOptions
+          ...options,
         }));
 
     const json = await response.json();
@@ -101,7 +106,7 @@ export default class SpecterClient {
       method: "HEAD",
       headers: request.headers,
       body: JSON.stringify(request.body),
-      ...this.fetchOptions
+      ...this.fetchOptions,
     });
     return response.ok;
   }

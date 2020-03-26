@@ -4,10 +4,14 @@ declare type DefaultRequest = SpecterRequest<any, any, any>;
 declare type DefaultResponse = SpecterResponse<any, any>;
 export default class SpecterClient {
     base: string;
-    fetchOptions: object;
+    fetchOptions: {
+        headers?: Record<string, string>;
+    } & Record<string, any>;
     constructor(options: {
         base: string;
-        fetchOptions: object;
+        fetchOptions: {
+            headers?: Record<string, string>;
+        } & Record<string, any>;
     });
     private createPath;
     private executeRequest;
