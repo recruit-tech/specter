@@ -46,6 +46,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -70,28 +81,29 @@ var SpecterClient = /** @class */ (function () {
     };
     SpecterClient.prototype.executeRequest = function (method, request) {
         return __awaiter(this, void 0, void 0, function () {
-            var path, body, head, response, json, h, headers, _i, _a, _b, key, value, result;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
+            var path, body, _a, defaultHeaders, options, head, response, json, h, headers, _i, _b, _c, key, value, result;
+            return __generator(this, function (_d) {
+                switch (_d.label) {
                     case 0:
                         path = this.createPath(request);
                         body = request.body ? JSON.stringify(request.body) : null;
-                        head = __assign({}, request.headers);
+                        _a = this.fetchOptions, defaultHeaders = _a.headers, options = __rest(_a, ["headers"]);
+                        head = __assign(__assign({}, defaultHeaders), request.headers);
                         if (body && !head["Content-Type"]) {
                             head["Content-Type"] = DefaultContentType;
                         }
                         return [4 /*yield*/, (method === "GET" || method === "HEAD"
-                                ? fetch(path, __assign({ method: method, headers: head }, this.fetchOptions))
-                                : fetch(path, __assign({ method: method, headers: head, body: body }, this.fetchOptions)))];
+                                ? fetch(path, __assign({ method: method, headers: head }, options))
+                                : fetch(path, __assign({ method: method, headers: head, body: body }, options)))];
                     case 1:
-                        response = _c.sent();
+                        response = _d.sent();
                         return [4 /*yield*/, response.json()];
                     case 2:
-                        json = _c.sent();
+                        json = _d.sent();
                         h = response.headers;
                         headers = {};
-                        for (_i = 0, _a = h.entries(); _i < _a.length; _i++) {
-                            _b = _a[_i], key = _b[0], value = _b[1];
+                        for (_i = 0, _b = h.entries(); _i < _b.length; _i++) {
+                            _c = _b[_i], key = _c[0], value = _c[1];
                             headers[key] = value;
                         }
                         result = new response_1.default(headers, json);
