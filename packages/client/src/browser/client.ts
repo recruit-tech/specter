@@ -2,7 +2,7 @@ import SpecterRequest from "./request";
 import SpecterResponse from "./response";
 import { stringify } from "querystring";
 import xfetch from "unfetch";
-import { SpecterError } from "./error";
+import { SpecterNetworkError } from "./errors";
 
 // refs: https://github.com/developit/unfetch/issues/46
 // refs: https://github.com/developit/unfetch/issues/46#issuecomment-552492844
@@ -41,7 +41,7 @@ export default class SpecterClient {
     const { headers: defaultHeaders, ...options } = this.fetchOptions;
     const head = {
       ...defaultHeaders,
-      ...request.headers
+      ...request.headers,
     };
     if (body && !head["Content-Type"]) {
       head["Content-Type"] = DefaultContentType;
@@ -50,13 +50,13 @@ export default class SpecterClient {
       ? fetch(path, {
           method,
           headers: head,
-          ...options
+          ...options,
         })
       : fetch(path, {
           method,
           headers: head,
           body,
-          ...options
+          ...options,
         }));
 
     const json = await response.json();
@@ -70,7 +70,7 @@ export default class SpecterClient {
     const result = new SpecterResponse<any, any>(headers, json);
 
     if (!this.validateStatus(response.status)) {
-      throw new SpecterError(
+      throw new SpecterNetworkError(
         `validationStatus failure: ${response.statusText}`,
         response.status,
         response.statusText,
@@ -121,7 +121,7 @@ export default class SpecterClient {
       method: "HEAD",
       headers: request.headers,
       body: JSON.stringify(request.body),
-      ...this.fetchOptions
+      ...this.fetchOptions,
     });
     return response.ok;
   }

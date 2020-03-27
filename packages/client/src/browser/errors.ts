@@ -1,7 +1,7 @@
 import SpecterRequest from "./request";
 import SpecterResponse from "./response";
 
-export class SpecterError extends Error {
+export class SpecterNetworkError extends Error {
   public isSpecterError = true;
   public status: number;
   public statusText: string;
@@ -23,7 +23,7 @@ export class SpecterError extends Error {
   }
 }
 
-export function isSpecterError(err: any): err is SpecterError {
+export function isSpecterError(err: any): err is SpecterNetworkError {
   if (err && typeof err === "object") return !!err.isSpecterError || false;
   return false;
 }
