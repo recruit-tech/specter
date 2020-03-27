@@ -12,4 +12,6 @@ const service_1 = __importDefault(require("./service"));
 exports.Service = service_1.default;
 const client_1 = __importDefault(require("./client"));
 exports.Client = client_1.default;
+var errors_1 = require("./errors");
+exports.SpecterNetworkError = errors_1.SpecterNetworkError;
 exports.default = specter_1.default;

@@ -64,7 +64,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var response_1 = __importDefault(require("./response"));
 var querystring_1 = require("querystring");
 var unfetch_1 = __importDefault(require("unfetch"));
-var error_1 = require("./error");
+var specter_1 = require("@specter/specter");
 // refs: https://github.com/developit/unfetch/issues/46
 // refs: https://github.com/developit/unfetch/issues/46#issuecomment-552492844
 var fetch = unfetch_1.default.bind(window);
@@ -111,7 +111,7 @@ var SpecterClient = /** @class */ (function () {
                         }
                         result = new response_1.default(headers, json);
                         if (!this.validateStatus(response.status)) {
-                            throw new error_1.SpecterError("validationStatus failure: " + response.statusText, response.status, response.statusText, request, result);
+                            throw new specter_1.SpecterNetworkError("validationStatus failure: " + response.statusText, response.status, response.statusText, request, result);
                         }
                         return [2 /*return*/, result];
                 }

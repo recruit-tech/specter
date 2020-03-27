@@ -2,7 +2,7 @@ import SpecterRequest from "./request";
 import SpecterResponse from "./response";
 import { stringify } from "querystring";
 import xfetch from "unfetch";
-import { SpecterNetworkError } from "./errors";
+import { SpecterNetworkError } from "@specter/specter";
 
 // refs: https://github.com/developit/unfetch/issues/46
 // refs: https://github.com/developit/unfetch/issues/46#issuecomment-552492844
