@@ -41,7 +41,7 @@ export default class SpecterClient {
     const { headers: defaultHeaders, ...options } = this.fetchOptions;
     const head = {
       ...defaultHeaders,
-      ...request.headers,
+      ...request.headers
     };
     if (body && !head["Content-Type"]) {
       head["Content-Type"] = DefaultContentType;
@@ -50,13 +50,13 @@ export default class SpecterClient {
       ? fetch(path, {
           method,
           headers: head,
-          ...options,
+          ...options
         })
       : fetch(path, {
           method,
           headers: head,
           body,
-          ...options,
+          ...options
         }));
 
     const json = await response.json();
@@ -121,7 +121,7 @@ export default class SpecterClient {
       method: "HEAD",
       headers: request.headers,
       body: JSON.stringify(request.body),
-      ...this.fetchOptions,
+      ...this.fetchOptions
     });
     return response.ok;
   }
