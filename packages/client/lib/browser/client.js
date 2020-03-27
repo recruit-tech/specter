@@ -64,14 +64,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var response_1 = __importDefault(require("./response"));
 var querystring_1 = require("querystring");
 var unfetch_1 = __importDefault(require("unfetch"));
+var error_1 = require("./error");
 // refs: https://github.com/developit/unfetch/issues/46
 // refs: https://github.com/developit/unfetch/issues/46#issuecomment-552492844
 var fetch = unfetch_1.default.bind(window);
 var DefaultContentType = "application/json; charset=utf-8";
 var SpecterClient = /** @class */ (function () {
     function SpecterClient(options) {
+        var _a;
         this.base = options.base;
         this.fetchOptions = options.fetchOptions;
+        this.validateStatus = (_a = options.validateStatus) !== null && _a !== void 0 ? _a : (function (_s) { return true; });
     }
     SpecterClient.prototype.createPath = function (request) {
         var q = querystring_1.stringify(request.query);
@@ -107,6 +110,9 @@ var SpecterClient = /** @class */ (function () {
                             headers[key] = value;
                         }
                         result = new response_1.default(headers, json);
+                        if (!this.validateStatus(response.status)) {
+                            throw new error_1.SpecterError("validationStatus failure: " + response.statusText, response.status, response.statusText, request, result);
+                        }
                         return [2 /*return*/, result];
                 }
             });
