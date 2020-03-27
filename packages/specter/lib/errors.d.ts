@@ -9,14 +9,14 @@ declare type SharedResponse = {
     body: Record<string, string>;
 };
 export declare class SpecterNetworkError extends Error {
-    isSpecterError: boolean;
+    isSpecterNetworkError: boolean;
     status: number;
     statusText: string;
     req: SharedRequest;
     res: SharedResponse;
     constructor(message: string, status: number, statusText: string, request: SharedRequest, response: SharedResponse);
 }
-export declare function isSpecterError(err: any): err is SpecterNetworkError;
+export declare function isSpecterNetworkError(err: any): err is SpecterNetworkError;
 declare class SpecterError {
     code: SpecterErrorType;
     message: string;

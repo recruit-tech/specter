@@ -10,7 +10,7 @@ type SharedResponse = {
 };
 
 export class SpecterNetworkError extends Error {
-  public isSpecterError = true;
+  public isSpecterNetworkError = true;
   public status: number;
   public statusText: string;
   public req: SharedRequest;
@@ -31,8 +31,8 @@ export class SpecterNetworkError extends Error {
   }
 }
 
-export function isSpecterError(err: any): err is SpecterNetworkError {
-  if (err && typeof err === "object") return !!err.isSpecterError || false;
+export function isSpecterNetworkError(err: any): err is SpecterNetworkError {
+  if (err && typeof err === "object") return !!err.isSpecterNetworkError;
   return false;
 }
 
