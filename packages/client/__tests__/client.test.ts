@@ -70,12 +70,12 @@ test("request was rejected if implements a validateStatus and validation failure
   const client = new Client({
     base: `http://localhost:${port}/xhr`,
     fetchOptions: {},
-    validateStatus: (status: number) => status >= 200 && status < 300,
+    validateStatus: (status: number) => status >= 200 && status < 300
   });
   const request = new Request("todo", {
     headers: {},
     query: { id: "9999999" },
-    body: {},
+    body: {}
   });
   try {
     await client.read(request);
