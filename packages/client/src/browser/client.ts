@@ -2,6 +2,7 @@ import SpecterRequest from "./request";
 import SpecterResponse from "./response";
 import { stringify } from "querystring";
 import xfetch from "unfetch";
+import { SpecterNetworkError } from "@specter/specter";
 
 // refs: https://github.com/developit/unfetch/issues/46
 // refs: https://github.com/developit/unfetch/issues/46#issuecomment-552492844
@@ -13,12 +14,15 @@ const DefaultContentType = "application/json; charset=utf-8";
 export default class SpecterClient {
   base: string;
   fetchOptions: { headers?: Record<string, string> } & Record<string, any>;
+  validateStatus: (status: number) => boolean;
   constructor(options: {
     base: string;
     fetchOptions: { headers?: Record<string, string> } & Record<string, any>;
+    validateStatus?: (status: number) => boolean;
   }) {
     this.base = options.base;
     this.fetchOptions = options.fetchOptions;
+    this.validateStatus = options.validateStatus ?? ((_s: number) => true);
   }
 
   private createPath(request: DefaultRequest): string {
@@ -64,6 +68,17 @@ export default class SpecterClient {
       headers[key] = value;
     }
     const result = new SpecterResponse<any, any>(headers, json);
+
+    if (!this.validateStatus(response.status)) {
+      throw new SpecterNetworkError(
+        `validationStatus failure: ${response.statusText}`,
+        response.status,
+        response.statusText,
+        request,
+        result
+      );
+    }
+
     return result as Res;
   }
 

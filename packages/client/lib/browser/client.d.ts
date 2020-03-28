@@ -7,11 +7,13 @@ export default class SpecterClient {
     fetchOptions: {
         headers?: Record<string, string>;
     } & Record<string, any>;
+    validateStatus: (status: number) => boolean;
     constructor(options: {
         base: string;
         fetchOptions: {
             headers?: Record<string, string>;
         } & Record<string, any>;
+        validateStatus?: (status: number) => boolean;
     });
     private createPath;
     private executeRequest;

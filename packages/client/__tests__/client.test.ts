@@ -62,3 +62,26 @@ test("client with default header", async () => {
   const res = await client.create(request);
   server.close();
 });
+
+test("request was rejected if implements a validateStatus and validation failure", async () => {
+  const { server } = createApp(new Todo());
+  const { port } = await getPort(server);
+  const client = new Client({
+    base: `http://localhost:${port}/xhr`,
+    fetchOptions: {},
+    validateStatus: (status: number) => status >= 200 && status < 300
+  });
+  const request = new Request("todo", {
+    headers: {},
+    query: { id: "9999999" },
+    body: {}
+  });
+  try {
+    await client.read(request);
+  } catch (err) {
+    assert.deepStrictEqual(err.status, 404);
+    assert.deepStrictEqual(err.statusText, "Not Found");
+  }
+
+  server.close();
+});

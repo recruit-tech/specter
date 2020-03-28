@@ -1,3 +1,22 @@
+declare type SharedRequest = {
+    headers: Record<string, string>;
+    query: Record<string, string>;
+    body?: Record<string, any>;
+    method?: string;
+};
+declare type SharedResponse = {
+    header: Record<string, string>;
+    body: Record<string, string>;
+};
+export declare class SpecterNetworkError extends Error {
+    isSpecterNetworkError: boolean;
+    status: number;
+    statusText: string;
+    req: SharedRequest;
+    res: SharedResponse;
+    constructor(message: string, status: number, statusText: string, request: SharedRequest, response: SharedResponse);
+}
+export declare function isSpecterNetworkError(err: any): err is SpecterNetworkError;
 declare class SpecterError {
     code: SpecterErrorType;
     message: string;
