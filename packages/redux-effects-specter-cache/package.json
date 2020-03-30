@@ -45,8 +45,8 @@
     "typescript": "3.8.3"
   },
   "peerDependencies": {
-    "@specter/redux-effects-specter": "0.0.19",
-    "@specter/specter": "0.0.19",
+    "@specter/redux-effects-specter": "0.0.25",
+    "@specter/specter": "0.0.25",
     "redux": ">= 4.0"
   },
   "gitHead": "3fba7d8acd25c057b5bdde82e3e15632b57896d1",
