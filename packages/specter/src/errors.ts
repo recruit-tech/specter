@@ -5,7 +5,7 @@ type SharedRequest = {
   method?: string;
 };
 type SharedResponse = {
-  header: Record<string, string>;
+  headers: Record<string, string>;
   body: Record<string, string>;
 };
 

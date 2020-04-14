@@ -56,14 +56,16 @@ export default class Specter {
 
         const service = Specter.getService(request.resource);
         const response = await service.execute(request);
-        const header: { [key: string]: any } = {};
+        const headers: { [key: string]: any } = {};
 
-        for (const [key, value] of Object.entries(response.header)) {
-          header[key] = value;
+        for (const [key, value] of Object.entries(response.headers)) {
+          headers[key] = value;
         }
-        header["Content-Type"] = DefaultContentType;
-        header["access-control-expose-headers"] = Object.keys(header).join(",");
-        res.writeHead(response.status || 200, header);
+        headers["Content-Type"] = DefaultContentType;
+        headers["access-control-expose-headers"] = Object.keys(headers).join(
+          ","
+        );
+        res.writeHead(response.status || 200, headers);
         if (response.body) {
           res.end(JSON.stringify(response.body));
         } else {

@@ -5,7 +5,7 @@ declare type SharedRequest = {
     method?: string;
 };
 declare type SharedResponse = {
-    header: Record<string, string>;
+    headers: Record<string, string>;
     body: Record<string, string>;
 };
 export declare class SpecterNetworkError extends Error {

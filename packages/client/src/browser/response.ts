@@ -6,15 +6,15 @@ export default class SpecterResponse<
   },
   B extends any
 > {
-  header: H;
+  headers: H;
   body: B;
-  constructor(header: H, body: B) {
-    this.header = header;
+  constructor(headers: H, body: B) {
+    this.headers = headers;
     this.body = body;
   }
 
   getNextReqs() {
-    const nextReqs = this.header["x-specter-next-reqs"];
+    const nextReqs = this.headers["x-specter-next-reqs"];
     const reqs = nextReqs
       .split("__sep__")
       .map(req => SpecterRequest.parseRequest(req));
