@@ -3,6 +3,10 @@ import { Request as ExpressRequest } from "express";
 type Request = ExpressRequest | IncomingMessage;
 export type AnyRequest = SpecterRequest<{}, {}, {}>;
 
+export namespace Specter {
+  export interface ActualRequest {}
+}
+
 export default class SpecterRequest<
   H extends IncomingHttpHeaders,
   Q extends any,
@@ -13,7 +17,7 @@ export default class SpecterRequest<
   query: Q;
   body: B;
   method?: string;
-  req: object;
+  req: Specter.ActualRequest;
 
   constructor(
     resource: string,
