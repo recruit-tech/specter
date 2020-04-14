@@ -52,7 +52,7 @@ test("Specter call by client", async () => {
     request
   );
   const data = res.body;
-  const headers = res.header;
+  const headers = res.headers;
   assert.deepStrictEqual(headers, {
     foo: "bar"
   });
@@ -88,7 +88,7 @@ test("Specter send next response", async () => {
     request
   );
   const data = res.body;
-  const headers = res.header;
+  const headers = res.headers;
   assert.strictEqual(headers.foo, "bar");
   const nextReqs = res.getNextReqs();
   if (nextReqs) {
