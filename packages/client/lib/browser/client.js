@@ -57,6 +57,33 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+var __values = (this && this.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -84,9 +111,10 @@ var SpecterClient = /** @class */ (function () {
     };
     SpecterClient.prototype.executeRequest = function (method, request) {
         return __awaiter(this, void 0, void 0, function () {
-            var path, body, _a, defaultHeaders, options, head, response, json, h, headers, _i, _b, _c, key, value, result;
-            return __generator(this, function (_d) {
-                switch (_d.label) {
+            var path, body, _a, defaultHeaders, options, head, response, json, h, headers, _b, _c, _d, key, value, result;
+            var e_1, _e;
+            return __generator(this, function (_f) {
+                switch (_f.label) {
                     case 0:
                         path = this.createPath(request);
                         body = request.body ? JSON.stringify(request.body) : null;
@@ -99,15 +127,24 @@ var SpecterClient = /** @class */ (function () {
                                 ? fetch(path, __assign({ method: method, headers: head }, options))
                                 : fetch(path, __assign({ method: method, headers: head, body: body }, options)))];
                     case 1:
-                        response = _d.sent();
+                        response = _f.sent();
                         return [4 /*yield*/, response.json()];
                     case 2:
-                        json = _d.sent();
+                        json = _f.sent();
                         h = response.headers;
                         headers = {};
-                        for (_i = 0, _b = h.entries(); _i < _b.length; _i++) {
-                            _c = _b[_i], key = _c[0], value = _c[1];
-                            headers[key] = value;
+                        try {
+                            for (_b = __values(h.entries()), _c = _b.next(); !_c.done; _c = _b.next()) {
+                                _d = __read(_c.value, 2), key = _d[0], value = _d[1];
+                                headers[key] = value;
+                            }
+                        }
+                        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+                        finally {
+                            try {
+                                if (_c && !_c.done && (_e = _b.return)) _e.call(_b);
+                            }
+                            finally { if (e_1) throw e_1.error; }
                         }
                         result = new response_1.default(headers, json);
                         if (!this.validateStatus(response.status)) {

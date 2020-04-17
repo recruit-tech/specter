@@ -60,9 +60,7 @@ export default class SpecterClient {
         }));
 
     const json = await response.json();
-    const h = response.headers as Headers & {
-      entries: () => ReadonlyArray<[string, string]>;
-    };
+    const h = response.headers;
     const headers: { [key: string]: string } = {};
     for (const [key, value] of h.entries()) {
       headers[key] = value;
