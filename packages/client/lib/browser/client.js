@@ -57,22 +57,6 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __read = (this && this.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -121,8 +105,7 @@ var SpecterClient = /** @class */ (function () {
                         json = _b.sent();
                         h = response.headers;
                         headers = {};
-                        h.forEach(function (tuple) {
-                            var _a = __read(tuple, 2), key = _a[0], value = _a[1];
+                        h.forEach(function (value, key) {
                             headers[key] = value;
                         });
                         result = new response_1.default(headers, json);
