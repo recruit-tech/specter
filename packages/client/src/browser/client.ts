@@ -62,9 +62,10 @@ export default class SpecterClient {
     const json = await response.json();
     const h = response.headers;
     const headers: { [key: string]: string } = {};
-    for (const [key, value] of h.entries()) {
+    h.forEach((tuple) => {
+      const [key, value] = tuple
       headers[key] = value;
-    }
+    })
     const result = new SpecterResponse<any, any>(headers, json);
 
     if (!this.validateStatus(response.status)) {

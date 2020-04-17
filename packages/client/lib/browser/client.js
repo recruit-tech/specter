@@ -57,17 +57,6 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __values = (this && this.__values) || function(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
     if (!m) return o;
@@ -111,10 +100,9 @@ var SpecterClient = /** @class */ (function () {
     };
     SpecterClient.prototype.executeRequest = function (method, request) {
         return __awaiter(this, void 0, void 0, function () {
-            var path, body, _a, defaultHeaders, options, head, response, json, h, headers, _b, _c, _d, key, value, result;
-            var e_1, _e;
-            return __generator(this, function (_f) {
-                switch (_f.label) {
+            var path, body, _a, defaultHeaders, options, head, response, json, h, headers, result;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
                         path = this.createPath(request);
                         body = request.body ? JSON.stringify(request.body) : null;
@@ -127,25 +115,16 @@ var SpecterClient = /** @class */ (function () {
                                 ? fetch(path, __assign({ method: method, headers: head }, options))
                                 : fetch(path, __assign({ method: method, headers: head, body: body }, options)))];
                     case 1:
-                        response = _f.sent();
+                        response = _b.sent();
                         return [4 /*yield*/, response.json()];
                     case 2:
-                        json = _f.sent();
+                        json = _b.sent();
                         h = response.headers;
                         headers = {};
-                        try {
-                            for (_b = __values(h.entries()), _c = _b.next(); !_c.done; _c = _b.next()) {
-                                _d = __read(_c.value, 2), key = _d[0], value = _d[1];
-                                headers[key] = value;
-                            }
-                        }
-                        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-                        finally {
-                            try {
-                                if (_c && !_c.done && (_e = _b.return)) _e.call(_b);
-                            }
-                            finally { if (e_1) throw e_1.error; }
-                        }
+                        h.forEach(function (tuple) {
+                            var _a = __read(tuple, 2), key = _a[0], value = _a[1];
+                            headers[key] = value;
+                        });
                         result = new response_1.default(headers, json);
                         if (!this.validateStatus(response.status)) {
                             throw new specter_1.SpecterNetworkError("validationStatus failure: " + response.statusText, response.status, response.statusText, request, result);
