@@ -41,7 +41,7 @@ export default class SpecterClient {
     const { headers: defaultHeaders, ...options } = this.fetchOptions;
     const head = {
       ...defaultHeaders,
-      ...request.headers,
+      ...request.headers
     };
     if (body && !head["Content-Type"]) {
       head["Content-Type"] = DefaultContentType;
@@ -50,26 +50,33 @@ export default class SpecterClient {
       ? fetch(path, {
           method,
           headers: head,
-          ...options,
+          ...options
         })
       : fetch(path, {
           method,
           headers: head,
           body,
-          ...options,
+          ...options
         }));
 
     const json = await response.json();
-    const h = response.headers.entries() as IterableIterator<[string, string]> | Array<[string, string]>;
-    // @ts-ignore
-    // CAUTION: 
+    const h = response.headers.entries() as
+      | IterableIterator<[string, string]>
+      | Array<[string, string]>;
+    // CAUTION:
     // This type guard is not complete, but do not want to inject polyfill of `Symbol`,
     // so whether Array or Iterator decide by next() method.
-    const entries = typeof h.next === 'function' ? Array.from(h) : [].slice.call(h)
-    const headers = entries.reduce((acc, [key, value]: [string, string]) => ({
-      ...acc,
-      [key]: value,
-    }), {} as Record<string, string>)
+    const entries =
+      /* eslint @typescript-eslint/ban-ts-ignore: [0] */
+      // @ts-ignore
+      typeof h.next === "function" ? Array.from(h) : [].slice.call(h);
+    const headers = entries.reduce(
+      (acc, [key, value]: [string, string]) => ({
+        ...acc,
+        [key]: value
+      }),
+      {} as Record<string, string>
+    );
     const result = new SpecterResponse<any, any>(headers, json);
 
     if (!this.validateStatus(response.status)) {
@@ -124,7 +131,7 @@ export default class SpecterClient {
       method: "HEAD",
       headers: request.headers,
       body: JSON.stringify(request.body),
-      ...this.fetchOptions,
+      ...this.fetchOptions
     });
     return response.ok;
   }
