@@ -104,10 +104,11 @@ var SpecterClient = /** @class */ (function () {
                     case 2:
                         json = _b.sent();
                         h = response.headers;
-                        headers = {};
-                        h.forEach(function (value, key) {
-                            headers[key] = value;
-                        });
+                        headers = [].slice.call(h.entries()).reduce(function (acc, _a) {
+                            var _b;
+                            var key = _a[0], value = _a[1];
+                            return (__assign(__assign({}, acc), (_b = {}, _b[key] = value, _b)));
+                        }, {});
                         result = new response_1.default(headers, json);
                         if (!this.validateStatus(response.status)) {
                             throw new specter_1.SpecterNetworkError("validationStatus failure: " + response.statusText, response.status, response.statusText, request, result);

@@ -41,7 +41,7 @@ export default class SpecterClient {
     const { headers: defaultHeaders, ...options } = this.fetchOptions;
     const head = {
       ...defaultHeaders,
-      ...request.headers
+      ...request.headers,
     };
     if (body && !head["Content-Type"]) {
       head["Content-Type"] = DefaultContentType;
@@ -50,21 +50,21 @@ export default class SpecterClient {
       ? fetch(path, {
           method,
           headers: head,
-          ...options
+          ...options,
         })
       : fetch(path, {
           method,
           headers: head,
           body,
-          ...options
+          ...options,
         }));
 
     const json = await response.json();
     const h = response.headers;
-    const headers: { [key: string]: string } = {};
-    h.forEach((value, key) => {
-      headers[key] = value;
-    });
+    const headers = [].slice.call(h.entries()).reduce((acc, [key, value]: [string, string]) => ({
+      ...acc,
+      [key]: value,
+    }), {} as Record<string, string>)
     const result = new SpecterResponse<any, any>(headers, json);
 
     if (!this.validateStatus(response.status)) {
@@ -119,7 +119,7 @@ export default class SpecterClient {
       method: "HEAD",
       headers: request.headers,
       body: JSON.stringify(request.body),
-      ...this.fetchOptions
+      ...this.fetchOptions,
     });
     return response.ok;
   }
