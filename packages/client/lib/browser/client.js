@@ -84,7 +84,7 @@ var SpecterClient = /** @class */ (function () {
     };
     SpecterClient.prototype.executeRequest = function (method, request) {
         return __awaiter(this, void 0, void 0, function () {
-            var path, body, _a, defaultHeaders, options, head, response, json, h, headers, result;
+            var path, body, _a, defaultHeaders, options, head, response, json, h, entries, headers, result;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -103,8 +103,9 @@ var SpecterClient = /** @class */ (function () {
                         return [4 /*yield*/, response.json()];
                     case 2:
                         json = _b.sent();
-                        h = response.headers;
-                        headers = [].slice.call(h.entries()).reduce(function (acc, _a) {
+                        h = response.headers.entries();
+                        entries = typeof h.next === 'function' ? Array.from(h) : [].slice.call(h);
+                        headers = entries.reduce(function (acc, _a) {
                             var _b;
                             var key = _a[0], value = _a[1];
                             return (__assign(__assign({}, acc), (_b = {}, _b[key] = value, _b)));
