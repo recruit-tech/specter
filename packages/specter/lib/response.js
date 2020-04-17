@@ -11,7 +11,7 @@ class SpecterResponse {
     setNextReqs(...reqs) {
         this.headers = {
             ...this.headers,
-            "x-specter-next-reqs": reqs.map((req) => req.toString()).join("__sep__"),
+            "x-specter-next-reqs": reqs.map(req => req.toString()).join("__sep__")
         };
         this.nextReqs = reqs;
     }

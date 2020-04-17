@@ -84,9 +84,9 @@ var SpecterClient = /** @class */ (function () {
     };
     SpecterClient.prototype.executeRequest = function (method, request) {
         return __awaiter(this, void 0, void 0, function () {
-            var path, body, _a, defaultHeaders, options, head, response, json, h, headers, _i, _b, _c, key, value, result;
-            return __generator(this, function (_d) {
-                switch (_d.label) {
+            var path, body, _a, defaultHeaders, options, head, response, json, h, entries, headers, result;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
                         path = this.createPath(request);
                         body = request.body ? JSON.stringify(request.body) : null;
@@ -99,16 +99,17 @@ var SpecterClient = /** @class */ (function () {
                                 ? fetch(path, __assign({ method: method, headers: head }, options))
                                 : fetch(path, __assign({ method: method, headers: head, body: body }, options)))];
                     case 1:
-                        response = _d.sent();
+                        response = _b.sent();
                         return [4 /*yield*/, response.json()];
                     case 2:
-                        json = _d.sent();
-                        h = response.headers;
-                        headers = {};
-                        for (_i = 0, _b = h.entries(); _i < _b.length; _i++) {
-                            _c = _b[_i], key = _c[0], value = _c[1];
-                            headers[key] = value;
-                        }
+                        json = _b.sent();
+                        h = response.headers.entries();
+                        entries = typeof h.next === 'function' ? Array.from(h) : [].slice.call(h);
+                        headers = entries.reduce(function (acc, _a) {
+                            var _b;
+                            var key = _a[0], value = _a[1];
+                            return (__assign(__assign({}, acc), (_b = {}, _b[key] = value, _b)));
+                        }, {});
                         result = new response_1.default(headers, json);
                         if (!this.validateStatus(response.status)) {
                             throw new specter_1.SpecterNetworkError("validationStatus failure: " + response.statusText, response.status, response.statusText, request, result);

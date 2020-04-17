@@ -60,13 +60,23 @@ export default class SpecterClient {
         }));
 
     const json = await response.json();
-    const h = response.headers as Headers & {
-      entries: () => ReadonlyArray<[string, string]>;
-    };
-    const headers: { [key: string]: string } = {};
-    for (const [key, value] of h.entries()) {
-      headers[key] = value;
-    }
+    const h = response.headers.entries() as
+      | IterableIterator<[string, string]>
+      | Array<[string, string]>;
+    // CAUTION:
+    // This type guard is not complete, but do not want to inject polyfill of `Symbol`,
+    // so whether Array or Iterator decide by next() method.
+    const entries =
+      /* eslint @typescript-eslint/ban-ts-ignore: [0] */
+      // @ts-ignore
+      typeof h.next === "function" ? Array.from(h) : [].slice.call(h);
+    const headers = entries.reduce(
+      (acc, [key, value]: [string, string]) => ({
+        ...acc,
+        [key]: value
+      }),
+      {} as Record<string, string>
+    );
     const result = new SpecterResponse<any, any>(headers, json);
 
     if (!this.validateStatus(response.status)) {
