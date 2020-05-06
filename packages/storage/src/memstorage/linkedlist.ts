@@ -2,7 +2,7 @@ export class Entry<E> {
   prev: Entry<E> | null;
   data: E;
   next: Entry<E> | null;
-  constructor(data: E, prev: Entry<E> | null,  next: Entry<E> | null) {
+  constructor(data: E, prev: Entry<E> | null, next: Entry<E> | null) {
     this.data = data;
     this.prev = prev;
     this.next = next;
@@ -17,7 +17,7 @@ export class LinkedList<E> {
     this.head = null;
     this.tail = null;
     this.length = 0;
-    entries.forEach((e) => this.push(e));
+    entries.forEach(e => this.push(e));
   }
 
   // add to tail
@@ -44,7 +44,7 @@ export class LinkedList<E> {
     if (this.tail !== null) {
       this.tail.next = null;
     }
-    this.length--; 
+    this.length--;
     return t;
   }
 
@@ -61,13 +61,13 @@ export class LinkedList<E> {
     const e = new Entry(data, null, this.head);
     this.head.prev = e;
     this.head = e;
-    this.length++; 
+    this.length++;
     return e;
   }
 
   get(index: number) {
-    let h = this.head
-    for(let i=0; i<index; i++) {
+    let h = this.head;
+    for (let i = 0; i < index; i++) {
       h = h?.next || null;
     }
     return h;
@@ -78,8 +78,10 @@ export class LinkedList<E> {
     if (prev !== null) {
       prev.next = next;
     }
+    if (next !== null) {
+      next.prev = prev;
+    }
     this.length--;
     return this;
   }
-
 }

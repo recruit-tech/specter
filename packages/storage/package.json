@@ -1,5 +1,5 @@
 {
-  "name": "storage",
+  "name": "@specter/storage",
   "version": "0.1.2",
   "description": "> TODO: description",
   "author": "Yosuke Furukawa <yosuke.furukawa@gmail.com>",
@@ -18,9 +18,20 @@
     "url": "git+https://github.com/recruit-tech/specter.git"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "bench": "node -r ts-node/register --expose-gc ./src/memstorage/__bench__/lrucache.bench.ts",
+    "prepublish": "npm run build",
+    "build": "tsc -d"
   },
   "bugs": {
     "url": "https://github.com/recruit-tech/specter/issues"
+  },
+  "devDependencies": {
+    "ts-node": "^8.10.1",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@specter/client": "^0.1.2",
+    "@specter/specter": "^0.1.2"
   }
 }
