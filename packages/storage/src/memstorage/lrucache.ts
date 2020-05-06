@@ -60,7 +60,7 @@ export class LRUCache<K, V> implements Cacheable<K, V> {
     const timeout = this.timers.get(key);
     if (timeout) {
       clearTimeout(timeout);
-    };
+    }
     this.timers.delete(key);
   }
   clearAll() {

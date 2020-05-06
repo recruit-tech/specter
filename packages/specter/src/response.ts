@@ -21,6 +21,9 @@ export default class SpecterResponse<H extends any, B extends any> {
     };
     this.nextReqs = reqs;
   }
+  appendHeader(key: string, value: any) {
+    this.headers[key] = value;
+  }
   setError(error: any) {
     this.error = error;
   }

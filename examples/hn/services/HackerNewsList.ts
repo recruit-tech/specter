@@ -13,9 +13,10 @@ export default class HackerNewsList extends Service {
     super("hnlist", config);
     this.storage = new Storage({});
   }
-  async read(req: Request<{}, {}, null>): Promise<HackerNewsListResponse> {
+  async read(req: HackerNewsListRequest): Promise<HackerNewsListResponse> {
     const cachedRes = this.storage.get(req.toString());
     if (cachedRes) {
+      cachedRes.appendHeader("x-specter-cache-hit", 1);
       return cachedRes;
     }
     const res = await fetch(
@@ -38,7 +39,10 @@ export default class HackerNewsList extends Service {
     );
     const resp = new Response({}, data);
     resp.setNextReqs(...nextReqs);
-    this.storage.store(req.toString(), resp, { to: "ephemeral", expiredSrc: 100 });
+    this.storage.store(req.toString(), resp, {
+      to: "ephemeral",
+      expiredSrc: 100
+    });
     return resp;
   }
 }

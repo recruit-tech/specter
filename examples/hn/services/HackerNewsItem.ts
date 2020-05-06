@@ -1,6 +1,6 @@
-import Specter, { Service, Request, Response } from "@specter/specter";
+import { Service, Request, Response } from "@specter/specter";
 import fetch from "isomorphic-unfetch";
-import { Storage } from "@specter/storage";
+import { Storage, MemStorage } from "@specter/storage";
 
 export type HNItemBody = {
   id: number;
@@ -24,8 +24,9 @@ export default class HackerNewsItem extends Service {
     this.cache = new Storage({});
   }
   async read(request: HackerNewsItemRequest): Promise<HackerNewsItemResponse> {
-    const cacheData = this.cache.get(request.toString());
+    const cacheData = this.cache.get(`${request.query.id}`);
     if (cacheData) {
+      cacheData.appendHeader("x-specter-cache-hit", 1);
       return cacheData;
     }
     const res = await fetch(
@@ -39,7 +40,7 @@ export default class HackerNewsItem extends Service {
     );
     const data: HNItemBody = await res.json();
     const resp = new Response({}, data);
-    this.cache.store(request.toString(), resp);
+    this.cache.store(`${request.query.id}`, resp);
     return resp;
   }
 }

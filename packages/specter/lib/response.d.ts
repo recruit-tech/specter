@@ -9,6 +9,7 @@ export default class SpecterResponse<H extends any, B extends any> {
     constructor(headers: H, body: B);
     setStatus(status: number): void;
     setNextReqs(...reqs: SpecterRequest<any, any, any>[]): void;
+    appendHeader(key: string, value: any): void;
     setError(error: any): void;
     getNextReqs(): SpecterRequest<any, any, any>[] | undefined;
 }

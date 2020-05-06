@@ -52,7 +52,6 @@ var LRUCache = /** @class */ (function () {
         if (timeout) {
             clearTimeout(timeout);
         }
-        ;
         this.timers.delete(key);
     };
     LRUCache.prototype.clearAll = function () {
