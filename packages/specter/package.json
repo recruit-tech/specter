@@ -1,6 +1,6 @@
 {
   "name": "@specter/specter",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "> TODO: description",
   "author": "Yosuke Furukawa <yosuke.furukawa@gmail.com>",
   "homepage": "https://github.com/recruit-tech/specter#readme",
@@ -36,7 +36,7 @@
     "jest": "25.4.0",
     "typescript": "3.8.3"
   },
-  "gitHead": "bf37138d015766c17bbfbcdd60e784c8ef65457d",
+  "gitHead": "c3e7e9b6d45489d4ee55a14d94771d87f893b2d4",
   "publishConfig": {
     "access": "public"
   }
