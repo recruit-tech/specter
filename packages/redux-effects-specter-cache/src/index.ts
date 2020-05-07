@@ -1,5 +1,5 @@
 import { Middleware } from "redux";
-import LRUCache from "lru-cache";
+import { LRUCache } from "@specter/storage";
 import { SPECTER, Payload } from "@specter/redux-effects-specter";
 import { Response } from "@specter/specter";
 
@@ -26,9 +26,7 @@ export type MiddlewareOption<S> = {
 
 let cacheInstance: LRUCache<string, Record<string, any>> | null = null;
 
-function createCache(
-  cacheOption?: LRUCache.Options<string, Record<string, any>>
-) {
+function createCache(cacheOption?: Record<string, any>) {
   if (cacheInstance !== null) return cacheInstance;
   cacheInstance = new LRUCache<string, Record<string, any>>(cacheOption);
   return cacheInstance;
@@ -38,7 +36,7 @@ function createCache(
 // MEMO: this can call from outside middleware, and reset a cache data.
 export function resetCacheData() {
   const cache = createCache();
-  cache.reset();
+  cache.clearAll();
 }
 
 export default function reduxEffectsSpecterCache<S = any>({
@@ -46,7 +44,7 @@ export default function reduxEffectsSpecterCache<S = any>({
   cacheOption = {}
 }: {
   middlewareOption?: MiddlewareOption<S>;
-  cacheOption?: LRUCache.Options<string, Record<string, any>>;
+  cacheOption?: Record<string, any>;
 }): Middleware {
   const { excludes, fromCache, toCache, resetCache } = middlewareOption;
   const cache = createCache(cacheOption);
@@ -87,7 +85,7 @@ export default function reduxEffectsSpecterCache<S = any>({
     return ((next(action) as any) as Promise<Response<any, any>>).then(resp => {
       const manualCache = toCache && toCache(action, getState());
       if (!toCache || manualCache) {
-        cache.set(cacheKey, resp);
+        cache.put(cacheKey, resp);
       }
       return resp;
     });

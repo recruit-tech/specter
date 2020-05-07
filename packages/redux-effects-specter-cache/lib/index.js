@@ -1,22 +1,19 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var lru_cache_1 = __importDefault(require("lru-cache"));
+var storage_1 = require("@specter/storage");
 var redux_effects_specter_1 = require("@specter/redux-effects-specter");
 var cacheInstance = null;
 function createCache(cacheOption) {
     if (cacheInstance !== null)
         return cacheInstance;
-    cacheInstance = new lru_cache_1.default(cacheOption);
+    cacheInstance = new storage_1.LRUCache(cacheOption);
     return cacheInstance;
 }
 // CAUTION: this function expected to call after the createCache execudes in once.
 // MEMO: this can call from outside middleware, and reset a cache data.
 function resetCacheData() {
     var cache = createCache();
-    cache.reset();
+    cache.clearAll();
 }
 exports.resetCacheData = resetCacheData;
 function reduxEffectsSpecterCache(_a) {
@@ -53,7 +50,7 @@ function reduxEffectsSpecterCache(_a) {
             return next(action).then(function (resp) {
                 var manualCache = toCache && toCache(action, getState());
                 if (!toCache || manualCache) {
-                    cache.set(cacheKey, resp);
+                    cache.put(cacheKey, resp);
                 }
                 return resp;
             });

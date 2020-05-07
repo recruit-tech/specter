@@ -1,5 +1,4 @@
 import { Middleware } from "redux";
-import LRUCache from "lru-cache";
 import { SPECTER, Payload } from "@specter/redux-effects-specter";
 declare type SpecterAction = {
     type: typeof SPECTER;
@@ -19,6 +18,6 @@ export declare type MiddlewareOption<S> = {
 export declare function resetCacheData(): void;
 export default function reduxEffectsSpecterCache<S = any>({ middlewareOption, cacheOption }: {
     middlewareOption?: MiddlewareOption<S>;
-    cacheOption?: LRUCache.Options<string, Record<string, any>>;
+    cacheOption?: Record<string, any>;
 }): Middleware;
 export {};
