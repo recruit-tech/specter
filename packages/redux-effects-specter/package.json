@@ -41,7 +41,7 @@
   "peerDependencies": {
     "redux": ">= 4.0"
   },
-  "gitHead": "c3e7e9b6d45489d4ee55a14d94771d87f893b2d4",
+  "gitHead": "ed3816e0cb5862fc1c87ccea4af501debe5d94a6",
   "publishConfig": {
     "access": "public"
   }
