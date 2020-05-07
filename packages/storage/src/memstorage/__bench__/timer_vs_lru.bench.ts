@@ -1,6 +1,6 @@
 import { LRUCache } from "../lrucache";
 import { TimerCache } from "../timercache";
-const max = 100000;
+const max = 1000;
 const arr: Array<string> = [];
 const disc = [];
 for (let i = 1; i <= max; i++) {
@@ -8,9 +8,9 @@ for (let i = 1; i <= max; i++) {
 }
 
 function benchLRUCache() {
-  const lrucache: LRUCache<any, any> | null = new LRUCache({ limit: 10});
+  const lrucache: LRUCache<any, any> | null = new LRUCache({ limit: 1000 });
   for (const a of arr) {
-    lrucache!.put(a, a, { expiredSec: 10 });
+    lrucache!.put(a, a);
   }
   for (const a of arr) {
     disc.push(lrucache!.get(a));
@@ -18,9 +18,9 @@ function benchLRUCache() {
 }
 
 function benchTimerCache() {
-  const cache: TimerCache<any, any> | null = new TimerCache({ limit: 10 });
+  const cache: TimerCache<any, any> | null = new TimerCache({ limit: 1000 });
   for (const a of arr) {
-    cache!.put(a, a, { expiredSec: 10 });
+    cache!.put(a, a);
   }
   for (const a of arr) {
     disc.push(cache!.get(a));
@@ -29,25 +29,23 @@ function benchTimerCache() {
 
 function main() {
   global.gc();
-  console.time("timer")
+  console.time("timer");
   for (let i = 0; i < 100; i++) {
     benchTimerCache();
   }
   console.log(process.memoryUsage().heapUsed / (1024 * 1024));
-  console.timeEnd("timer")
+  console.timeEnd("timer");
   global.gc();
 
   global.gc();
-  console.time("lru")
+  console.time("lru");
   for (let i = 0; i < 100; i++) {
     benchLRUCache();
   }
   console.log(process.memoryUsage().heapUsed / (1024 * 1024));
-  console.timeEnd("lru")
+  console.timeEnd("lru");
   global.gc();
-
 }
-
 
 // timer: 5.484s
 // lru: 1.154s

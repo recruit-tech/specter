@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { Cacheable } from "./cache";
+import { Cacheable } from "../cache";
 export declare class Entry<V> {
     expiredAt: number;
     data: V;

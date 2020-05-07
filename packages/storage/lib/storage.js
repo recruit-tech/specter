@@ -4,16 +4,9 @@ var lrucache_1 = require("./memstorage/lrucache");
 exports.LRUCache = lrucache_1.LRUCache;
 var timercache_1 = require("./memstorage/timercache");
 exports.TimerCache = timercache_1.TimerCache;
-var memstorage_1 = require("./memstorage");
-exports.MemStorage = memstorage_1.MemStorage;
 var Storage = /** @class */ (function () {
     function Storage(opts) {
-        this.storage =
-            opts.storage ||
-                new memstorage_1.MemStorage({
-                    shortlife: { limit: 100 },
-                    longlife: { limit: 10 }
-                });
+        this.storage = opts.storage || new lrucache_1.LRUCache({});
     }
     Storage.prototype.store = function (key, value, opts) {
         this.storage.put(key, value, opts);

@@ -2,17 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var lrucache_1 = require("../lrucache");
 var timercache_1 = require("../timercache");
-var max = 100000;
+var max = 1000;
 var arr = [];
 var disc = [];
 for (var i = 1; i <= max; i++) {
     arr.push("" + i);
 }
 function benchLRUCache() {
-    var lrucache = new lrucache_1.LRUCache({ limit: 10 });
+    var lrucache = new lrucache_1.LRUCache({ limit: 1000 });
     for (var _i = 0, arr_1 = arr; _i < arr_1.length; _i++) {
         var a = arr_1[_i];
-        lrucache.put(a, a, { expiredSec: 10 });
+        lrucache.put(a, a);
     }
     for (var _a = 0, arr_2 = arr; _a < arr_2.length; _a++) {
         var a = arr_2[_a];
@@ -20,10 +20,10 @@ function benchLRUCache() {
     }
 }
 function benchTimerCache() {
-    var cache = new timercache_1.TimerCache({ limit: 10 });
+    var cache = new timercache_1.TimerCache({ limit: 1000 });
     for (var _i = 0, arr_3 = arr; _i < arr_3.length; _i++) {
         var a = arr_3[_i];
-        cache.put(a, a, { expiredSec: 10 });
+        cache.put(a, a);
     }
     for (var _a = 0, arr_4 = arr; _a < arr_4.length; _a++) {
         var a = arr_4[_a];

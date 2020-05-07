@@ -23,7 +23,7 @@ describe.each([
         ["a", "b", "c"],
         ["d", "e", "f"],
         ["f", "e", "d", "a", "b", "c"] // result
-    ],
+    ]
 ])("unshift %p %p", function (init, arg, result) {
     test("unshift", function () {
         var list = new (linkedlist_1.LinkedList.bind.apply(linkedlist_1.LinkedList, __spreadArrays([void 0], init)))();
@@ -42,7 +42,7 @@ describe.each([
         [1, 2, 3],
         [3],
         [1, 2] // result
-    ],
+    ]
 ])("pop %p %p", function (init, poped, result) {
     test("pop", function () {
         var list = new (linkedlist_1.LinkedList.bind.apply(linkedlist_1.LinkedList, __spreadArrays([void 0], init)))();
@@ -65,7 +65,7 @@ describe.each([
         [1, 2, 3, 4, 5, 6, 7],
         4,
         [1, 2, 3, 4, 6, 7] // result
-    ],
+    ]
 ])("remove %p %p", function (init, removeIndex, result) {
     test("remove", function () {
         var list = new (linkedlist_1.LinkedList.bind.apply(linkedlist_1.LinkedList, __spreadArrays([void 0], init)))();

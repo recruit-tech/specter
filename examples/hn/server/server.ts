@@ -9,12 +9,12 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-Specter.registerService(new HackerNewsItem({}));
-Specter.registerService(new HackerNewsList({}));
 app.prepare().then(() => {
   const server = express.default();
   server.use(bodyParser.json());
 
+  Specter.registerService(new HackerNewsItem({}));
+  Specter.registerService(new HackerNewsList({}));
   server.use("/xhr", Specter.createMiddleware({}));
 
   server.get("*", (req, res) => {

@@ -1,6 +1,6 @@
 import { Service, Request, Response } from "@specter/specter";
 import fetch from "isomorphic-unfetch";
-import { Storage, MemStorage } from "@specter/storage";
+import { Storage } from "@specter/storage";
 
 export type HNItemBody = {
   id: number;

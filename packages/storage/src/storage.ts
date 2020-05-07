@@ -1,18 +1,12 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { Cacheable } from "./memstorage/cache";
+import { Cacheable } from "./cache";
 import { LRUCache } from "./memstorage/lrucache";
 import { TimerCache } from "./memstorage/timercache";
-import { MemStorage } from "./memstorage";
 
 export class Storage<K, V> {
   storage: Cacheable<K, V>;
   constructor(opts: { storage?: Cacheable<K, V> }) {
-    this.storage =
-      opts.storage ||
-      new MemStorage<K, V>({
-        shortlife: { limit: 100 },
-        longlife: { limit: 10 }
-      });
+    this.storage = opts.storage || new LRUCache<K, V>({});
   }
 
   store(key: K, value: V, opts?: {}) {
@@ -32,4 +26,4 @@ export class Storage<K, V> {
   }
 }
 
-export { LRUCache, Cacheable, TimerCache, MemStorage };
+export { LRUCache, Cacheable, TimerCache };

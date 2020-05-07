@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 // This Storage keeps cache in expiredAt time.
-import { Cacheable } from "./cache";
+import { Cacheable } from "../cache";
 
 export class Entry<V> {
   expiredAt: number;
@@ -42,8 +42,8 @@ export class TimerCache<K, V> implements Cacheable<K, V> {
     }
     this.cache.set(key, entry);
     if (this.limit < this.cache.size) {
-      const tail = Array.from(this.cache.keys())[this.cache.size - 1];
-      this.cache.delete(tail);
+      const head = this.cache.keys().next().value;
+      this.cache.delete(head);
     }
   }
   get(key: K) {
@@ -58,7 +58,7 @@ export class TimerCache<K, V> implements Cacheable<K, V> {
     const timeout = this.timers.get(key);
     if (timeout) {
       clearTimeout(timeout);
-    };
+    }
     this.timers.delete(key);
   }
   clearAll() {

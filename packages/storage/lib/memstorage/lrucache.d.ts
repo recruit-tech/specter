@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { LinkedList, Entry } from "./linkedlist";
-import { Cacheable } from "./cache";
+import { Cacheable } from "../cache";
 export declare class LRUCache<K, V> implements Cacheable<K, V> {
     lruCacheList: LinkedList<{
         key: K;

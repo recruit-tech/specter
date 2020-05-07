@@ -1,6 +1,6 @@
-export interface SpecterCache<K, V> {
-    put(key: K, value: V): void;
-    get(key: K): V | null;
-    delete(key: K): void;
+export interface Cacheable<K, V> {
+    put(key: K, value: V, options?: {}): void;
+    get(key: K, options?: {}): V | null;
+    delete(key: K, options?: {}): void;
     clearAll(): void;
 }

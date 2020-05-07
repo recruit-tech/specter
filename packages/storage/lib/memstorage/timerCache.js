@@ -32,8 +32,8 @@ var TimerCache = /** @class */ (function () {
         }
         this.cache.set(key, entry);
         if (this.limit < this.cache.size) {
-            var tail = Array.from(this.cache.keys())[this.cache.size - 1];
-            this.cache.delete(tail);
+            var head = this.cache.keys().next().value;
+            this.cache.delete(head);
         }
     };
     TimerCache.prototype.get = function (key) {
@@ -49,7 +49,6 @@ var TimerCache = /** @class */ (function () {
         if (timeout) {
             clearTimeout(timeout);
         }
-        ;
         this.timers.delete(key);
     };
     TimerCache.prototype.clearAll = function () {

@@ -40,8 +40,7 @@ export default class HackerNewsList extends Service {
     const resp = new Response({}, data);
     resp.setNextReqs(...nextReqs);
     this.storage.store(req.toString(), resp, {
-      to: "ephemeral",
-      expiredSrc: 100
+      expiredSec: 10
     });
     return resp;
   }

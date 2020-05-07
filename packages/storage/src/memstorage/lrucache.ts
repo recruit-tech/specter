@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 // This Storage uses lru cache algorithm.
 import { LinkedList, Entry } from "./linkedlist";
-import { Cacheable } from "./cache";
+import { Cacheable } from "../cache";
 
 export class LRUCache<K, V> implements Cacheable<K, V> {
   lruCacheList: LinkedList<{ key: K; value: V }>;

@@ -1,7 +1,6 @@
-import { Cacheable } from "./memstorage/cache";
+import { Cacheable } from "./cache";
 import { LRUCache } from "./memstorage/lrucache";
 import { TimerCache } from "./memstorage/timercache";
-import { MemStorage } from "./memstorage";
 export declare class Storage<K, V> {
     storage: Cacheable<K, V>;
     constructor(opts: {
@@ -12,4 +11,4 @@ export declare class Storage<K, V> {
     purge(key: K): void;
     purgeAll(): void;
 }
-export { LRUCache, Cacheable, TimerCache, MemStorage };
+export { LRUCache, Cacheable, TimerCache };
