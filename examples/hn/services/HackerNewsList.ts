@@ -1,14 +1,24 @@
 import { Service, Request, Response } from "@specter/specter";
 import { Request as ClientRequest } from "@specter/client";
+import { Storage } from "@specter/storage";
+
 import fetch from "isomorphic-unfetch";
 
 export type HackerNewsListResponse = Response<{}, Array<number>>;
+type HackerNewsListRequest = Request<{}, {}, null>;
 
 export default class HackerNewsList extends Service {
+  storage: Storage<string, HackerNewsListResponse>;
   constructor(config: object) {
     super("hnlist", config);
+    this.storage = new Storage({});
   }
-  async read(_: Request<{}, {}, null>): Promise<HackerNewsListResponse> {
+  async read(req: HackerNewsListRequest): Promise<HackerNewsListResponse> {
+    const cachedRes = this.storage.get(req.toString());
+    if (cachedRes) {
+      cachedRes.appendHeader("x-specter-cache-hit", 1);
+      return cachedRes;
+    }
     const res = await fetch(
       "https://hacker-news.firebaseio.com/v0/topstories.json",
       {
@@ -29,6 +39,9 @@ export default class HackerNewsList extends Service {
     );
     const resp = new Response({}, data);
     resp.setNextReqs(...nextReqs);
+    this.storage.store(req.toString(), resp, {
+      expiredSec: 10
+    });
     return resp;
   }
 }

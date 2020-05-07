@@ -2,7 +2,8 @@ import { parse } from "url";
 import {
   Request as ExpressRequest,
   Response as ExpressResponse,
-  RequestHandler
+  RequestHandler,
+  NextFunction
 } from "express";
 import SpecterRequest from "./request";
 import Service from "./service";
@@ -32,7 +33,7 @@ export default class Specter {
     return async (
       req: ExpressRequest,
       res: ExpressResponse,
-      next: Function
+      next: NextFunction
     ) => {
       try {
         if (!req.url) {

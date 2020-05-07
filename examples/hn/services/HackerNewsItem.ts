@@ -1,6 +1,6 @@
 import { Service, Request, Response } from "@specter/specter";
 import fetch from "isomorphic-unfetch";
-import Cache from "node-cache";
+import { Storage } from "@specter/storage";
 
 export type HNItemBody = {
   id: number;
@@ -14,21 +14,20 @@ export type HNItemBody = {
   title: string;
 };
 export type HackerNewsItemResponse = Response<{}, HNItemBody>;
+type HackerNewsItemRequest = Request<{}, { id: number }, null>;
 
-const cachekeyPrefix = "hnitems";
 export default class HackerNewsItem extends Service {
-  cache: Cache;
+  cache: Storage<string, HackerNewsItemResponse>;
 
   constructor(config: object) {
     super("hnitem", config);
-    this.cache = new Cache();
+    this.cache = new Storage({});
   }
-  async read(
-    request: Request<{}, { id: number }, null>
-  ): Promise<HackerNewsItemResponse> {
-    const cacheData = this.cache.get(`${cachekeyPrefix}-${request.query.id}`);
+  async read(request: HackerNewsItemRequest): Promise<HackerNewsItemResponse> {
+    const cacheData = this.cache.get(`${request.query.id}`);
     if (cacheData) {
-      return new Response({}, cacheData as HNItemBody);
+      cacheData.appendHeader("x-specter-cache-hit", 1);
+      return cacheData;
     }
     const res = await fetch(
       `https://hacker-news.firebaseio.com/v0/item/${request.query.id}.json`,
@@ -40,7 +39,8 @@ export default class HackerNewsItem extends Service {
       }
     );
     const data: HNItemBody = await res.json();
-    this.cache.set(`${cachekeyPrefix}-${request.query.id}`, data);
-    return new Response({}, data);
+    const resp = new Response({}, data);
+    this.cache.store(`${request.query.id}`, resp);
+    return resp;
   }
 }

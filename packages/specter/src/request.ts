@@ -21,7 +21,7 @@ export default class SpecterRequest<
   ) {
     this.resource = resource;
     this.method = req.method;
-    this.query = (req as ExpressRequest).query || {};
+    this.query = (req as any)?.query || {};
     this.headers = req.headers || {};
     this.body = (req as ExpressRequest).body || {};
     if (!this.body) {

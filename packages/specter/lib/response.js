@@ -15,6 +15,9 @@ class SpecterResponse {
         };
         this.nextReqs = reqs;
     }
+    appendHeader(key, value) {
+        this.headers[key] = value;
+    }
     setError(error) {
         this.error = error;
     }

@@ -11,10 +11,12 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const server = express.default();
+  server.use(bodyParser.json());
+
   Specter.registerService(new HackerNewsItem({}));
   Specter.registerService(new HackerNewsList({}));
-  server.use(bodyParser.json());
   server.use("/xhr", Specter.createMiddleware({}));
+
   server.get("*", (req, res) => {
     return handle(req, res);
   });
