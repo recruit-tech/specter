@@ -1,6 +1,6 @@
 {
   "name": "@specter/storage",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "> TODO: description",
   "author": "Yosuke Furukawa <yosuke.furukawa@gmail.com>",
   "homepage": "https://github.com/recruit-tech/specter#readme",
@@ -31,7 +31,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@specter/client": "^0.1.2",
-    "@specter/specter": "^0.1.2"
+    "@specter/client": "^0.2.0",
+    "@specter/specter": "^0.2.0"
   }
 }
