@@ -1,6 +1,6 @@
 {
   "name": "@specter/client",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Specter client",
   "keywords": [
     "Specter",
@@ -34,7 +34,7 @@
     "url": "https://github.com/recruit-tech/specter/issues"
   },
   "devDependencies": {
-    "@specter/specter": "^0.2.0",
+    "@specter/specter": "^0.2.1",
     "@types/express": "4.17.6",
     "@types/jest": "25.2.1",
     "@types/node-fetch": "2.5.6",
@@ -47,7 +47,7 @@
   "dependencies": {
     "unfetch": "^4.1.0"
   },
-  "gitHead": "3fba7d8acd25c057b5bdde82e3e15632b57896d1",
+  "gitHead": "bf37138d015766c17bbfbcdd60e784c8ef65457d",
   "publishConfig": {
     "access": "public"
   }
