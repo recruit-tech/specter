@@ -33,20 +33,18 @@
   },
   "dependencies": {
     "@types/lru-cache": "^5.1.0",
-    "@types/redux": "^3.6.0",
-    "lru-cache": "^5.1.1"
+    "@types/redux": "^3.6.0"
   },
   "devDependencies": {
     "@specter/redux-effects-specter": "^0.2.3",
     "@specter/specter": "^0.2.3",
+    "@specter/storage": "^0.2.3",
     "jest": "25.4.0",
     "redux": "4.0.5",
     "ts-jest": "25.4.0",
     "typescript": "3.8.3"
   },
   "peerDependencies": {
-    "@specter/redux-effects-specter": "0.0.25",
-    "@specter/specter": "0.0.25",
     "redux": ">= 4.0"
   },
   "gitHead": "ed3816e0cb5862fc1c87ccea4af501debe5d94a6",
