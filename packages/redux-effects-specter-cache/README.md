@@ -7,6 +7,7 @@ Caching middleware for
 
 ```
 npm install --save @specter/specter  \                  # peer dependency
+                   @specter/storage \                   # peer dependency
                    @specter/redux-effects-specter \     # peer dependency
                    @specter/redux-effects-specter-cache
 ```
