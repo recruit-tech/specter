@@ -30,9 +30,5 @@
     "ts-node": "^8.10.1",
     "typescript": "^3.8.3"
   },
-  "dependencies": {
-    "@specter/client": "^0.2.2",
-    "@specter/specter": "^0.2.2"
-  },
   "gitHead": "ed3816e0cb5862fc1c87ccea4af501debe5d94a6"
 }
