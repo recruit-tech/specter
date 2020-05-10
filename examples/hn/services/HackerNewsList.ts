@@ -14,7 +14,7 @@ export default class HackerNewsList extends Service {
     this.storage = new Storage({});
   }
   async read(req: HackerNewsListRequest): Promise<HackerNewsListResponse> {
-    const cachedRes = this.storage.get(req.toString());
+    const cachedRes = await this.storage.get(req.toString());
     if (cachedRes) {
       cachedRes.appendHeader("x-specter-cache-hit", 1);
       return cachedRes;

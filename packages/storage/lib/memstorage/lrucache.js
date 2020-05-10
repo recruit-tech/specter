@@ -31,20 +31,21 @@ var LRUCache = /** @class */ (function () {
             }, expiredSec * 1000, key);
             this.timers.set(key, timer);
         }
+        return Promise.resolve(null);
     };
     LRUCache.prototype.get = function (key) {
         var entry = this.lruCacheMap.get(key);
         if (!entry) {
-            return null;
+            return Promise.resolve(null);
         }
         this.lruCacheList.remove(entry);
         this.lruCacheList.unshift(entry.data);
-        return entry.data.value;
+        return Promise.resolve(entry.data.value);
     };
     LRUCache.prototype.delete = function (key) {
         var entry = this.lruCacheMap.get(key);
         if (!entry) {
-            return entry;
+            return Promise.resolve(entry);
         }
         this.lruCacheList.remove(entry);
         this.lruCacheMap.delete(key);
@@ -53,6 +54,7 @@ var LRUCache = /** @class */ (function () {
             clearTimeout(timeout);
         }
         this.timers.delete(key);
+        return Promise.resolve(null);
     };
     LRUCache.prototype.clearAll = function () {
         var _this = this;
@@ -60,6 +62,7 @@ var LRUCache = /** @class */ (function () {
         keys.forEach(function (key) {
             _this.delete(key);
         });
+        return Promise.resolve(null);
     };
     return LRUCache;
 }());

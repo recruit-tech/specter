@@ -15,8 +15,8 @@ export declare class TimerCache<K, V> implements Cacheable<K, V> {
     });
     put(key: K, value: V, options?: {
         expiredSec?: number;
-    }): void;
-    get(key: K): V | null;
-    delete(key: K): void;
-    clearAll(): void;
+    }): Promise<null>;
+    get(key: K): Promise<V | null>;
+    delete(key: K): Promise<null>;
+    clearAll(): Promise<null>;
 }

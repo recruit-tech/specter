@@ -39,20 +39,21 @@ export class LRUCache<K, V> implements Cacheable<K, V> {
       );
       this.timers.set(key, timer);
     }
+    return Promise.resolve(null);
   }
   get(key: K) {
     const entry = this.lruCacheMap.get(key);
     if (!entry) {
-      return null;
+      return Promise.resolve(null);
     }
     this.lruCacheList.remove(entry);
     this.lruCacheList.unshift(entry.data);
-    return entry.data.value;
+    return Promise.resolve(entry.data.value);
   }
   delete(key: K) {
     const entry = this.lruCacheMap.get(key);
     if (!entry) {
-      return entry;
+      return Promise.resolve(entry);
     }
     this.lruCacheList.remove(entry);
     this.lruCacheMap.delete(key);
@@ -62,11 +63,13 @@ export class LRUCache<K, V> implements Cacheable<K, V> {
       clearTimeout(timeout);
     }
     this.timers.delete(key);
+    return Promise.resolve(null);
   }
   clearAll() {
     const keys = Array.from(this.lruCacheMap.keys());
     keys.forEach(key => {
       this.delete(key);
     });
+    return Promise.resolve(null);
   }
 }

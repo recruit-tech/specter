@@ -45,13 +45,14 @@ export class TimerCache<K, V> implements Cacheable<K, V> {
       const head = this.cache.keys().next().value;
       this.cache.delete(head);
     }
+    return Promise.resolve(null);
   }
   get(key: K) {
     const entry = this.cache.get(key);
     if (entry == null) {
-      return null;
+      return Promise.resolve(null);
     }
-    return entry.get();
+    return Promise.resolve(entry.get());
   }
   delete(key: K) {
     this.cache.delete(key);
@@ -60,11 +61,13 @@ export class TimerCache<K, V> implements Cacheable<K, V> {
       clearTimeout(timeout);
     }
     this.timers.delete(key);
+    return Promise.resolve(null);
   }
   clearAll() {
     const keys = Array.from(this.cache.keys());
     keys.forEach(key => {
       this.delete(key);
     });
+    return Promise.resolve(null);
   }
 }

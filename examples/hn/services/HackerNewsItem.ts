@@ -24,7 +24,7 @@ export default class HackerNewsItem extends Service {
     this.cache = new Storage({});
   }
   async read(request: HackerNewsItemRequest): Promise<HackerNewsItemResponse> {
-    const cacheData = this.cache.get(`${request.query.id}`);
+    const cacheData = await this.cache.get(`${request.query.id}`);
     if (cacheData) {
       cacheData.appendHeader("x-specter-cache-hit", 1);
       return cacheData;

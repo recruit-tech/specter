@@ -1,6 +1,6 @@
 export interface Cacheable<K, V> {
-    put(key: K, value: V, options?: {}): void;
-    get(key: K, options?: {}): V | null;
-    delete(key: K, options?: {}): void;
-    clearAll(): void;
+    put(key: K, value: V, options?: {}): Promise<unknown>;
+    get(key: K, options?: {}): Promise<V | null>;
+    delete(key: K, options?: {}): Promise<unknown>;
+    clearAll(): Promise<unknown>;
 }

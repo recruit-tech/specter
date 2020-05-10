@@ -35,13 +35,14 @@ var TimerCache = /** @class */ (function () {
             var head = this.cache.keys().next().value;
             this.cache.delete(head);
         }
+        return Promise.resolve(null);
     };
     TimerCache.prototype.get = function (key) {
         var entry = this.cache.get(key);
         if (entry == null) {
-            return null;
+            return Promise.resolve(null);
         }
-        return entry.get();
+        return Promise.resolve(entry.get());
     };
     TimerCache.prototype.delete = function (key) {
         this.cache.delete(key);
@@ -50,6 +51,7 @@ var TimerCache = /** @class */ (function () {
             clearTimeout(timeout);
         }
         this.timers.delete(key);
+        return Promise.resolve(null);
     };
     TimerCache.prototype.clearAll = function () {
         var _this = this;
@@ -57,6 +59,7 @@ var TimerCache = /** @class */ (function () {
         keys.forEach(function (key) {
             _this.delete(key);
         });
+        return Promise.resolve(null);
     };
     return TimerCache;
 }());
