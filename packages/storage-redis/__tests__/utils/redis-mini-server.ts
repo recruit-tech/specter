@@ -34,7 +34,11 @@ redisMiniServer.on("connection", socket => {
       set(arg1, arg2);
     }
     if (com === "get") {
-      const value = get(arg1) || "(nil)";
+      const value = get(arg1);
+      if (value == null) {
+        socket.write(`$-1${CRLF}`);
+        return;
+      }
       socket.write(`+${value}${CRLF}`);
       return;
     }
@@ -54,8 +58,8 @@ redisMiniServer.on("connection", socket => {
       socket.write(`+${result}${CRLF}`);
       return;
     }
-    if (com === "COMMAND") {
-      socket.end();
+    if (com === "COMMAND" || com === "quit") {
+      socket.end("+OK" + CRLF);
       return;
     }
     socket.write("+OK" + CRLF);
