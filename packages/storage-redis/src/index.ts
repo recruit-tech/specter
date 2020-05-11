@@ -28,14 +28,14 @@ export class RedisCache<K, V> implements Cacheable<K, V> {
       serialize?: (value: V) => string;
       expireyMode?: string | unknown[];
       setMode?: number | string;
-      time?: number | string;
+      ttl?: number;
     }
   ) {
     const identify = options?.identify || this.identify;
     const serialize = options?.serialize || this.serialize;
     const expireyMode = options?.expireyMode;
     const setMode = options?.setMode;
-    const time = options?.time;
+    const time = options?.ttl;
 
     const k = identify ? identify(key) : key + "";
     const v = serialize ? serialize(value) : value + "";

@@ -17,7 +17,7 @@ describe.each([
     ] // result
   ]
 ])("lrucache", (data, option, newData, result) => {
-  test("put", () => {
+  test("put", async () => {
     const lrucache = new LRUCache(option);
     data.forEach(d => {
       lrucache.put(d[0], d[1]);
@@ -25,9 +25,10 @@ describe.each([
     newData.forEach(d => {
       lrucache.put(d[0], d[1]);
     });
-    result.forEach(d => {
-      assert.strictEqual(lrucache.get(d[0]), d[1]);
-    });
+    for (const d of result) {
+      const r = await lrucache.get(d[0]);
+      assert.strictEqual(r, d[1]);
+    }
   });
 });
 
@@ -46,18 +47,20 @@ describe.each([
     ] // result
   ]
 ])("lrucache", (data, option, del, result) => {
-  test("delete", () => {
+  test("delete", async () => {
     const lrucache = new LRUCache(option);
     data.forEach(d => {
       lrucache.put(d[0], d[1]);
     });
-    del.forEach(d => {
-      lrucache.delete(d[0]);
-      assert.strictEqual(lrucache.get(d[0]), null);
-    });
-    result.forEach(d => {
-      assert.strictEqual(lrucache.get(d[0]), d[1]);
-    });
+    for (const d of del) {
+      await lrucache.delete(d[0]);
+      const r = await lrucache.get(d[0]);
+      assert.strictEqual(r, null);
+    }
+    for (const d of result) {
+      const r = await lrucache.get(d[0]);
+      assert.strictEqual(r, d[1]);
+    }
   });
 });
 
@@ -75,14 +78,15 @@ describe.each([
     ] // result
   ]
 ])("lrucache", (data, option, result) => {
-  test("clearall", () => {
+  test("clearall", async () => {
     const lrucache = new LRUCache(option);
     data.forEach(d => {
       lrucache.put(d[0], d[1]);
     });
     lrucache.clearAll();
-    result.forEach(d => {
-      assert.strictEqual(lrucache.get(d[0]), d[1]);
-    });
+    for (const d of result) {
+      const r = await lrucache.get(d[0]);
+      assert.strictEqual(r, d[1]);
+    }
   });
 });
