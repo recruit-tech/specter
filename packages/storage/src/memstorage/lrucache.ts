@@ -12,9 +12,9 @@ export class LRUCache<K, V> implements Cacheable<K, V> {
   serialize?: (value: V) => string;
   deserialize?: (value: string) => V;
 
-  constructor(opts?: { 
-    limit?: number; 
-    identify?: (key: K) => string;  
+  constructor(opts?: {
+    limit?: number;
+    identify?: (key: K) => string;
     serialize?: (value: V) => string;
     deserialize?: (value: string) => V;
   }) {
