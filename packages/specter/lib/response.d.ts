@@ -12,4 +12,6 @@ export default class SpecterResponse<H extends any, B extends any> {
     appendHeader(key: string, value: any): void;
     setError(error: any): void;
     getNextReqs(): SpecterRequest<any, any, any>[] | undefined;
+    static parse<H, B>(res: string): SpecterResponse<H, B>;
+    toString(): string;
 }

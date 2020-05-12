@@ -6,4 +6,6 @@ export default class SpecterResponse<H extends {
     body: B;
     constructor(headers: H, body: B);
     getNextReqs(): SpecterRequest<any, any, any>[];
+    static parse(res: string): SpecterResponse<any, any>;
+    toString(): string;
 }

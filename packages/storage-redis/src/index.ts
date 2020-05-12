@@ -26,20 +26,19 @@ export class RedisCache<K, V> implements Cacheable<K, V> {
     options?: {
       identify?: (key: K) => Redis.KeyType;
       serialize?: (value: V) => string;
-      expireyMode?: string | unknown[];
-      setMode?: number | string;
       ttl?: number;
     }
   ) {
     const identify = options?.identify || this.identify;
     const serialize = options?.serialize || this.serialize;
-    const expireyMode = options?.expireyMode;
-    const setMode = options?.setMode;
     const time = options?.ttl;
 
     const k = identify ? identify(key) : key + "";
     const v = serialize ? serialize(value) : value + "";
-    return this.redis.set(k, v, expireyMode, time, setMode);
+    if (time) {
+      return this.redis.set(k, v, "ex", time);
+    }
+    return this.redis.set(k, v);
   }
   async get(
     key: K,

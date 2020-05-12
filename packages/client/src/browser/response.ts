@@ -20,4 +20,16 @@ export default class SpecterResponse<
       .map(req => SpecterRequest.parseRequest(req));
     return reqs;
   }
+
+  static parse(res: string) {
+    const parsed = JSON.parse(res);
+    const response = new SpecterResponse(parsed.headers, parsed.body);
+    return response;
+  }
+  toString() {
+    return JSON.stringify({
+      headers: this.headers,
+      body: this.body
+    });
+  }
 }

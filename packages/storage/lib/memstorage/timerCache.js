@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Entry = /** @class */ (function () {
-    function Entry(data, expiredSec) {
-        this.expiredAt = Date.now() + expiredSec * 1000;
+    function Entry(data, ttl) {
+        this.expiredAt = Date.now() + ttl;
         this.data = data;
     }
     Entry.prototype.get = function () {
@@ -22,12 +22,12 @@ var TimerCache = /** @class */ (function () {
     }
     TimerCache.prototype.put = function (key, value, options) {
         var _this = this;
-        var expiredSec = (options === null || options === void 0 ? void 0 : options.expiredSec) || Infinity;
-        var entry = new Entry(value, expiredSec);
-        if (expiredSec !== Infinity) {
+        var ttl = (options === null || options === void 0 ? void 0 : options.ttl) || Infinity;
+        var entry = new Entry(value, ttl);
+        if (ttl !== Infinity) {
             var timer = setTimeout(function (key) {
                 _this.delete(key);
-            }, expiredSec, key);
+            }, ttl, key);
             this.timers.set(key, timer);
         }
         this.cache.set(key, entry);

@@ -9,20 +9,27 @@ export class LRUCache<K, V> implements Cacheable<K, V> {
   timers: Map<string, NodeJS.Timeout>;
   limit: number;
   identify?: (key: K) => string;
+  serialize?: (value: V) => string;
+  deserialize?: (value: string) => V;
 
-  constructor(opts?: { limit?: number; identify?: (key: K) => string }) {
+  constructor(opts?: { 
+    limit?: number; 
+    identify?: (key: K) => string;  
+    serialize?: (value: V) => string;
+    deserialize?: (value: string) => V;
+  }) {
     this.lruCacheList = new LinkedList();
     this.lruCacheMap = new Map();
     this.timers = new Map();
     this.limit = opts?.limit || 100;
     this.identify = opts?.identify;
+    this.serialize = opts?.serialize;
   }
   put(
     key: K,
     value: V,
     options?: {
       identify?: (key: K) => string;
-      serialize?: (value: V) => string;
       ttl?: number;
     }
   ) {

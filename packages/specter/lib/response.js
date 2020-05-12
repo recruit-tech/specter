@@ -24,5 +24,18 @@ class SpecterResponse {
     getNextReqs() {
         return this.nextReqs;
     }
+    static parse(res) {
+        const parsed = JSON.parse(res);
+        const response = new SpecterResponse(parsed.headers, parsed.body);
+        response.setStatus(parsed.status);
+        return response;
+    }
+    toString() {
+        return JSON.stringify({
+            status: this.status,
+            headers: this.headers,
+            body: this.body
+        });
+    }
 }
 exports.default = SpecterResponse;

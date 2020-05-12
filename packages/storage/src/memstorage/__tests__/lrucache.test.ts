@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import assert from "assert";
 import { LRUCache } from "../lrucache";
 
@@ -13,6 +15,23 @@ describe.each([
     [
       [2, 3],
       [3, 4],
+      [5, 6]
+    ] // result
+  ],
+  [
+    [
+      [{ foo: 1 }, 2],
+      [{ foo: 2 }, 3],
+      [{ foo: 3 }, 4]
+    ], // initial data
+    {
+      limit: 3,
+      identify: (key: any) => JSON.stringify(key)
+    }, // option
+    [[5, 6]], // new data
+    [
+      [{ foo: 2 }, 3],
+      [{ foo: 3 }, 4],
       [5, 6]
     ] // result
   ]
