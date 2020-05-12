@@ -5,8 +5,8 @@ import { Cacheable } from "../cache";
 export class Entry<V> {
   expiredAt: number;
   data: V;
-  constructor(data: V, expiredSec: number) {
-    this.expiredAt = Date.now() + expiredSec * 1000;
+  constructor(data: V, ttl: number) {
+    this.expiredAt = Date.now() + ttl;
     this.data = data;
   }
   get(): V | null {
@@ -27,15 +27,15 @@ export class TimerCache<K, V> implements Cacheable<K, V> {
     this.limit = opts?.limit || 100;
     this.timers = new Map();
   }
-  put(key: K, value: V, options?: { expiredSec?: number }) {
-    const expiredSec = options?.expiredSec || Infinity;
-    const entry = new Entry(value, expiredSec);
-    if (expiredSec !== Infinity) {
+  put(key: K, value: V, options?: { ttl?: number }) {
+    const ttl = options?.ttl || Infinity;
+    const entry = new Entry(value, ttl);
+    if (ttl !== Infinity) {
       const timer = setTimeout(
         key => {
           this.delete(key);
         },
-        expiredSec,
+        ttl,
         key
       );
       this.timers.set(key, timer);
@@ -45,13 +45,14 @@ export class TimerCache<K, V> implements Cacheable<K, V> {
       const head = this.cache.keys().next().value;
       this.cache.delete(head);
     }
+    return Promise.resolve(null);
   }
   get(key: K) {
     const entry = this.cache.get(key);
     if (entry == null) {
-      return null;
+      return Promise.resolve(null);
     }
-    return entry.get();
+    return Promise.resolve(entry.get());
   }
   delete(key: K) {
     this.cache.delete(key);
@@ -60,11 +61,13 @@ export class TimerCache<K, V> implements Cacheable<K, V> {
       clearTimeout(timeout);
     }
     this.timers.delete(key);
+    return Promise.resolve(null);
   }
   clearAll() {
     const keys = Array.from(this.cache.keys());
     keys.forEach(key => {
       this.delete(key);
     });
+    return Promise.resolve(null);
   }
 }

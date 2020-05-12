@@ -17,7 +17,7 @@ describe.each([
     ] // result
   ]
 ])("storage", (data, option, newData, result) => {
-  test("put", () => {
+  test("put", async () => {
     const storage = new Storage(option);
     data.forEach(d => {
       storage.store(d[0], d[1]);
@@ -25,8 +25,9 @@ describe.each([
     newData.forEach(d => {
       storage.store(d[0], d[1]);
     });
-    result.forEach(d => {
-      assert.strictEqual(storage.get(d[0]), d[1]);
-    });
+    for (const d of result) {
+      const r = await storage.get(d[0]);
+      assert.strictEqual(r, d[1]);
+    }
   });
 });

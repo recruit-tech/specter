@@ -5,7 +5,7 @@
     "test": "echo \"notest\" && exit 0",
     "start": "ts-node --project ./tsconfig.server.json server/server.ts",
     "build": "next build && tsc --project tsconfig.server.json",
-    "start:prod": "cross-env NODE_ENV=production node dist/server/server.js"
+    "start:prod": "cross-env NODE_ENV=production node --unhandled-rejections=strict dist/server/server.js"
   },
   "dependencies": {
     "@specter/client": "latest",

@@ -16,6 +16,17 @@ var SpecterResponse = /** @class */ (function () {
             .map(function (req) { return request_1.default.parseRequest(req); });
         return reqs;
     };
+    SpecterResponse.parse = function (res) {
+        var parsed = JSON.parse(res);
+        var response = new SpecterResponse(parsed.headers, parsed.body);
+        return response;
+    };
+    SpecterResponse.prototype.toString = function () {
+        return JSON.stringify({
+            headers: this.headers,
+            body: this.body
+        });
+    };
     return SpecterResponse;
 }());
 exports.default = SpecterResponse;

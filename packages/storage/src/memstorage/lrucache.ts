@@ -4,69 +4,113 @@ import { LinkedList, Entry } from "./linkedlist";
 import { Cacheable } from "../cache";
 
 export class LRUCache<K, V> implements Cacheable<K, V> {
-  lruCacheList: LinkedList<{ key: K; value: V }>;
-  lruCacheMap: Map<K, Entry<{ key: K; value: V }>>;
-  timers: Map<K, NodeJS.Timeout>;
+  lruCacheList: LinkedList<{ key: string; value: V }>;
+  lruCacheMap: Map<string, Entry<{ key: string; value: V }>>;
+  timers: Map<string, NodeJS.Timeout>;
   limit: number;
+  identify?: (key: K) => string;
+  serialize?: (value: V) => string;
+  deserialize?: (value: string) => V;
 
-  constructor(opts?: { limit?: number }) {
+  constructor(opts?: { 
+    limit?: number; 
+    identify?: (key: K) => string;  
+    serialize?: (value: V) => string;
+    deserialize?: (value: string) => V;
+  }) {
     this.lruCacheList = new LinkedList();
     this.lruCacheMap = new Map();
     this.timers = new Map();
     this.limit = opts?.limit || 100;
+    this.identify = opts?.identify;
+    this.serialize = opts?.serialize;
   }
-  put(key: K, value: V, options?: { expiredSec?: number }) {
-    const entry = this.lruCacheMap.get(key);
+  put(
+    key: K,
+    value: V,
+    options?: {
+      identify?: (key: K) => string;
+      ttl?: number;
+    }
+  ) {
+    const identify = options?.identify || this.identify;
+
+    const k = identify ? identify(key) : key + "";
+
+    const entry = this.lruCacheMap.get(k);
     if (entry) {
       this.lruCacheList.remove(entry);
     }
-    const newEntry = this.lruCacheList.unshift({ key, value });
-    this.lruCacheMap.set(key, newEntry);
+    const newEntry = this.lruCacheList.unshift({ key: k, value });
+    this.lruCacheMap.set(k, newEntry);
     if (this.lruCacheList.length > this.limit) {
       const entry = this.lruCacheList.pop();
       if (entry) {
         this.lruCacheMap.delete(entry.data.key);
       }
     }
-    const expiredSec = options?.expiredSec || Infinity;
-    if (expiredSec !== Infinity) {
+    const ttl = options?.ttl || Infinity;
+    if (ttl !== Infinity) {
       const timer = setTimeout(
-        key => {
-          this.delete(key);
+        k => {
+          this.delete(k);
         },
-        expiredSec * 1000,
-        key
+        ttl,
+        k
       );
-      this.timers.set(key, timer);
+      this.timers.set(k, timer);
     }
+    return Promise.resolve(null);
   }
-  get(key: K) {
-    const entry = this.lruCacheMap.get(key);
+  get(
+    key: K,
+    options?: {
+      identify?: (key: K) => string;
+    }
+  ) {
+    const identify = options?.identify || this.identify;
+
+    const k = identify ? identify(key) : key + "";
+    const entry = this.lruCacheMap.get(k);
     if (!entry) {
-      return null;
+      return Promise.resolve(null);
     }
     this.lruCacheList.remove(entry);
     this.lruCacheList.unshift(entry.data);
-    return entry.data.value;
+    return Promise.resolve(entry.data.value);
   }
-  delete(key: K) {
-    const entry = this.lruCacheMap.get(key);
+  delete(
+    key: K,
+    options?: {
+      identify?: (key: K) => string;
+    }
+  ) {
+    const identify = options?.identify || this.identify;
+    const k = identify ? identify(key) : key + "";
+    this._delete(k);
+    return Promise.resolve(null);
+  }
+
+  private _delete(k: string) {
+    const entry = this.lruCacheMap.get(k);
     if (!entry) {
-      return entry;
+      return Promise.resolve(entry);
     }
     this.lruCacheList.remove(entry);
-    this.lruCacheMap.delete(key);
+    this.lruCacheMap.delete(k);
 
-    const timeout = this.timers.get(key);
+    const timeout = this.timers.get(k);
     if (timeout) {
       clearTimeout(timeout);
     }
-    this.timers.delete(key);
+    this.timers.delete(k);
   }
+
   clearAll() {
     const keys = Array.from(this.lruCacheMap.keys());
     keys.forEach(key => {
-      this.delete(key);
+      this._delete(key);
     });
+    return Promise.resolve(null);
   }
 }

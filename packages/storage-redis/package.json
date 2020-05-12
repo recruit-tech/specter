@@ -1,0 +1,41 @@
+{
+  "name": "@specter/storage-redis",
+  "version": "0.2.3",
+  "description": "Specter Storage using Redis",
+  "keywords": [
+    "redis",
+    "specter",
+    "storage"
+  ],
+  "author": "Yosuke Furukawa <yosuke.furukawa@gmail.com>",
+  "homepage": "https://github.com/recruit-tech/specter#readme",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/recruit-tech/specter.git"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc -d",
+    "prepublish": "npm run build"
+  },
+  "bugs": {
+    "url": "https://github.com/recruit-tech/specter/issues"
+  },
+  "dependencies": {
+    "@specter/storage": "^0.2.3",
+    "@types/ioredis": "^4.16.1",
+    "ioredis": "^4.16.3"
+  },
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  }
+}

@@ -7,7 +7,7 @@ export declare class Storage<K, V> {
         storage?: Cacheable<K, V>;
     });
     store(key: K, value: V, opts?: {}): void;
-    get(key: K, opts?: {}): V | null;
+    get(key: K, opts?: {}): Promise<V | null>;
     purge(key: K): void;
     purgeAll(): void;
 }

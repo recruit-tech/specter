@@ -17,7 +17,7 @@ describe.each([
     ] // result
   ]
 ])("timercache", (data, option, newData, result) => {
-  test("put", () => {
+  test("put", async () => {
     const timercache = new TimerCache(option);
     data.forEach(d => {
       timercache.put(d[0], d[1]);
@@ -25,8 +25,9 @@ describe.each([
     newData.forEach(d => {
       timercache.put(d[0], d[1]);
     });
-    result.forEach(d => {
-      assert.strictEqual(timercache.get(d[0]), d[1]);
-    });
+    for (const d of result) {
+      const r = await timercache.get(d[0]);
+      assert.strictEqual(r, d[1]);
+    }
   });
 });

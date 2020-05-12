@@ -30,4 +30,17 @@ export default class SpecterResponse<H extends any, B extends any> {
   getNextReqs() {
     return this.nextReqs;
   }
+  static parse<H, B>(res: string) {
+    const parsed = JSON.parse(res);
+    const response = new SpecterResponse<H, B>(parsed.headers, parsed.body);
+    response.setStatus(parsed.status);
+    return response;
+  }
+  toString() {
+    return JSON.stringify({
+      status: this.status,
+      headers: this.headers,
+      body: this.body
+    });
+  }
 }

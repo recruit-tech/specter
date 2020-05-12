@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import assert from "assert";
 import { LRUCache } from "../lrucache";
 
@@ -15,9 +17,26 @@ describe.each([
       [3, 4],
       [5, 6]
     ] // result
+  ],
+  [
+    [
+      [{ foo: 1 }, 2],
+      [{ foo: 2 }, 3],
+      [{ foo: 3 }, 4]
+    ], // initial data
+    {
+      limit: 3,
+      identify: (key: any) => JSON.stringify(key)
+    }, // option
+    [[5, 6]], // new data
+    [
+      [{ foo: 2 }, 3],
+      [{ foo: 3 }, 4],
+      [5, 6]
+    ] // result
   ]
 ])("lrucache", (data, option, newData, result) => {
-  test("put", () => {
+  test("put", async () => {
     const lrucache = new LRUCache(option);
     data.forEach(d => {
       lrucache.put(d[0], d[1]);
@@ -25,9 +44,10 @@ describe.each([
     newData.forEach(d => {
       lrucache.put(d[0], d[1]);
     });
-    result.forEach(d => {
-      assert.strictEqual(lrucache.get(d[0]), d[1]);
-    });
+    for (const d of result) {
+      const r = await lrucache.get(d[0]);
+      assert.strictEqual(r, d[1]);
+    }
   });
 });
 
@@ -46,18 +66,20 @@ describe.each([
     ] // result
   ]
 ])("lrucache", (data, option, del, result) => {
-  test("delete", () => {
+  test("delete", async () => {
     const lrucache = new LRUCache(option);
     data.forEach(d => {
       lrucache.put(d[0], d[1]);
     });
-    del.forEach(d => {
-      lrucache.delete(d[0]);
-      assert.strictEqual(lrucache.get(d[0]), null);
-    });
-    result.forEach(d => {
-      assert.strictEqual(lrucache.get(d[0]), d[1]);
-    });
+    for (const d of del) {
+      await lrucache.delete(d[0]);
+      const r = await lrucache.get(d[0]);
+      assert.strictEqual(r, null);
+    }
+    for (const d of result) {
+      const r = await lrucache.get(d[0]);
+      assert.strictEqual(r, d[1]);
+    }
   });
 });
 
@@ -75,14 +97,15 @@ describe.each([
     ] // result
   ]
 ])("lrucache", (data, option, result) => {
-  test("clearall", () => {
+  test("clearall", async () => {
     const lrucache = new LRUCache(option);
     data.forEach(d => {
       lrucache.put(d[0], d[1]);
     });
     lrucache.clearAll();
-    result.forEach(d => {
-      assert.strictEqual(lrucache.get(d[0]), d[1]);
-    });
+    for (const d of result) {
+      const r = await lrucache.get(d[0]);
+      assert.strictEqual(r, d[1]);
+    }
   });
 });

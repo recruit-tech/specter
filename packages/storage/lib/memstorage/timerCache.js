@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Entry = /** @class */ (function () {
-    function Entry(data, expiredSec) {
-        this.expiredAt = Date.now() + expiredSec * 1000;
+    function Entry(data, ttl) {
+        this.expiredAt = Date.now() + ttl;
         this.data = data;
     }
     Entry.prototype.get = function () {
@@ -22,12 +22,12 @@ var TimerCache = /** @class */ (function () {
     }
     TimerCache.prototype.put = function (key, value, options) {
         var _this = this;
-        var expiredSec = (options === null || options === void 0 ? void 0 : options.expiredSec) || Infinity;
-        var entry = new Entry(value, expiredSec);
-        if (expiredSec !== Infinity) {
+        var ttl = (options === null || options === void 0 ? void 0 : options.ttl) || Infinity;
+        var entry = new Entry(value, ttl);
+        if (ttl !== Infinity) {
             var timer = setTimeout(function (key) {
                 _this.delete(key);
-            }, expiredSec, key);
+            }, ttl, key);
             this.timers.set(key, timer);
         }
         this.cache.set(key, entry);
@@ -35,13 +35,14 @@ var TimerCache = /** @class */ (function () {
             var head = this.cache.keys().next().value;
             this.cache.delete(head);
         }
+        return Promise.resolve(null);
     };
     TimerCache.prototype.get = function (key) {
         var entry = this.cache.get(key);
         if (entry == null) {
-            return null;
+            return Promise.resolve(null);
         }
-        return entry.get();
+        return Promise.resolve(entry.get());
     };
     TimerCache.prototype.delete = function (key) {
         this.cache.delete(key);
@@ -50,6 +51,7 @@ var TimerCache = /** @class */ (function () {
             clearTimeout(timeout);
         }
         this.timers.delete(key);
+        return Promise.resolve(null);
     };
     TimerCache.prototype.clearAll = function () {
         var _this = this;
@@ -57,6 +59,7 @@ var TimerCache = /** @class */ (function () {
         keys.forEach(function (key) {
             _this.delete(key);
         });
+        return Promise.resolve(null);
     };
     return TimerCache;
 }());
