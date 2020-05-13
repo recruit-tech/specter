@@ -11,7 +11,7 @@ class SpecterResponse {
     setNextReqs(...reqs) {
         this.headers = {
             ...this.headers,
-            "x-specter-next-reqs": reqs.map(req => req.toString()).join("__sep__")
+            "x-specter-next-reqs": reqs.map((req) => req.toString()).join("__sep__"),
         };
         this.nextReqs = reqs;
     }
@@ -34,7 +34,7 @@ class SpecterResponse {
         return JSON.stringify({
             status: this.status,
             headers: this.headers,
-            body: this.body
+            body: this.body,
         });
     }
 }

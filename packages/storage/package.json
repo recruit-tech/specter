@@ -30,5 +30,8 @@
     "ts-node": "8.10.1",
     "typescript": "3.8.3"
   },
-  "gitHead": "f4ff1e14fb1a90a37e6d9299d67ab4607dc92d05"
+  "gitHead": "f4ff1e14fb1a90a37e6d9299d67ab4607dc92d05",
+  "dependencies": {
+    "tslib": "^1.12.0"
+  }
 }

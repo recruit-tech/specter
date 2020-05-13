@@ -1,10 +1,8 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = require("tslib");
 const url_1 = require("url");
-const request_1 = __importDefault(require("./request"));
+const request_1 = tslib_1.__importDefault(require("./request"));
 const DefaultContentType = "application/json";
 class Specter {
     static registerService(service) {
@@ -30,10 +28,7 @@ class Specter {
                 if (!url.pathname) {
                     throw new Error("url pathname is not found.");
                 }
-                const resource = url.pathname
-                    .substr(1)
-                    .split("/")
-                    .shift();
+                const resource = url.pathname.substr(1).split("/").shift();
                 if (!resource) {
                     throw new Error("resource is not found.");
                 }

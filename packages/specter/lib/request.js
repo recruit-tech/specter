@@ -19,7 +19,7 @@ class SpecterRequest {
             method: parsed.method,
             headers: parsed.headers,
             query: parsed.query,
-            body: parsed.body
+            body: parsed.body,
         });
     }
     toString() {
@@ -28,7 +28,7 @@ class SpecterRequest {
             headers: this.headers,
             query: this.query,
             body: this.body,
-            method: this.method
+            method: this.method,
         });
     }
 }
