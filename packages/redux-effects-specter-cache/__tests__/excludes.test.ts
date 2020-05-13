@@ -19,7 +19,7 @@ describe("excludes", () => {
     assert.equal(state2.log.length, 2);
     assert.deepStrictEqual(state2.log, [
       specterRead("greet"),
-      specterRead("foo")
+      specterRead("foo"),
     ]);
 
     await store.dispatch(specterRead("foo"));
@@ -27,7 +27,7 @@ describe("excludes", () => {
     assert.equal(state3.log.length, 2);
     assert.deepStrictEqual(state3.log, [
       specterRead("greet"),
-      specterRead("foo")
+      specterRead("foo"),
     ]);
   });
 

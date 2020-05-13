@@ -14,7 +14,7 @@ export default class Counter extends Service {
     const response = new Response(
       {},
       {
-        count: this.count
+        count: this.count,
       }
     );
     return response;
@@ -25,7 +25,7 @@ export default class Counter extends Service {
     const response = new Response(
       {},
       {
-        count: this.count
+        count: this.count,
       }
     );
     return response;

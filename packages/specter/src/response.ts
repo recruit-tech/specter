@@ -17,7 +17,7 @@ export default class SpecterResponse<H extends any, B extends any> {
   setNextReqs(...reqs: SpecterRequest<any, any, any>[]) {
     this.headers = {
       ...this.headers,
-      "x-specter-next-reqs": reqs.map(req => req.toString()).join("__sep__")
+      "x-specter-next-reqs": reqs.map((req) => req.toString()).join("__sep__"),
     };
     this.nextReqs = reqs;
   }
@@ -40,7 +40,7 @@ export default class SpecterResponse<H extends any, B extends any> {
     return JSON.stringify({
       status: this.status,
       headers: this.headers,
-      body: this.body
+      body: this.body,
     });
   }
 }

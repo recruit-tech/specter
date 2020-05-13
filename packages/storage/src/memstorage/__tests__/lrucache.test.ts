@@ -8,40 +8,40 @@ describe.each([
     [
       [1, 2],
       [2, 3],
-      [3, 4]
+      [3, 4],
     ], // initial data
     { limit: 3 }, // option
     [[5, 6]], // new data
     [
       [2, 3],
       [3, 4],
-      [5, 6]
-    ] // result
+      [5, 6],
+    ], // result
   ],
   [
     [
       [{ foo: 1 }, 2],
       [{ foo: 2 }, 3],
-      [{ foo: 3 }, 4]
+      [{ foo: 3 }, 4],
     ], // initial data
     {
       limit: 3,
-      identify: (key: any) => JSON.stringify(key)
+      identify: (key: any) => JSON.stringify(key),
     }, // option
     [[5, 6]], // new data
     [
       [{ foo: 2 }, 3],
       [{ foo: 3 }, 4],
-      [5, 6]
-    ] // result
-  ]
+      [5, 6],
+    ], // result
+  ],
 ])("lrucache", (data, option, newData, result) => {
   test("put", async () => {
     const lrucache = new LRUCache(option);
-    data.forEach(d => {
+    data.forEach((d) => {
       lrucache.put(d[0], d[1]);
     });
-    newData.forEach(d => {
+    newData.forEach((d) => {
       lrucache.put(d[0], d[1]);
     });
     for (const d of result) {
@@ -56,19 +56,19 @@ describe.each([
     [
       [1, 2],
       [2, 3],
-      [3, 4]
+      [3, 4],
     ], // initial data
     { limit: 3 }, // option
     [[2]], // delete data
     [
       [1, 2],
-      [3, 4]
-    ] // result
-  ]
+      [3, 4],
+    ], // result
+  ],
 ])("lrucache", (data, option, del, result) => {
   test("delete", async () => {
     const lrucache = new LRUCache(option);
-    data.forEach(d => {
+    data.forEach((d) => {
       lrucache.put(d[0], d[1]);
     });
     for (const d of del) {
@@ -88,18 +88,18 @@ describe.each([
     [
       [1, 2],
       [2, 3],
-      [3, 4]
+      [3, 4],
     ], // initial data
     { limit: 3 }, // option
     [
       [1, null],
-      [3, null]
-    ] // result
-  ]
+      [3, null],
+    ], // result
+  ],
 ])("lrucache", (data, option, result) => {
   test("clearall", async () => {
     const lrucache = new LRUCache(option);
-    data.forEach(d => {
+    data.forEach((d) => {
       lrucache.put(d[0], d[1]);
     });
     lrucache.clearAll();

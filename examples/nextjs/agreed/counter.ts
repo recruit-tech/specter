@@ -4,7 +4,7 @@ import {
   Success200,
   ResponseDef,
   Error404,
-  Capture
+  Capture,
 } from "agreed-typed";
 
 export type RequestBody = { count: Capture<"count", number> };
@@ -25,20 +25,20 @@ const api: AgreedSampleGetAPI = {
     path: ["counter"],
     method: "PUT",
     body: {
-      count: "{:count}"
-    }
+      count: "{:count}",
+    },
   },
   response: {
     status: 200,
     body: {
       results: {
-        count: "{:count}"
-      }
+        count: "{:count}",
+      },
     },
     values: {
-      count: 123
-    }
-  }
+      count: 123,
+    },
+  },
 };
 
 module.exports = api;
