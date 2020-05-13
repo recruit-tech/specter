@@ -1,22 +1,6 @@
-# ローカル環境での動作確認用の定義
-#
-# 実行方法:
-#   env DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose up --build
-
 version: "3"
 
 services:
-
-  # 本番環境はELB
-  haproxy:
-    image: haproxy:2.1.4-alpine
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
-      - ./haproxy/dummy.pem:/etc/haproxy/dummy.pem:ro
-
   nginx:
     build:
       context: .

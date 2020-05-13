@@ -70,11 +70,11 @@ export default function reduxEffectsSpecterCache<S = any>({
       Object.keys(query).sort()
     )}`;
 
-    // MEMO: you can resolve cache from action and state of store.
-    //       if you dont set the fromCache function, always called cache.get function.
-    const manualCache = fromCache && fromCache(action, getState());
     return (async () => {
-      if (!fromCache || manualCache) {
+      // MEMO: you can resolve cache from action and state of store.
+      //       if you dont set the fromCache function, always called cache.get function.
+      const shouldFromCache = fromCache && fromCache(action, getState());
+      if (!fromCache || shouldFromCache) {
         const cacheResult = await cache.get(cacheKey);
         if (cacheResult) {
           return cacheResult;
@@ -82,15 +82,12 @@ export default function reduxEffectsSpecterCache<S = any>({
       }
       // CAUTION: this middleware depend on the "@specter/redux-effects-specter"
       //          and "@specter/redux-effects-specter" is expected next applied self.
-      return ((next(action) as any) as Promise<Response<any, any>>).then(
-        async (resp) => {
-          const manualCache = toCache && toCache(action, getState());
-          if (!toCache || manualCache) {
-            await cache.put(cacheKey, resp);
-          }
-          return resp;
-        }
-      );
+      const resp = (await (next(action) as any)) as Promise<Response<any, any>>;
+      const shouldToCache = toCache && toCache(action, getState());
+      if (!toCache || shouldToCache) {
+        await cache.put(cacheKey, resp);
+      }
+      return resp;
     })();
   };
 }

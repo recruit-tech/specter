@@ -14,9 +14,7 @@ export const withReduxStore = (App: any) => {
 
       let appProps = {}
       if (typeof App.getInitialProps === 'function') {
-        if (process.env.NODE_ENV === 'development' && isServer && ctx.res) (ctx.res as any).startTime('GIP', 'getInitialProps')
         appProps = await App.getInitialProps(appContext)
-        if (process.env.NODE_ENV === 'development' && isServer && ctx.res) (ctx.res as any).endTime('GIP')
       }
 
       return isServer && ctx.req

@@ -35,16 +35,13 @@ export default function reduxEffectsSpecterCache(_a) {
             var cacheKey = "@@$" + SPECTER + "/" + service + "@@" + JSON.stringify(query, 
             // refs: https://github.com/recruit-tech/redux-effects-fetchr-cache/pull/3
             Object.keys(query).sort());
-            // MEMO: you can resolve cache from action and state of store.
-            //       if you dont set the fromCache function, always called cache.get function.
-            var manualCache = fromCache && fromCache(action, getState());
             return (function () { return __awaiter(_this, void 0, void 0, function () {
-                var cacheResult;
-                var _this = this;
+                var shouldFromCache, cacheResult, resp, shouldToCache;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            if (!(!fromCache || manualCache)) return [3 /*break*/, 2];
+                            shouldFromCache = fromCache && fromCache(action, getState());
+                            if (!(!fromCache || shouldFromCache)) return [3 /*break*/, 2];
                             return [4 /*yield*/, cache.get(cacheKey)];
                         case 1:
                             cacheResult = _a.sent();
@@ -52,24 +49,16 @@ export default function reduxEffectsSpecterCache(_a) {
                                 return [2 /*return*/, cacheResult];
                             }
                             _a.label = 2;
-                        case 2: 
-                        // CAUTION: this middleware depend on the "@specter/redux-effects-specter"
-                        //          and "@specter/redux-effects-specter" is expected next applied self.
-                        return [2 /*return*/, next(action).then(function (resp) { return __awaiter(_this, void 0, void 0, function () {
-                                var manualCache;
-                                return __generator(this, function (_a) {
-                                    switch (_a.label) {
-                                        case 0:
-                                            manualCache = toCache && toCache(action, getState());
-                                            if (!(!toCache || manualCache)) return [3 /*break*/, 2];
-                                            return [4 /*yield*/, cache.put(cacheKey, resp)];
-                                        case 1:
-                                            _a.sent();
-                                            _a.label = 2;
-                                        case 2: return [2 /*return*/, resp];
-                                    }
-                                });
-                            }); })];
+                        case 2: return [4 /*yield*/, next(action)];
+                        case 3:
+                            resp = (_a.sent());
+                            shouldToCache = toCache && toCache(action, getState());
+                            if (!(!toCache || shouldToCache)) return [3 /*break*/, 5];
+                            return [4 /*yield*/, cache.put(cacheKey, resp)];
+                        case 4:
+                            _a.sent();
+                            _a.label = 5;
+                        case 5: return [2 /*return*/, resp];
                     }
                 });
             }); })();
