@@ -1,6 +1,6 @@
-import { useDispatch } from 'react-redux'
-import { useCallback } from 'react'
-import throttle from 'lodash.throttle'
+import { useDispatch } from "react-redux";
+import { useCallback } from "react";
+import throttle from "lodash.throttle";
 
 /**
  * useStep - steps を Container で 使うときのヘルパ
@@ -30,10 +30,13 @@ import throttle from 'lodash.throttle'
  *   )
  * }
  */
-export function useStep<T extends Record<string, any>>(steps: (args: T) => any, payload?: T) {
-  const dispatch = useDispatch()
+export function useStep<T extends Record<string, any>>(
+  steps: (args: T) => any,
+  payload?: T
+) {
+  const dispatch = useDispatch();
   const stepWithDispatch = throttle(() => {
-    dispatch(steps(payload))
-  }, 100)
-  return useCallback(stepWithDispatch, Object.values(payload))
+    dispatch(steps(payload));
+  }, 100);
+  return useCallback(stepWithDispatch, Object.values(payload));
 }

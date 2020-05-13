@@ -1,7 +1,7 @@
 import { Request, Response, Service } from "@specter/specter";
 
 export default class Counter extends Service {
-  private count: number = 0;
+  private count = 0;
   constructor(config: object) {
     super("counter", config);
   }

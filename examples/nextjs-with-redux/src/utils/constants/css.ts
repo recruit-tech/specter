@@ -1,4 +1,4 @@
-import { css } from '@emotion/core'
+import { css } from "@emotion/core";
 
 /* istanbul ignore file */
 // prettier-ignore

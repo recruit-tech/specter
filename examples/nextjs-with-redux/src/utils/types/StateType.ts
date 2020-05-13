@@ -8,12 +8,12 @@
 export interface ResourceStateType<
   T,
   M = {
-    loading: boolean
-    errors: string[] | null
+    loading: boolean;
+    errors: string[] | null;
   }
 > {
-  data: T
-  meta: M
+  data: T;
+  meta: M;
 }
 
 /**
@@ -22,8 +22,8 @@ export interface ResourceStateType<
  * 'favalid/lib/core'のValidationResultの部分型でもある
  */
 export interface ValidationResultType {
-  error: boolean
-  message?: string
+  error: boolean;
+  message?: string;
 }
 /**
  *  FormStateType<V, R>
@@ -31,9 +31,12 @@ export interface ValidationResultType {
  *  V はフォームにおける各値を表すオブジェクト
  *  R は各値のバリデーション結果。
  */
-export interface FormStateType<V extends Record<string, any>, R extends { [K in keyof V]?: ValidationResultType }> {
+export interface FormStateType<
+  V extends Record<string, any>,
+  R extends { [K in keyof V]?: ValidationResultType }
+> {
   form: {
-    value: V
-    validationResults: R
-  }
+    value: V;
+    validationResults: R;
+  };
 }

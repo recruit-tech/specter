@@ -1,1 +1,1 @@
-export type FixMe = any
+export type FixMe = any;

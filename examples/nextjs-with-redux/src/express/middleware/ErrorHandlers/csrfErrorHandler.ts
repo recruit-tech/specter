@@ -1,15 +1,15 @@
-import { ErrorHandler, ErrorPayload } from './interface'
-import { log } from '../../utils/log'
+import { ErrorHandler, ErrorPayload } from "./interface";
+import { log } from "../../utils/log";
 
 interface CSRFError extends Error {
-  code: string
+  code: string;
 }
 
-export const EBADCSRFTOKEN = 'EBADCSRFTOKEN' as const
+export const EBADCSRFTOKEN = "EBADCSRFTOKEN" as const;
 
 function isCSRFError(err: any): err is CSRFError {
-  if (err && err.code === EBADCSRFTOKEN) return true
-  return false
+  if (err && err.code === EBADCSRFTOKEN) return true;
+  return false;
 }
 
 export const csrfErrorHandler: ErrorHandler = [
@@ -17,15 +17,20 @@ export const csrfErrorHandler: ErrorHandler = [
   (error: CSRFError, req, res) => {
     const payload: ErrorPayload = {
       error,
-      message: 'bad csrf token',
-      code: 'EBADCSRFTOKEN',
+      message: "bad csrf token",
+      code: "EBADCSRFTOKEN",
       status: 403,
-      statusText: 'Forbidden',
-      handler: 'csrfErrorHandler',
-      ...{ ip: req.ip, originalUrl: req.originalUrl, method: req.method, url: req.url }
-    }
-    log.warn(payload)
-    res.status(403)
-    res.send(payload).json()
-  }
-]
+      statusText: "Forbidden",
+      handler: "csrfErrorHandler",
+      ...{
+        ip: req.ip,
+        originalUrl: req.originalUrl,
+        method: req.method,
+        url: req.url,
+      },
+    };
+    log.warn(payload);
+    res.status(403);
+    res.send(payload).json();
+  },
+];

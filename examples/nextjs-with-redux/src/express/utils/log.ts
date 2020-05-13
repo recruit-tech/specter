@@ -1,7 +1,8 @@
-import fs from 'fs'
-import pino from 'pino'
+import fs from "fs";
+import pino from "pino";
 
-const padZero = (numOrStr: number | string) => numOrStr.toString().padStart(2, '0')
+const padZero = (numOrStr: number | string) =>
+  numOrStr.toString().padStart(2, "0");
 
 const toISOStringWithJST = (d: Date) => {
   return (
@@ -12,34 +13,34 @@ const toISOStringWithJST = (d: Date) => {
     `${padZero(d.getMinutes())}:` +
     `${padZero(d.getSeconds())}+` +
     `${padZero(d.getTimezoneOffset() / -60)}:00`
-  )
-}
+  );
+};
 
-const timestamp = () => `,"time":"${toISOStringWithJST(new Date())}"`
+const timestamp = () => `,"time":"${toISOStringWithJST(new Date())}"`;
 
-let level: string
+let level: string;
 
-const prod = process.env.NODE_ENV === 'production'
-const test = process.env.NODE_ENV === 'test'
+const prod = process.env.NODE_ENV === "production";
+const test = process.env.NODE_ENV === "test";
 
 if (prod) {
-  level = 'info'
+  level = "info";
 } else {
-  level = 'debug'
+  level = "debug";
 }
-const prettyPrint = prod ? false : { colorize: true }
+const prettyPrint = prod ? false : { colorize: true };
 
 export const log = test
   ? pino(
       {
         level,
         timestamp,
-        prettyPrint
+        prettyPrint,
       },
-      fs.createWriteStream('/dev/null', 'utf8')
+      fs.createWriteStream("/dev/null", "utf8")
     )
   : pino({
       level,
       timestamp,
-      prettyPrint
-    })
+      prettyPrint,
+    });
