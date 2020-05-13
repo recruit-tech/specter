@@ -1,0 +1,38 @@
+{
+  "editor.formatOnSave": true,
+  "editor.wordWrap": "off",
+  "editor.codeLens": false,
+  "editor.dragAndDrop": false,
+  "editor.minimap.enabled": false,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
+  },
+  "editor.quickSuggestionsDelay": 20,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true
+  },
+  "search.exclude": {
+    "**/node_modules": true
+  },
+  "javascript.preferences.renameShorthandProperties": true,
+  "typescript.preferences.renameShorthandProperties": true,
+  "eslint.packageManager": "npm",
+  "eslint.options": {
+    "configFile": "./.eslintrc.json"
+  },
+  "eslint.validate": [
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ],
+  "editor.tabSize": 2,
+  "workbench.tree.indent": 12
+}

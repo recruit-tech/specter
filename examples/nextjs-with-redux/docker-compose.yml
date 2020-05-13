@@ -1,0 +1,47 @@
+# ローカル環境での動作確認用の定義
+#
+# 実行方法:
+#   env DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose up --build
+
+version: "3"
+
+services:
+
+  # 本番環境はELB
+  haproxy:
+    image: haproxy:2.1.4-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+      - ./haproxy/dummy.pem:/etc/haproxy/dummy.pem:ro
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      BFF_HOST: bff
+
+  bff:
+    build:
+      context: .
+      dockerfile: ./docker/bff/Dockerfile
+      args:
+        node_version: 12.13.0
+    ports:
+      - "3000:3000"
+
+  # 本番環境はElastiCache
+  redis:
+    image: redis:5.0.6-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:

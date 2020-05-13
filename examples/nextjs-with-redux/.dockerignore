@@ -1,0 +1,12 @@
+.git
+.next
+dist
+node_modules
+/docs
+/archive
+/static/workbox
+/static/sw.js
+/coverage
+/static/precach*
+/storybook
+/e2e/runner/images/*
