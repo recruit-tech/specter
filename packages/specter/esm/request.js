@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var SpecterRequest = /** @class */ (function () {
     function SpecterRequest(resource, req) {
         var _a;
@@ -33,4 +31,4 @@ var SpecterRequest = /** @class */ (function () {
     };
     return SpecterRequest;
 }());
-exports.default = SpecterRequest;
+export default SpecterRequest;

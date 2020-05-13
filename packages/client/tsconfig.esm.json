@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "lib": [
+      "ES2015",
+      "dom",
+      "DOM.Iterable"
+    ],
+    "outDir": "./esm"
+  },
+  "include": [
+    "./src"
+  ]
+}

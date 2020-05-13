@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = require("tslib");
-var specter_1 = tslib_1.__importDefault(require("./specter"));
+import Specter from "./specter";
 var SpecterClient = /** @class */ (function () {
     function SpecterClient(options) {
         this.options = options;
@@ -10,10 +7,10 @@ var SpecterClient = /** @class */ (function () {
         if (!request.method) {
             throw new Error("Request method not found");
         }
-        if (!specter_1.default.isRegistered(request.resource)) {
+        if (!Specter.isRegistered(request.resource)) {
             throw new Error("Service is not registered " + request.resource);
         }
-        var service = specter_1.default.getService(request.resource);
+        var service = Specter.getService(request.resource);
         var response = service.execute(request);
         return response;
     };
@@ -39,4 +36,4 @@ var SpecterClient = /** @class */ (function () {
     };
     return SpecterClient;
 }());
-exports.default = SpecterClient;
+export default SpecterClient;

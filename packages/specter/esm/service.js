@@ -1,16 +1,14 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = require("tslib");
-var errors_1 = require("./errors");
+import { __awaiter, __generator } from "tslib";
+import { NotImplemented, NotSupportedMethod } from "./errors";
 var Service = /** @class */ (function () {
     function Service(name, config) {
         this.name = name;
         this.config = config;
     }
     Service.prototype.execute = function (req) {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
+        return __awaiter(this, void 0, void 0, function () {
             var check, res;
-            return tslib_1.__generator(this, function (_a) {
+            return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.preCheck(req)];
                     case 1:
@@ -49,7 +47,7 @@ var Service = /** @class */ (function () {
                         _a.label = 11;
                     case 11:
                         if (!res) {
-                            return [2 /*return*/, Promise.reject(errors_1.NotSupportedMethod)];
+                            return [2 /*return*/, Promise.reject(NotSupportedMethod)];
                         }
                         return [2 /*return*/, res];
                 }
@@ -57,23 +55,23 @@ var Service = /** @class */ (function () {
         });
     };
     Service.prototype.create = function (req) {
-        return Promise.reject(errors_1.NotImplemented);
+        return Promise.reject(NotImplemented);
     };
     Service.prototype.read = function (req) {
-        return Promise.reject(errors_1.NotImplemented);
+        return Promise.reject(NotImplemented);
     };
     Service.prototype.update = function (req) {
-        return Promise.reject(errors_1.NotImplemented);
+        return Promise.reject(NotImplemented);
     };
     Service.prototype.delete = function (req) {
-        return Promise.reject(errors_1.NotImplemented);
+        return Promise.reject(NotImplemented);
     };
     Service.prototype.exist = function (req) {
-        return Promise.reject(errors_1.NotImplemented);
+        return Promise.reject(NotImplemented);
     };
     Service.prototype.preCheck = function (req) {
         return Promise.resolve(true);
     };
     return Service;
 }());
-exports.default = Service;
+export default Service;

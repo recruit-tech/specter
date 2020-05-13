@@ -6,6 +6,8 @@
   "homepage": "https://github.com/recruit-tech/specter#readme",
   "license": "MIT",
   "main": "lib/storage.js",
+  "modules": "esm/storage.js",
+  "types": "lib/storage.d.ts",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -21,7 +23,9 @@
     "test": "jest",
     "bench": "node -r ts-node/register --expose-gc ./src/memstorage/__bench__/lrucache.bench.ts",
     "prepublish": "npm run build",
-    "build": "tsc -d"
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -d -p ./tsconfig.cjs.json",
+    "build:cjs": "tsc -d -p ./tsconfig.esm.json"
   },
   "bugs": {
     "url": "https://github.com/recruit-tech/specter/issues"

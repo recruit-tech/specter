@@ -11,6 +11,8 @@
   "homepage": "https://github.com/recruit-tech/specter#readme",
   "license": "MIT",
   "main": "lib/index.js",
+  "modules": "esm/index.js",
+  "types": "lib/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -24,8 +26,10 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "tsc -d",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -d -p ./tsconfig.cjs.json",
+    "build:cjs": "tsc -d -p ./tsconfig.esm.json"
   },
   "bugs": {
     "url": "https://github.com/recruit-tech/specter/issues"

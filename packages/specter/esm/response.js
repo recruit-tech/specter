@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = require("tslib");
+import { __assign } from "tslib";
 var SpecterResponse = /** @class */ (function () {
     function SpecterResponse(headers, body) {
         this.headers = headers;
@@ -14,7 +12,7 @@ var SpecterResponse = /** @class */ (function () {
         for (var _i = 0; _i < arguments.length; _i++) {
             reqs[_i] = arguments[_i];
         }
-        this.headers = tslib_1.__assign(tslib_1.__assign({}, this.headers), { "x-specter-next-reqs": reqs.map(function (req) { return req.toString(); }).join("__sep__") });
+        this.headers = __assign(__assign({}, this.headers), { "x-specter-next-reqs": reqs.map(function (req) { return req.toString(); }).join("__sep__") });
         this.nextReqs = reqs;
     };
     SpecterResponse.prototype.appendHeader = function (key, value) {
@@ -41,4 +39,4 @@ var SpecterResponse = /** @class */ (function () {
     };
     return SpecterResponse;
 }());
-exports.default = SpecterResponse;
+export default SpecterResponse;
