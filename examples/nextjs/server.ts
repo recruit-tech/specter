@@ -16,7 +16,7 @@ app.prepare().then(() => {
   server.get("*", (req, res) => {
     return handle(req, res);
   });
-  const sv = server.listen(3000, (err) => {
+  const sv = server.listen(3000, err => {
     if (err) throw err;
     const address = sv.address();
     if (!address || typeof address === "string") {

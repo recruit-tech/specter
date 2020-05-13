@@ -17,7 +17,7 @@ export class LinkedList<E> {
     this.head = null;
     this.tail = null;
     this.length = 0;
-    entries.forEach((e) => this.push(e));
+    entries.forEach(e => this.push(e));
   }
 
   // add to tail

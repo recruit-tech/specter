@@ -6,7 +6,7 @@ import { resetCacheData } from "../src";
 describe("fromCache", () => {
   it("fromCache: false", async () => {
     const store = createStore({
-      fromCache: () => false,
+      fromCache: () => false
     });
     const state0 = store.getState();
     assert.equal(state0.log.length, 0);
@@ -21,14 +21,14 @@ describe("fromCache", () => {
     assert.equal(state2.log.length, 2);
     assert.deepStrictEqual(state2.log, [
       specterRead("greet"),
-      specterRead("greet"),
+      specterRead("greet")
     ]);
   });
 
   it("fromCache: false -> true", async () => {
     let fromCache = false;
     const store = createStore({
-      fromCache: () => fromCache,
+      fromCache: () => fromCache
     });
     const state0 = store.getState();
     assert.equal(state0.log.length, 0);
@@ -43,7 +43,7 @@ describe("fromCache", () => {
     assert.equal(state2.log.length, 2);
     assert.deepStrictEqual(state2.log, [
       specterRead("greet"),
-      specterRead("greet"),
+      specterRead("greet")
     ]);
 
     fromCache = true;
@@ -53,7 +53,7 @@ describe("fromCache", () => {
     assert.equal(state3.log.length, 2);
     assert.deepStrictEqual(state3.log, [
       specterRead("greet"),
-      specterRead("greet"),
+      specterRead("greet")
     ]);
   });
 

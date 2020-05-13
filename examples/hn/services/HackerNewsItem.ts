@@ -27,8 +27,8 @@ export default class HackerNewsItem extends Service {
       storage: new RedisCache({
         identify: (key: HackerNewsItemRequest) => `hnitem-${key.query.id}`,
         serialize: (value: HackerNewsItemResponse) => value.toString(),
-        deserialize: (value: string) => Response.parse(value),
-      }),
+        deserialize: (value: string) => Response.parse(value)
+      })
     });
   }
   async read(request: HackerNewsItemRequest): Promise<HackerNewsItemResponse> {
@@ -42,8 +42,8 @@ export default class HackerNewsItem extends Service {
       {
         method: "GET",
         headers: {
-          "Content-Type": "application/json; charset=utf-8",
-        },
+          "Content-Type": "application/json; charset=utf-8"
+        }
       }
     );
     const data: HNItemBody = await res.json();

@@ -3,7 +3,7 @@ import {
   Request as ExpressRequest,
   Response as ExpressResponse,
   RequestHandler,
-  NextFunction,
+  NextFunction
 } from "express";
 import SpecterRequest from "./request";
 import Service from "./service";
@@ -43,7 +43,10 @@ export default class Specter {
         if (!url.pathname) {
           throw new Error("url pathname is not found.");
         }
-        const resource = url.pathname.substr(1).split("/").shift();
+        const resource = url.pathname
+          .substr(1)
+          .split("/")
+          .shift();
         if (!resource) {
           throw new Error("resource is not found.");
         }

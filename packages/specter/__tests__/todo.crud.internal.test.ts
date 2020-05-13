@@ -17,9 +17,9 @@ test("Todo create", async () => {
       task: {
         title: "foo",
         desc: "bar",
-        done: false,
-      },
-    },
+        done: false
+      }
+    }
   });
   const res = await client.create<Response<{}, { id: number; task: task }>>(
     request
@@ -30,8 +30,8 @@ test("Todo create", async () => {
     task: {
       title: "foo",
       desc: "bar",
-      done: false,
-    },
+      done: false
+    }
   });
   server.close();
 });
@@ -47,22 +47,22 @@ test("Todo update", async () => {
       task: {
         title: "foo",
         desc: "bar",
-        done: false,
-      },
-    },
+        done: false
+      }
+    }
   });
   const postRes = await client.create<Response<{}, { id: number; task: task }>>(
     request
   );
   request.query = {
-    id: postRes.body.id,
+    id: postRes.body.id
   };
   request.body = {
     task: {
       title: "foo2",
       desc: "bar2",
-      done: true,
-    },
+      done: true
+    }
   };
   const res = await client.update<Response<{}, { task: task }>>(request);
   const data = res.body;
@@ -71,8 +71,8 @@ test("Todo update", async () => {
     task: {
       title: "foo2",
       desc: "bar2",
-      done: true,
-    },
+      done: true
+    }
   });
   server.close();
 });
@@ -88,9 +88,9 @@ test("Todo read", async () => {
       task: {
         title: "foo",
         desc: "bar",
-        done: false,
-      },
-    },
+        done: false
+      }
+    }
   });
   const postRes = await client.create<Response<{}, { id: number; task: task }>>(
     request
@@ -98,9 +98,9 @@ test("Todo read", async () => {
   const readReq = new Request<{}, { id: number }, null>("todo", {
     headers: {},
     query: {
-      id: postRes.body.id,
+      id: postRes.body.id
     },
-    body: null,
+    body: null
   });
   const res = await client.read<Response<{}, { task: task }>>(readReq);
   const data = res.body;
@@ -109,8 +109,8 @@ test("Todo read", async () => {
     task: {
       title: "foo",
       desc: "bar",
-      done: false,
-    },
+      done: false
+    }
   });
   server.close();
 });
@@ -126,9 +126,9 @@ test("Todo delete", async () => {
       task: {
         title: "foo",
         desc: "bar",
-        done: false,
-      },
-    },
+        done: false
+      }
+    }
   });
   const postRes = await client.create<Response<{}, { id: number; task: task }>>(
     request
@@ -136,9 +136,9 @@ test("Todo delete", async () => {
   const deleteReq = new Request<{}, { id: number }, null>("todo", {
     headers: {},
     query: {
-      id: postRes.body.id,
+      id: postRes.body.id
     },
-    body: null,
+    body: null
   });
   const res = await client.delete<Response<{}, { task: task }>>(deleteReq);
   assert.strictEqual(res.status, 204);

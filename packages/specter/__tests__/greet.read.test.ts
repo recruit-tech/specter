@@ -9,9 +9,9 @@ test("Greet read", async () => {
   const { port } = await getPort(server);
   const client = new Client({ base: `http://localhost:${port}/xhr` });
   const req = new Request<{}, {}>("greet", { headers: {}, query: {} }); // body is not set
-  const resp = await client.read(req).then((res) => res.body);
+  const resp = await client.read(req).then(res => res.body);
   assert.deepStrictEqual(resp, {
-    greet: "hello",
+    greet: "hello"
   });
   server.close();
 });

@@ -13,12 +13,12 @@ test("Todo create", async () => {
       task: {
         title: "test",
         desc: "desc",
-        done: false,
-      },
+        done: false
+      }
     }),
     headers: {
-      "Content-Type": "application/json; charset=utf-8",
-    },
+      "Content-Type": "application/json; charset=utf-8"
+    }
   });
   const data = await res.json();
   assert.deepStrictEqual(data, {
@@ -26,8 +26,8 @@ test("Todo create", async () => {
     task: {
       title: "test",
       desc: "desc",
-      done: false,
-    },
+      done: false
+    }
   });
   server.close();
 });
@@ -41,12 +41,12 @@ test("Todo update", async () => {
       task: {
         title: "test",
         desc: "desc",
-        done: false,
-      },
+        done: false
+      }
     }),
     headers: {
-      "Content-Type": "application/json; charset=utf-8",
-    },
+      "Content-Type": "application/json; charset=utf-8"
+    }
   });
   const postData = await postRes.json();
   const res = await fetch(
@@ -57,12 +57,12 @@ test("Todo update", async () => {
         task: {
           title: "test",
           desc: "desc",
-          done: true,
-        },
+          done: true
+        }
       }),
       headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
+        "Content-Type": "application/json; charset=utf-8"
+      }
     }
   );
   const data = await res.json();
@@ -71,8 +71,8 @@ test("Todo update", async () => {
     task: {
       title: "test",
       desc: "desc",
-      done: true,
-    },
+      done: true
+    }
   });
   server.close();
 });
@@ -86,12 +86,12 @@ test("Todo read", async () => {
       task: {
         title: "test",
         desc: "desc",
-        done: false,
-      },
+        done: false
+      }
     }),
     headers: {
-      "Content-Type": "application/json; charset=utf-8",
-    },
+      "Content-Type": "application/json; charset=utf-8"
+    }
   });
   const postData = await postRes.json();
   const res = await fetch(
@@ -103,8 +103,8 @@ test("Todo read", async () => {
     task: {
       title: "test",
       desc: "desc",
-      done: false,
-    },
+      done: false
+    }
   });
   server.close();
 });
@@ -118,18 +118,18 @@ test("Todo delete", async () => {
       task: {
         title: "test",
         desc: "desc",
-        done: false,
-      },
+        done: false
+      }
     }),
     headers: {
-      "Content-Type": "application/json; charset=utf-8",
-    },
+      "Content-Type": "application/json; charset=utf-8"
+    }
   });
   const postData = await postRes.json();
   const res = await fetch(
     `http://localhost:${port}/xhr/todo?id=${postData.id}`,
     {
-      method: "DELETE",
+      method: "DELETE"
     }
   );
   assert.strictEqual(res.status, 204);
@@ -145,12 +145,12 @@ test("Todo list", async () => {
       task: {
         title: "test",
         desc: "desc",
-        done: false,
-      },
+        done: false
+      }
     }),
     headers: {
-      "Content-Type": "application/json; charset=utf-8",
-    },
+      "Content-Type": "application/json; charset=utf-8"
+    }
   });
   const postData = await postRes.json();
   const res = await fetch(`http://localhost:${port}/xhr/todo`);

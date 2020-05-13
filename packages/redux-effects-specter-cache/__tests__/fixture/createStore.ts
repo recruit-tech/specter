@@ -2,39 +2,39 @@ import {
   createStore as createReduxStore,
   applyMiddleware,
   Middleware,
-  AnyAction,
+  AnyAction
 } from "redux";
 import { SPECTER } from "@specter/redux-effects-specter";
 import fetcherCacheMiddleware, { MiddlewareOption } from "../../src";
 
 export const dummySpecterResolvedActionType = "DUMMY_SPECTER_RESOLVED";
 
-const logger: Middleware = ({ dispatch }) => (next) => (action) => {
+const logger: Middleware = ({ dispatch }) => next => action => {
   if (action.type === "logging") return next(action);
   return next(action);
 };
 
 function dummySpecterMiddleware(): Middleware {
-  return ({ dispatch }) => (next) => (action: AnyAction) => {
+  return ({ dispatch }) => next => (action: AnyAction) => {
     if (action.type !== SPECTER) return next(action);
     dispatch({
       type: "logging",
-      payload: action,
+      payload: action
     });
     return Promise.resolve({
       type: dummySpecterResolvedActionType,
-      payload: action.payload,
+      payload: action.payload
     });
   };
 }
 
 const INITIAL_STATE = {
-  log: [],
+  log: []
 };
 
 export function resetStore() {
   return {
-    type: "reset-store",
+    type: "reset-store"
   };
 }
 
@@ -49,7 +49,7 @@ export default function createStore(
         const logs = state.log.concat();
         logs.push(action.payload);
         return {
-          log: logs,
+          log: logs
         };
       }
       return state;

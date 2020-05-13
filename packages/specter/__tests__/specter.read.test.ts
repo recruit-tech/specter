@@ -21,7 +21,7 @@ test("Specter.createService example", async () => {
   const res = await fetch(`http://localhost:${port}/xhr/echo?foo=bar`);
   const data = await res.json();
   assert.deepStrictEqual(data, {
-    foo: "bar",
+    foo: "bar"
   });
   server.close();
 });
@@ -41,12 +41,12 @@ test("Specter call by client", async () => {
   const client = new Client();
   const request = new Request<{ foo: string }, { echo: string }, {}>("echo2", {
     headers: {
-      foo: "bar",
+      foo: "bar"
     },
     query: {
-      echo: "echo",
+      echo: "echo"
     },
-    body: {},
+    body: {}
   });
   const res = await client.read<Response<{ foo: string }, { echo: string }>>(
     request
@@ -54,10 +54,10 @@ test("Specter call by client", async () => {
   const data = res.body;
   const headers = res.headers;
   assert.deepStrictEqual(headers, {
-    foo: "bar",
+    foo: "bar"
   });
   assert.deepStrictEqual(data, {
-    echo: "echo",
+    echo: "echo"
   });
   server.close();
 });
@@ -77,12 +77,12 @@ test("Specter send next response", async () => {
   const client = new Client();
   const request = new Request<{ foo: string }, { echo: string }, {}>("echo2", {
     headers: {
-      foo: "bar",
+      foo: "bar"
     },
     query: {
-      echo: "echo",
+      echo: "echo"
     },
-    body: {},
+    body: {}
   });
   const res = await client.read<Response<{ foo: string }, { echo: string }>>(
     request
@@ -95,7 +95,7 @@ test("Specter send next response", async () => {
     assert.strictEqual(nextReqs[0].toString(), request.toString());
   }
   assert.deepStrictEqual(data, {
-    echo: "echo",
+    echo: "echo"
   });
   server.close();
 });

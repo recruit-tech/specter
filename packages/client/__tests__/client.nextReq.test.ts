@@ -5,7 +5,7 @@ import assert from "assert";
 import {
   Service,
   Request as SpecterRequest,
-  Response as SpecterResponse,
+  Response as SpecterResponse
 } from "../../specter/src";
 
 test("get Next Request", async () => {
@@ -21,7 +21,7 @@ test("get Next Request", async () => {
         const res = new SpecterResponse(
           {},
           {
-            hasNext: "true",
+            hasNext: "true"
           }
         );
         res.setNextReqs(
@@ -29,9 +29,9 @@ test("get Next Request", async () => {
             method: "GET",
             headers: {},
             query: {
-              foo: "bar",
+              foo: "bar"
             },
-            body: {},
+            body: {}
           })
         );
         return res;
@@ -44,17 +44,17 @@ test("get Next Request", async () => {
   const { port } = await getPort(server);
   const client = new Client({
     base: `http://localhost:${port}/xhr`,
-    fetchOptions: {},
+    fetchOptions: {}
   });
   const request = new Request("foo", {
     headers: {},
     query: {},
-    body: {},
+    body: {}
   });
   const res = await client.read(request);
   const data = res.body;
   assert.deepStrictEqual(data, {
-    hasNext: "true",
+    hasNext: "true"
   });
   const [nextReq] = res.getNextReqs();
   assert.strictEqual(nextReq.resource, "foo");
@@ -62,7 +62,7 @@ test("get Next Request", async () => {
   const res2 = await client.read(new Request(nextReq.resource, nextReq));
   const data2 = res2.body;
   assert.deepStrictEqual(data2, {
-    foo: "bar",
+    foo: "bar"
   });
   server.close();
 });

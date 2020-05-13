@@ -26,7 +26,7 @@ describe("cache middleware", () => {
     assert.equal(state2.log.length, 2);
     assert.deepStrictEqual(state2.log, [
       specterRead("greet"),
-      specterRead("fuga"),
+      specterRead("fuga")
     ]);
   });
 
@@ -45,7 +45,7 @@ describe("cache middleware", () => {
     assert.equal(state2.log.length, 2);
     assert.deepStrictEqual(state2.log, [
       specterRead("greet"),
-      specterCreate("greet"),
+      specterCreate("greet")
     ]);
   });
 
@@ -58,7 +58,7 @@ describe("cache middleware", () => {
     const state1 = store.getState();
     assert.equal(state1.log.length, 1);
     assert.deepStrictEqual(state1.log, [
-      specterRead("greet", { query: { foo: 1 } }),
+      specterRead("greet", { query: { foo: 1 } })
     ]);
 
     await store.dispatch<any>(specterRead("greet", { query: { foo: 2 } }));
@@ -66,7 +66,7 @@ describe("cache middleware", () => {
     assert.equal(state2.log.length, 2);
     assert.deepStrictEqual(state2.log, [
       specterRead("greet", { query: { foo: 1 } }),
-      specterRead("greet", { query: { foo: 2 } }),
+      specterRead("greet", { query: { foo: 2 } })
     ]);
   });
 
@@ -99,7 +99,7 @@ describe("cache middleware", () => {
     const state1 = store.getState();
     assert.equal(state1.log.length, 1);
     assert.deepStrictEqual(state1.log, [
-      specterRead("greet", { query: { foo: 1 } }),
+      specterRead("greet", { query: { foo: 1 } })
     ]);
 
     // read from cache
@@ -108,7 +108,7 @@ describe("cache middleware", () => {
     // expected log is one because, dont call dummy specter middleware
     assert.equal(state2.log.length, 1);
     assert.deepStrictEqual(state2.log, [
-      specterRead("greet", { query: { foo: 1 } }),
+      specterRead("greet", { query: { foo: 1 } })
     ]);
   });
 });

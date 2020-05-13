@@ -17,7 +17,7 @@ export default class SpecterResponse<
     const nextReqs = this.headers["x-specter-next-reqs"];
     const reqs = nextReqs
       .split("__sep__")
-      .map((req) => SpecterRequest.parseRequest(req));
+      .map(req => SpecterRequest.parseRequest(req));
     return reqs;
   }
 
@@ -29,7 +29,7 @@ export default class SpecterResponse<
   toString() {
     return JSON.stringify({
       headers: this.headers,
-      body: this.body,
+      body: this.body
     });
   }
 }

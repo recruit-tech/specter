@@ -4,7 +4,7 @@ import {
   Reducer,
   compose,
   applyMiddleware,
-  Store,
+  Store
 } from "redux";
 import { Client } from "../../specter/src";
 import middleware, { specterCreate, specterRead } from "../src";
@@ -24,7 +24,7 @@ describe("middlewares", () => {
     createStore = () => {
       const middlewares = [middleware(client)];
       return createReduxStore(
-        (state) => state,
+        state => state,
         {},
         compose(applyMiddleware(...middlewares))
       );
@@ -49,9 +49,9 @@ describe("middlewares", () => {
           task: {
             title: "foo",
             desc: "bar",
-            done: false,
-          },
-        },
+            done: false
+          }
+        }
       })
     )) as any; /* redux can't deside a return type of `dispatch` */
     assert.deepStrictEqual(resp, {
@@ -59,8 +59,8 @@ describe("middlewares", () => {
       task: {
         title: "foo",
         desc: "bar",
-        done: false,
-      },
+        done: false
+      }
     });
   });
 

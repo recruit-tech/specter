@@ -24,23 +24,23 @@ export default class HackerNewsList extends Service {
       {
         method: "GET",
         headers: {
-          "Content-Type": "application/json; charset=utf-8",
-        },
+          "Content-Type": "application/json; charset=utf-8"
+        }
       }
     );
     const data: Array<number> = await res.json();
     const nextReqs = data.slice(0, 10).map(
-      (id) =>
+      id =>
         new ClientRequest<{}, { id: number }, null>("hnitem", {
           headers: {},
           query: { id: id },
-          body: null,
+          body: null
         })
     );
     const resp = new Response({}, data);
     resp.setNextReqs(...nextReqs);
     this.storage.store(req.toString(), resp, {
-      expiredSec: 10,
+      expiredSec: 10
     });
     return resp;
   }

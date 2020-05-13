@@ -52,7 +52,7 @@ export class LRUCache<K, V> implements Cacheable<K, V> {
     const ttl = options?.ttl || Infinity;
     if (ttl !== Infinity) {
       const timer = setTimeout(
-        (k) => {
+        k => {
           this.delete(k);
         },
         ttl,
@@ -108,7 +108,7 @@ export class LRUCache<K, V> implements Cacheable<K, V> {
 
   clearAll() {
     const keys = Array.from(this.lruCacheMap.keys());
-    keys.forEach((key) => {
+    keys.forEach(key => {
       this._delete(key);
     });
     return Promise.resolve(null);

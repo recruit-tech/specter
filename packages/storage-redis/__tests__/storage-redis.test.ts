@@ -6,14 +6,14 @@ import { AddressInfo } from "net";
 import { redisMiniServer } from "./utils/redis-mini-server";
 
 describe("RedisStorage", () => {
-  test("put / get / delete", (done) => {
+  test("put / get / delete", done => {
     redisMiniServer.listen(0);
     redisMiniServer.on("listening", async () => {
       const address = redisMiniServer.address();
       const port = (address as AddressInfo).port;
       const storage = new RedisCache<string, string>({
         port,
-        host: "localhost",
+        host: "localhost"
       });
       await storage.put("test", "foo");
       const value = await storage.get("test");
@@ -27,7 +27,7 @@ describe("RedisStorage", () => {
     });
   });
 
-  test("put", (done) => {
+  test("put", done => {
     redisMiniServer.listen(0);
     redisMiniServer.on("listening", async () => {
       const address = redisMiniServer.address();
@@ -37,7 +37,7 @@ describe("RedisStorage", () => {
         host: "localhost",
         identify: (k: any) => JSON.stringify(k),
         serialize: (v: any) => JSON.stringify(v),
-        deserialize: (v: any) => JSON.parse(v),
+        deserialize: (v: any) => JSON.parse(v)
       });
       await storage.put({ 1: 2, 3: 4 }, { 5: 6, 7: 8 });
       const value = await storage.get({ 1: 2, 3: 4 });
