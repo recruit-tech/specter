@@ -15,7 +15,7 @@ export declare type MiddlewareOption<S> = {
     toCache?: CacheResolver<S>;
     resetCache?: CacheResolver<S>;
 };
-export declare function resetCacheData(): void;
+export declare function resetCacheData(): Promise<void>;
 export default function reduxEffectsSpecterCache<S = any>({ middlewareOption, cacheOption, }: {
     middlewareOption?: MiddlewareOption<S>;
     cacheOption?: Record<string, any>;

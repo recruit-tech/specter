@@ -1,9 +1,0 @@
-{
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["ES2015","dom","DOM.Iterable"],
-    "outDir": "./lib"
-  },
-  "include": ["./src"]
-}

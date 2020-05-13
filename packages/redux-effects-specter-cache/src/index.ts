@@ -34,9 +34,9 @@ function createCache(cacheOption?: Record<string, any>): LRUCache<string, any> {
 
 // CAUTION: this function expected to call after the createCache execudes in once.
 // MEMO: this can call from outside middleware, and reset a cache data.
-export function resetCacheData() {
+export async function resetCacheData() {
   const cache = createCache();
-  cache.clearAll();
+  await cache.clearAll();
 }
 
 export default function reduxEffectsSpecterCache<S = any>({
@@ -51,26 +51,25 @@ export default function reduxEffectsSpecterCache<S = any>({
   return ({ getState }) => (next) => (action: Actions) => {
     if (action.type !== SPECTER) return next(action);
 
-    const { type, service, query } = action.payload;
-
-    if (resetCache && resetCache(action, getState())) {
-      resetCacheData();
-    }
-
-    if (
-      type !== "read" ||
-      (type === "read" && excludes && excludes.includes(service))
-    ) {
-      return next(action);
-    }
-
-    const cacheKey = `@@$${SPECTER}/${service}@@${JSON.stringify(
-      query,
-      // refs: https://github.com/recruit-tech/redux-effects-fetchr-cache/pull/3
-      Object.keys(query).sort()
-    )}`;
-
     return (async () => {
+      const { type, service, query } = action.payload;
+
+      if (resetCache && resetCache(action, getState())) {
+        await resetCacheData();
+      }
+
+      if (
+        type !== "read" ||
+        (type === "read" && excludes && excludes.includes(service))
+      ) {
+        return next(action);
+      }
+
+      const cacheKey = `@@$${SPECTER}/${service}@@${JSON.stringify(
+        query,
+        // refs: https://github.com/recruit-tech/redux-effects-fetchr-cache/pull/3
+        Object.keys(query).sort()
+      )}`;
       // MEMO: you can resolve cache from action and state of store.
       //       if you dont set the fromCache function, always called cache.get function.
       const shouldFromCache = fromCache && fromCache(action, getState());

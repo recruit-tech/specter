@@ -13,8 +13,19 @@ function createCache(cacheOption) {
 // CAUTION: this function expected to call after the createCache execudes in once.
 // MEMO: this can call from outside middleware, and reset a cache data.
 function resetCacheData() {
-    var cache = createCache();
-    cache.clearAll();
+    return tslib_1.__awaiter(this, void 0, void 0, function () {
+        var cache;
+        return tslib_1.__generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    cache = createCache();
+                    return [4 /*yield*/, cache.clearAll()];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
 }
 exports.resetCacheData = resetCacheData;
 function reduxEffectsSpecterCache(_a) {
@@ -27,41 +38,44 @@ function reduxEffectsSpecterCache(_a) {
         return function (next) { return function (action) {
             if (action.type !== redux_effects_specter_1.SPECTER)
                 return next(action);
-            var _a = action.payload, type = _a.type, service = _a.service, query = _a.query;
-            if (resetCache && resetCache(action, getState())) {
-                resetCacheData();
-            }
-            if (type !== "read" ||
-                (type === "read" && excludes && excludes.includes(service))) {
-                return next(action);
-            }
-            var cacheKey = "@@$" + redux_effects_specter_1.SPECTER + "/" + service + "@@" + JSON.stringify(query, 
-            // refs: https://github.com/recruit-tech/redux-effects-fetchr-cache/pull/3
-            Object.keys(query).sort());
             return (function () { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                var shouldFromCache, cacheResult, resp, shouldToCache;
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
+                var _a, type, service, query, cacheKey, shouldFromCache, cacheResult, resp, shouldToCache;
+                return tslib_1.__generator(this, function (_b) {
+                    switch (_b.label) {
                         case 0:
-                            shouldFromCache = fromCache && fromCache(action, getState());
-                            if (!(!fromCache || shouldFromCache)) return [3 /*break*/, 2];
-                            return [4 /*yield*/, cache.get(cacheKey)];
+                            _a = action.payload, type = _a.type, service = _a.service, query = _a.query;
+                            if (!(resetCache && resetCache(action, getState()))) return [3 /*break*/, 2];
+                            return [4 /*yield*/, resetCacheData()];
                         case 1:
-                            cacheResult = _a.sent();
+                            _b.sent();
+                            _b.label = 2;
+                        case 2:
+                            if (type !== "read" ||
+                                (type === "read" && excludes && excludes.includes(service))) {
+                                return [2 /*return*/, next(action)];
+                            }
+                            cacheKey = "@@$" + redux_effects_specter_1.SPECTER + "/" + service + "@@" + JSON.stringify(query, 
+                            // refs: https://github.com/recruit-tech/redux-effects-fetchr-cache/pull/3
+                            Object.keys(query).sort());
+                            shouldFromCache = fromCache && fromCache(action, getState());
+                            if (!(!fromCache || shouldFromCache)) return [3 /*break*/, 4];
+                            return [4 /*yield*/, cache.get(cacheKey)];
+                        case 3:
+                            cacheResult = _b.sent();
                             if (cacheResult) {
                                 return [2 /*return*/, cacheResult];
                             }
-                            _a.label = 2;
-                        case 2: return [4 /*yield*/, next(action)];
-                        case 3:
-                            resp = (_a.sent());
+                            _b.label = 4;
+                        case 4: return [4 /*yield*/, next(action)];
+                        case 5:
+                            resp = (_b.sent());
                             shouldToCache = toCache && toCache(action, getState());
-                            if (!(!toCache || shouldToCache)) return [3 /*break*/, 5];
+                            if (!(!toCache || shouldToCache)) return [3 /*break*/, 7];
                             return [4 /*yield*/, cache.put(cacheKey, resp)];
-                        case 4:
-                            _a.sent();
-                            _a.label = 5;
-                        case 5: return [2 /*return*/, resp];
+                        case 6:
+                            _b.sent();
+                            _b.label = 7;
+                        case 7: return [2 /*return*/, resp];
                     }
                 });
             }); })();

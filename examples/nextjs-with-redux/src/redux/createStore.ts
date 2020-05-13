@@ -24,19 +24,9 @@ const enhancedCompose =
       })
     : compose;
 
-const cacheOption = {
-  max: 100,
-  maxAge: isServer ? 1000 * 60 * 60 : 1000 * 60,
+const cacheMiddlewareConfig = {
+  resetCache: (action: AnyAction) => action.payload.type !== "read",
 };
-
-const cacheMiddlewareConfig = isServer
-  ? {
-      toCache: (action: AnyAction) =>
-        action.payload.service.startsWith("master."),
-    }
-  : {
-      resetCache: (action: AnyAction) => action.payload.type !== "read",
-    };
 
 function createStore(initialState: RootState) {
   const uploaderConfig: UploaderConfig = {
@@ -61,10 +51,11 @@ function createStore(initialState: RootState) {
     //
     isClient && process.env.NODE_ENV !== "production" && reduxActionTiming(),
     reduxEffectsSteps,
-    reduxEffectsSpecterCache({
-      cacheOption,
-      middlewareOption: cacheMiddlewareConfig,
-    }),
+    isClient &&
+      reduxEffectsSpecterCache({
+        cacheOption: {},
+        middlewareOption: cacheMiddlewareConfig,
+      }),
     reduxEffectsSpecter(client),
     isClient && reduxEffectsUploader(uploaderConfig),
   ].filter(Boolean);

@@ -27,7 +27,7 @@
     "test": "jest",
     "prepublish": "npm run build",
     "build": "npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc -d -p ./tsconfig.cjs.json",
+    "build:esm": "tsc -d -p ./tsconfig.json",
     "build:cjs": "tsc -d -p ./tsconfig.esm.json"
   },
   "bugs": {
