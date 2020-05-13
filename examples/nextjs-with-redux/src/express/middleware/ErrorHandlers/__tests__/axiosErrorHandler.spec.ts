@@ -30,9 +30,9 @@ describe("axiosErrorHandler", () => {
       url: "/",
     };
     const mockResponse = {
-      /* @typescript-eslint/no-empty-function: [0] */
+      /* eslint @typescript-eslint/no-empty-function: [0] */
       set: () => {},
-      /* @typescript-eslint/no-empty-function: [0] */
+      /* eslint @typescript-eslint/no-empty-function: [0] */
       status: () => {},
       send: (object: any) => ({
         json: () => {
@@ -42,7 +42,7 @@ describe("axiosErrorHandler", () => {
         },
       }),
     };
-    /* @typescript-eslint/no-empty-function: [0] */
+    /* eslint @typescript-eslint/no-empty-function: [0] */
     handler(err, mockRequest as any, mockResponse as any, () => {});
   });
 
@@ -65,9 +65,9 @@ describe("axiosErrorHandler", () => {
       url: "/",
     };
     const mockResponse = {
-      /* @typescript-eslint/no-empty-function: [0] */
+      /* eslint @typescript-eslint/no-empty-function: [0] */
       set: () => {},
-      /* @typescript-eslint/no-empty-function: [0] */
+      /* eslint @typescript-eslint/no-empty-function: [0] */
       status: () => {},
       send: (object: any) => ({
         json: () => {
@@ -77,7 +77,7 @@ describe("axiosErrorHandler", () => {
         },
       }),
     };
-    /* @typescript-eslint/no-empty-function: [0] */
+    /* eslint @typescript-eslint/no-empty-function: [0] */
     handler(err, mockRequest as any, mockResponse as any, () => {});
   });
 });

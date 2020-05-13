@@ -13,7 +13,7 @@ describe("unexpectedErrorHandler", () => {
     const handler = csrfErrorHandler[1];
     const error = { code: EBADCSRFTOKEN };
     const mockResponse = {
-      /* @typescript-eslint/no-empty-function: [0] */
+      /* eslint @typescript-eslint/no-empty-function: [0] */
       status: () => {},
       send: (object: any) => ({
         json: () => {
@@ -25,7 +25,7 @@ describe("unexpectedErrorHandler", () => {
         },
       }),
     };
-    /* @typescript-eslint/no-empty-function: [0] */
+    /* eslint @typescript-eslint/no-empty-function: [0] */
     handler(error, {} as any, mockResponse as any, () => {});
   });
 });

@@ -12,7 +12,7 @@ describe("unexpectedErrorHandler", () => {
     const handler = unexpectedErrorHandler[1];
     const error = new Error("foo");
     const mockResponse = {
-      /* @typescript-eslint/no-empty-function: [0] */
+      /* eslint @typescript-eslint/no-empty-function: [0] */
       status: () => {},
       send: (object: any) => ({
         json: () => {
@@ -24,7 +24,7 @@ describe("unexpectedErrorHandler", () => {
         },
       }),
     };
-    /* @typescript-eslint/no-empty-function: [0] */
+    /* eslint @typescript-eslint/no-empty-function: [0] */
     handler(error, {} as any, mockResponse as any, () => {});
   });
 
@@ -32,7 +32,7 @@ describe("unexpectedErrorHandler", () => {
     const handler = unexpectedErrorHandler[1];
     const error = { foo: "foo" };
     const mockResponse = {
-      /* @typescript-eslint/no-empty-function: [0] */
+      /* eslint @typescript-eslint/no-empty-function: [0] */
       status: () => {},
       send: (object: any) => ({
         json: () => {
@@ -46,7 +46,7 @@ describe("unexpectedErrorHandler", () => {
         },
       }),
     };
-    /* @typescript-eslint/no-empty-function: [0] */
+    /* eslint @typescript-eslint/no-empty-function: [0] */
     handler(error, {} as any, mockResponse as any, () => {});
   });
 });

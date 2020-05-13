@@ -10,7 +10,7 @@ describe("ErrorHandler", () => {
 
   it("works", () => {
     const response = {
-      /* @typescript-eslint/no-empty-function: [0] */
+      /* eslint @typescript-eslint/no-empty-function: [0] */
       status: () => {},
       send: (object: any) => ({
         json: () => {
@@ -18,7 +18,7 @@ describe("ErrorHandler", () => {
         },
       }),
     };
-    /* @typescript-eslint/no-empty-function: [0] */
+    /* eslint @typescript-eslint/no-empty-function: [0] */
     middleware(new Error("a"), {} as any, response as any, () => {});
   });
 });
