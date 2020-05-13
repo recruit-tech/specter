@@ -41,14 +41,14 @@ export function resetCacheData() {
 
 export default function reduxEffectsSpecterCache<S = any>({
   middlewareOption = {},
-  cacheOption = {}
+  cacheOption = {},
 }: {
   middlewareOption?: MiddlewareOption<S>;
   cacheOption?: Record<string, any>;
 }): Middleware {
   const { excludes, fromCache, toCache, resetCache } = middlewareOption;
   const cache = createCache(cacheOption);
-  return ({ getState }) => next => (action: Actions) => {
+  return ({ getState }) => (next) => (action: Actions) => {
     if (action.type !== SPECTER) return next(action);
 
     const { type, service, query } = action.payload;
@@ -82,12 +82,14 @@ export default function reduxEffectsSpecterCache<S = any>({
 
     // CAUTION: this middleware depend on the "@specter/redux-effects-specter"
     //          and "@specter/redux-effects-specter" is expected next applied self.
-    return ((next(action) as any) as Promise<Response<any, any>>).then(resp => {
-      const manualCache = toCache && toCache(action, getState());
-      if (!toCache || manualCache) {
-        cache.put(cacheKey, resp);
+    return ((next(action) as any) as Promise<Response<any, any>>).then(
+      (resp) => {
+        const manualCache = toCache && toCache(action, getState());
+        if (!toCache || manualCache) {
+          cache.put(cacheKey, resp);
+        }
+        return resp;
       }
-      return resp;
-    });
+    );
   };
 }

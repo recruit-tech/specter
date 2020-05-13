@@ -32,7 +32,7 @@ export class TimerCache<K, V> implements Cacheable<K, V> {
     const entry = new Entry(value, ttl);
     if (ttl !== Infinity) {
       const timer = setTimeout(
-        key => {
+        (key) => {
           this.delete(key);
         },
         ttl,
@@ -65,7 +65,7 @@ export class TimerCache<K, V> implements Cacheable<K, V> {
   }
   clearAll() {
     const keys = Array.from(this.cache.keys());
-    keys.forEach(key => {
+    keys.forEach((key) => {
       this.delete(key);
     });
     return Promise.resolve(null);

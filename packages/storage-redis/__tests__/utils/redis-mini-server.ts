@@ -23,8 +23,8 @@ function keys(pattern: string) {
   return Array.from(ks);
 }
 
-redisMiniServer.on("connection", socket => {
-  socket.on("data", command => {
+redisMiniServer.on("connection", (socket) => {
+  socket.on("data", (command) => {
     const c = command.toString();
     const cs = c.split(CRLF);
     const com = cs[2];
@@ -49,7 +49,7 @@ redisMiniServer.on("connection", socket => {
       const ks = keys(arg1);
       const len = `*${ks.length}`;
       const r = [];
-      ks.forEach(k => {
+      ks.forEach((k) => {
         r.push(`$${k.length}`);
         r.push(k);
       });

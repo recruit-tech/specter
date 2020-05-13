@@ -49,7 +49,7 @@ class SpecterError {
 }
 enum SpecterErrorType {
   NotImplemented = 1,
-  NotSupportedMethod = 2
+  NotSupportedMethod = 2,
 }
 
 export const NotImplemented = new SpecterError(

@@ -33,7 +33,7 @@ export default class SpecterRequest<
       headers: this.headers,
       query: this.query,
       body: this.body,
-      method: this.method
+      method: this.method,
     });
   }
 
@@ -43,7 +43,7 @@ export default class SpecterRequest<
       headers: r.headers,
       query: r.query,
       body: r.body,
-      method: r.method
+      method: r.method,
     });
   }
 

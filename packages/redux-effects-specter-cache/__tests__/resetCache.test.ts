@@ -38,7 +38,7 @@ describe("reset cache function", () => {
 
   it("always true => read always uses cache, but create purges the cache result", async () => {
     const store = createStore({
-      resetCache: action => action.payload.type !== "read"
+      resetCache: (action) => action.payload.type !== "read",
     });
     assert.deepStrictEqual(store.getState(), { log: [] });
     const readAction = specterRead("greeting");
@@ -61,7 +61,7 @@ describe("reset cache function", () => {
     assert.deepStrictEqual(store.getState().log, [
       readAction,
       createAction,
-      readAction
+      readAction,
     ]);
 
     // from cache
@@ -69,7 +69,7 @@ describe("reset cache function", () => {
     assert.deepStrictEqual(store.getState().log, [
       readAction,
       createAction,
-      readAction
+      readAction,
     ]);
   });
 

@@ -5,17 +5,17 @@ describe.each([
   [
     [1, 2, 3], // initial data
     [0], // unshift data
-    [0, 1, 2, 3] // result
+    [0, 1, 2, 3], // result
   ],
   [
     ["a", "b", "c"], // initial data
     ["d", "e", "f"], // unshift data
-    ["f", "e", "d", "a", "b", "c"] // result
-  ]
+    ["f", "e", "d", "a", "b", "c"], // result
+  ],
 ])("unshift %p %p", (init: Array<any>, arg: Array<any>, result: Array<any>) => {
   test("unshift", () => {
     const list = new LinkedList(...init);
-    arg.forEach(a => {
+    arg.forEach((a) => {
       list.unshift(a);
     });
     result.forEach((r, i) => {
@@ -30,8 +30,8 @@ describe.each([
   [
     [1, 2, 3], // initial data
     [3], //poped
-    [1, 2] // result
-  ]
+    [1, 2], // result
+  ],
 ])("pop %p %p", (init: Array<any>, poped: Array<any>, result: Array<any>) => {
   test("pop", () => {
     const list = new LinkedList(...init);
@@ -49,13 +49,13 @@ describe.each([
   [
     [1, 2, 3], // initial data
     1, // remove index
-    [1, 3] // result
+    [1, 3], // result
   ],
   [
     [1, 2, 3, 4, 5, 6, 7], // initial data
     4, // remove index
-    [1, 2, 3, 4, 6, 7] // result
-  ]
+    [1, 2, 3, 4, 6, 7], // result
+  ],
 ])(
   "remove %p %p",
   (init: Array<any>, removeIndex: number, result: Array<any>) => {

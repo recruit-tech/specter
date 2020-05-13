@@ -15,17 +15,17 @@ export default class Counter extends Service {
     const res = await fetch("http://localhost:8080/counter", {
       method: "PUT",
       body: JSON.stringify({
-        count: request.body.count
+        count: request.body.count,
       }),
       headers: {
-        "Content-Type": "application/json; charset=utf-8"
-      }
+        "Content-Type": "application/json; charset=utf-8",
+      },
     });
     const data: ResponseBody = await res.json();
     return new Response(
       {},
       {
-        count: +data.results.count
+        count: +data.results.count,
       }
     );
   }

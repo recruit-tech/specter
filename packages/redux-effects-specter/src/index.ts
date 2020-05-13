@@ -45,7 +45,7 @@ const createFetchAction = <H, Q, B = object>(
   payload: Payload<H, Q, B>
 ): SpecterAction => ({
   type: SPECTER,
-  payload
+  payload,
 });
 
 export const specterRead = <H = object, Q = object>(
@@ -56,7 +56,7 @@ export const specterRead = <H = object, Q = object>(
     type: SPECTER_READ,
     service,
     headers: args.headers || {},
-    query: args.query || {}
+    query: args.query || {},
   });
 
 export const specterDelete = <H = object, Q = object>(
@@ -67,7 +67,7 @@ export const specterDelete = <H = object, Q = object>(
     type: SPECTER_DELETE,
     service,
     headers: args.headers || {},
-    query: args.query || {}
+    query: args.query || {},
   });
 
 export const specterCreate = <H = object, Q = object, B = object>(
@@ -79,7 +79,7 @@ export const specterCreate = <H = object, Q = object, B = object>(
     service,
     headers: args.headers || {},
     body: args.body || {},
-    query: args.query || {}
+    query: args.query || {},
   });
 
 export const specterUpdate = <H = object, Q = object, B = object>(
@@ -91,13 +91,13 @@ export const specterUpdate = <H = object, Q = object, B = object>(
     service,
     headers: args.headers || {},
     body: args.body || {},
-    query: args.query || {}
+    query: args.query || {},
   });
 
 type Actions = SpecterAction | never;
 
 export default function reduxEffectsSpector(client: Client): Middleware {
-  return () => next => (action: Actions) => {
+  return () => (next) => (action: Actions) => {
     const { type, payload } = action;
     if (type !== SPECTER) return next(action);
     const { service, query, headers } = payload;
@@ -106,33 +106,33 @@ export default function reduxEffectsSpector(client: Client): Middleware {
         const req = new Request(service, {
           headers,
           query,
-          body: {}
+          body: {},
         });
-        return client.read(req).then(res => res.body);
+        return client.read(req).then((res) => res.body);
       }
       case SPECTER_DELETE: {
         const req = new Request(service, {
           headers,
           query,
-          body: {}
+          body: {},
         });
-        return client.delete(req).then(res => res.body);
+        return client.delete(req).then((res) => res.body);
       }
       case SPECTER_CREATE: {
         const req = new Request(service, {
           headers,
           query,
-          body: payload.body
+          body: payload.body,
         });
-        return client.create(req).then(res => res.body);
+        return client.create(req).then((res) => res.body);
       }
       case SPECTER_UPDATE: {
         const req = new Request(service, {
           headers,
           query,
-          body: payload.body
+          body: payload.body,
         });
-        return client.update(req).then(res => res.body);
+        return client.update(req).then((res) => res.body);
       }
       default: {
         throw new Error("Unexpected spector types");
