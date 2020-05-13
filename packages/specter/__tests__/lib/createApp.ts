@@ -3,7 +3,7 @@ import express from "express";
 import bodyParser from "body-parser";
 export default function createApp(service: Service, ...services: Service[]) {
   Specter.registerService(service);
-  services.forEach((service) => {
+  services.forEach(service => {
     Specter.registerService(service);
   });
   const app = express();

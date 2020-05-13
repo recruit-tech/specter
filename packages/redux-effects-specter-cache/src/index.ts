@@ -26,7 +26,7 @@ export type MiddlewareOption<S> = {
 
 let cacheInstance: LRUCache<string, Record<string, any>> | null = null;
 
-function createCache(cacheOption?: Record<string, any>) {
+function createCache(cacheOption?: Record<string, any>): LRUCache<string, any> {
   if (cacheInstance !== null) return cacheInstance;
   cacheInstance = new LRUCache<string, Record<string, any>>(cacheOption);
   return cacheInstance;
@@ -73,23 +73,24 @@ export default function reduxEffectsSpecterCache<S = any>({
     // MEMO: you can resolve cache from action and state of store.
     //       if you dont set the fromCache function, always called cache.get function.
     const manualCache = fromCache && fromCache(action, getState());
-    if (!fromCache || manualCache) {
-      const cacheResult = cache.get(cacheKey);
-      if (cacheResult) {
-        return Promise.resolve(cacheResult);
-      }
-    }
-
-    // CAUTION: this middleware depend on the "@specter/redux-effects-specter"
-    //          and "@specter/redux-effects-specter" is expected next applied self.
-    return ((next(action) as any) as Promise<Response<any, any>>).then(
-      (resp) => {
-        const manualCache = toCache && toCache(action, getState());
-        if (!toCache || manualCache) {
-          cache.put(cacheKey, resp);
+    return (async () => {
+      if (!fromCache || manualCache) {
+        const cacheResult = await cache.get(cacheKey);
+        if (cacheResult) {
+          return cacheResult;
         }
-        return resp;
       }
-    );
+      // CAUTION: this middleware depend on the "@specter/redux-effects-specter"
+      //          and "@specter/redux-effects-specter" is expected next applied self.
+      return ((next(action) as any) as Promise<Response<any, any>>).then(
+        async (resp) => {
+          const manualCache = toCache && toCache(action, getState());
+          if (!toCache || manualCache) {
+            await cache.put(cacheKey, resp);
+          }
+          return resp;
+        }
+      );
+    })();
   };
 }
