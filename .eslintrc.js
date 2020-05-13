@@ -10,10 +10,11 @@ module.exports = {
     "eslint:recommended",
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
   ],
   rules: {
     "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/no-var-requires": "off",
   },
-}
+};
+

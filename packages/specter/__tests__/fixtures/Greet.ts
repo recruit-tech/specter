@@ -9,9 +9,12 @@ export default class Greeet extends Service {
   }
 
   async read(_request: ReadRequest): Promise<ReadResponse> {
-    const result = new Response({}, {
-      greet: 'hello'
-    });
+    const result = new Response(
+      {},
+      {
+        greet: "hello"
+      }
+    );
     return result;
   }
 }
