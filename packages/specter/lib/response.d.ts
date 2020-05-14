@@ -1,6 +1,6 @@
 import SpecterRequest from "./request";
 export declare type AnyResponse = SpecterResponse<{}, {}>;
-export default class SpecterResponse<H extends any, B extends any> {
+export default class SpecterResponse<H extends Record<string, any>, B extends any> {
     status?: number;
     headers: H;
     body: B;

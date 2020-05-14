@@ -29,7 +29,6 @@ export default function reduxEffectsSpecterCache(_a) {
     var _this = this;
     var _b = _a.middlewareOption, middlewareOption = _b === void 0 ? {} : _b, _c = _a.cacheOption, cacheOption = _c === void 0 ? {} : _c;
     var excludes = middlewareOption.excludes, fromCache = middlewareOption.fromCache, toCache = middlewareOption.toCache, resetCache = middlewareOption.resetCache;
-  console.log(resetCache)
     var cache = createCache(cacheOption);
     return function (_a) {
         var getState = _a.getState;

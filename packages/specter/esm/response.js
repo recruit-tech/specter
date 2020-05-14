@@ -16,7 +16,8 @@ var SpecterResponse = /** @class */ (function () {
         this.nextReqs = reqs;
     };
     SpecterResponse.prototype.appendHeader = function (key, value) {
-        this.headers[key] = value;
+        var _a;
+        this.headers = __assign(__assign({}, this.headers), (_a = {}, _a[key] = value, _a));
     };
     SpecterResponse.prototype.setError = function (error) {
         this.error = error;

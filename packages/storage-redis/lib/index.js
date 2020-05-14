@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RedisCache = void 0;
 var tslib_1 = require("tslib");
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 var ioredis_1 = tslib_1.__importDefault(require("ioredis"));

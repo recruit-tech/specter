@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.specterUpdate = exports.specterCreate = exports.specterDelete = exports.specterRead = exports.SPECTER = void 0;
 var specter_1 = require("@specter/specter");
 exports.SPECTER = "SPECTER";
 var SPECTER_READ = "read";

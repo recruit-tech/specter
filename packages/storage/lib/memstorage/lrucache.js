@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.LRUCache = void 0;
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 // This Storage uses lru cache algorithm.
 var linkedlist_1 = require("./linkedlist");
