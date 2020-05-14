@@ -42,7 +42,7 @@
     "isomorphic-unfetch": "3.0.0",
     "jest": "26.0.1",
     "ts-jest": "25.5.1",
-    "typescript": "3.8.3"
+    "typescript": "3.9.2"
   },
   "dependencies": {
     "unfetch": "^4.1.0"
