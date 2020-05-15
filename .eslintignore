@@ -5,3 +5,4 @@ fixtures
 shared-fixtures
 coverage
 packages/**/lib
+*.d.ts
