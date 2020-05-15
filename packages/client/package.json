@@ -49,7 +49,7 @@
     "typescript": "3.9.2"
   },
   "dependencies": {
-    "tslib": "^1.12.0",
+    "tslib": "^2.0.0",
     "unfetch": "^4.1.0"
   },
   "gitHead": "f4ff1e14fb1a90a37e6d9299d67ab4607dc92d05",
