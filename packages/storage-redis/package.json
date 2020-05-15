@@ -1,6 +1,6 @@
 {
   "name": "@specter/storage-redis",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Specter Storage using Redis",
   "keywords": [
     "redis",
@@ -36,7 +36,7 @@
     "url": "https://github.com/recruit-tech/specter/issues"
   },
   "dependencies": {
-    "@specter/storage": "^0.4.2",
+    "@specter/storage": "^0.4.3",
     "@types/ioredis": "^4.16.1",
     "ioredis": "^4.16.3",
     "tslib": "^2.0.0"
