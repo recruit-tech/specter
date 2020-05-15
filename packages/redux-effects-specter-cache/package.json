@@ -38,7 +38,7 @@
   "dependencies": {
     "@types/lru-cache": "^5.1.0",
     "@types/redux": "^3.6.0",
-    "tslib": "^1.12.0"
+    "tslib": "^2.0.0"
   },
   "devDependencies": {
     "@specter/redux-effects-specter": "^0.3.0",
