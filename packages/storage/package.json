@@ -22,7 +22,8 @@
   "scripts": {
     "test": "jest",
     "bench": "node -r ts-node/register --expose-gc ./src/memstorage/__bench__/lrucache.bench.ts",
-    "prepublishOnly": "npm run build",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test",
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc -d -p ./tsconfig.json",
     "build:cjs": "tsc -d -p ./tsconfig.esm.json"
@@ -34,7 +35,7 @@
     "ts-node": "8.10.1",
     "typescript": "3.9.2"
   },
-  "gitHead": "f4ff1e14fb1a90a37e6d9299d67ab4607dc92d05",
+  "gitHead": "775d23d2979a7494910e373c8fa648f3c2bdd46e",
   "dependencies": {
     "tslib": "^2.0.0"
   }

@@ -29,7 +29,8 @@
   },
   "scripts": {
     "test": "jest",
-    "prepublishOnly": "npm run build",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test",
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc -d -p ./tsconfig.json",
     "build:cjs": "tsc -d -p ./tsconfig.esm.json"
@@ -52,7 +53,7 @@
     "tslib": "^2.0.0",
     "unfetch": "^4.1.0"
   },
-  "gitHead": "f4ff1e14fb1a90a37e6d9299d67ab4607dc92d05",
+  "gitHead": "775d23d2979a7494910e373c8fa648f3c2bdd46e",
   "publishConfig": {
     "access": "public"
   }
