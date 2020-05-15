@@ -10,7 +10,7 @@
   "homepage": "https://github.com/recruit-tech/specter",
   "license": "MIT",
   "main": "lib/index.js",
-  "modules": "esm/index.js",
+  "module": "esm/index.js",
   "types": "lib/index.d.ts",
   "directories": {
     "lib": "lib",
