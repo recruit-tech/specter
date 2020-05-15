@@ -1,43 +1,42 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const specter_1 = __importDefault(require("./specter"));
-class SpecterClient {
-    constructor(options) {
+var tslib_1 = require("tslib");
+var specter_1 = tslib_1.__importDefault(require("./specter"));
+var SpecterClient = /** @class */ (function () {
+    function SpecterClient(options) {
         this.options = options;
     }
-    execute(request, restype) {
+    SpecterClient.prototype.execute = function (request, restype) {
         if (!request.method) {
             throw new Error("Request method not found");
         }
         if (!specter_1.default.isRegistered(request.resource)) {
-            throw new Error(`Service is not registered ${request.resource}`);
+            throw new Error("Service is not registered " + request.resource);
         }
-        const service = specter_1.default.getService(request.resource);
-        const response = service.execute(request);
+        var service = specter_1.default.getService(request.resource);
+        var response = service.execute(request);
         return response;
-    }
-    create(request) {
+    };
+    SpecterClient.prototype.create = function (request) {
         request.method = "POST";
         return this.execute(request);
-    }
-    read(request) {
+    };
+    SpecterClient.prototype.read = function (request) {
         request.method = "GET";
         return this.execute(request);
-    }
-    update(request) {
+    };
+    SpecterClient.prototype.update = function (request) {
         request.method = "PUT";
         return this.execute(request);
-    }
-    delete(request) {
+    };
+    SpecterClient.prototype.delete = function (request) {
         request.method = "DELETE";
         return this.execute(request);
-    }
-    exists(request) {
+    };
+    SpecterClient.prototype.exists = function (request) {
         request.method = "HEAD";
         return this.execute(request);
-    }
-}
+    };
+    return SpecterClient;
+}());
 exports.default = SpecterClient;

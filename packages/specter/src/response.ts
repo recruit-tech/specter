@@ -1,7 +1,11 @@
 import SpecterRequest from "./request";
 
 export type AnyResponse = SpecterResponse<{}, {}>;
-export default class SpecterResponse<H extends any, B extends any> {
+
+export default class SpecterResponse<
+  H extends Record<string, any>,
+  B extends any
+> {
   status?: number;
   headers: H;
   body: B;
@@ -22,7 +26,7 @@ export default class SpecterResponse<H extends any, B extends any> {
     this.nextReqs = reqs;
   }
   appendHeader(key: string, value: any) {
-    this.headers[key] = value;
+    this.headers = { ...this.headers, [key]: value };
   }
   setError(error: any) {
     this.error = error;

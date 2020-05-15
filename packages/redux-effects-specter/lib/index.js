@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.specterUpdate = exports.specterCreate = exports.specterDelete = exports.specterRead = exports.SPECTER = void 0;
 var specter_1 = require("@specter/specter");
 exports.SPECTER = "SPECTER";
 var SPECTER_READ = "read";
@@ -8,7 +9,7 @@ var SPECTER_UPDATE = "update";
 var SPECTER_CREATE = "create";
 var createFetchAction = function (payload) { return ({
     type: exports.SPECTER,
-    payload: payload
+    payload: payload,
 }); };
 exports.specterRead = function (service, args) {
     if (args === void 0) { args = {}; }
@@ -16,7 +17,7 @@ exports.specterRead = function (service, args) {
         type: SPECTER_READ,
         service: service,
         headers: args.headers || {},
-        query: args.query || {}
+        query: args.query || {},
     });
 };
 exports.specterDelete = function (service, args) {
@@ -25,7 +26,7 @@ exports.specterDelete = function (service, args) {
         type: SPECTER_DELETE,
         service: service,
         headers: args.headers || {},
-        query: args.query || {}
+        query: args.query || {},
     });
 };
 exports.specterCreate = function (service, args) {
@@ -35,7 +36,7 @@ exports.specterCreate = function (service, args) {
         service: service,
         headers: args.headers || {},
         body: args.body || {},
-        query: args.query || {}
+        query: args.query || {},
     });
 };
 exports.specterUpdate = function (service, args) {
@@ -45,7 +46,7 @@ exports.specterUpdate = function (service, args) {
         service: service,
         headers: args.headers || {},
         body: args.body || {},
-        query: args.query || {}
+        query: args.query || {},
     });
 };
 function reduxEffectsSpector(client) {
@@ -59,7 +60,7 @@ function reduxEffectsSpector(client) {
                 var req = new specter_1.Request(service, {
                     headers: headers,
                     query: query,
-                    body: {}
+                    body: {},
                 });
                 return client.read(req).then(function (res) { return res.body; });
             }
@@ -67,7 +68,7 @@ function reduxEffectsSpector(client) {
                 var req = new specter_1.Request(service, {
                     headers: headers,
                     query: query,
-                    body: {}
+                    body: {},
                 });
                 return client.delete(req).then(function (res) { return res.body; });
             }
@@ -75,7 +76,7 @@ function reduxEffectsSpector(client) {
                 var req = new specter_1.Request(service, {
                     headers: headers,
                     query: query,
-                    body: payload.body
+                    body: payload.body,
                 });
                 return client.create(req).then(function (res) { return res.body; });
             }
@@ -83,7 +84,7 @@ function reduxEffectsSpector(client) {
                 var req = new specter_1.Request(service, {
                     headers: headers,
                     query: query,
-                    body: payload.body
+                    body: payload.body,
                 });
                 return client.update(req).then(function (res) { return res.body; });
             }

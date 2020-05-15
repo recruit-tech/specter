@@ -5,8 +5,8 @@
     "test": "lerna run test --parallel",
     "allinstall": "lerna bootstrap",
     "build": "lerna exec npm run build",
-    "lint": "eslint . --ext .js,.ts",
-    "lint-fix": "eslint . --ext .js,.ts --fix",
+    "lint": "eslint . --ext .ts",
+    "lint-fix": "eslint . --ext .ts --fix",
     "prepublish": "lerna run prepublish"
   },
   "devDependencies": {

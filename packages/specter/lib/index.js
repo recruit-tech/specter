@@ -1,18 +1,17 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const specter_1 = __importDefault(require("./specter"));
-const request_1 = __importDefault(require("./request"));
+exports.Client = exports.Service = exports.Response = exports.Request = void 0;
+var tslib_1 = require("tslib");
+var specter_1 = tslib_1.__importDefault(require("./specter"));
+var request_1 = tslib_1.__importDefault(require("./request"));
 exports.Request = request_1.default;
-const response_1 = __importDefault(require("./response"));
+var response_1 = tslib_1.__importDefault(require("./response"));
 exports.Response = response_1.default;
-const service_1 = __importDefault(require("./service"));
+var service_1 = tslib_1.__importDefault(require("./service"));
 exports.Service = service_1.default;
-const client_1 = __importDefault(require("./client"));
+var client_1 = tslib_1.__importDefault(require("./client"));
 exports.Client = client_1.default;
 var errors_1 = require("./errors");
-exports.SpecterNetworkError = errors_1.SpecterNetworkError;
-exports.isSpecterNetworkError = errors_1.isSpecterNetworkError;
+Object.defineProperty(exports, "SpecterNetworkError", { enumerable: true, get: function () { return errors_1.SpecterNetworkError; } });
+Object.defineProperty(exports, "isSpecterNetworkError", { enumerable: true, get: function () { return errors_1.isSpecterNetworkError; } });
 exports.default = specter_1.default;

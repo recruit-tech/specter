@@ -1,9 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var request_1 = __importDefault(require("@specter/specter/lib/request"));
+var tslib_1 = require("tslib");
+var request_1 = tslib_1.__importDefault(require("@specter/specter/lib/request"));
 var SpecterResponse = /** @class */ (function () {
     function SpecterResponse(headers, body) {
         this.headers = headers;
@@ -24,7 +22,7 @@ var SpecterResponse = /** @class */ (function () {
     SpecterResponse.prototype.toString = function () {
         return JSON.stringify({
             headers: this.headers,
-            body: this.body
+            body: this.body,
         });
     };
     return SpecterResponse;

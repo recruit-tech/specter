@@ -1,0 +1,17 @@
+.next
+dist
+node_modules
+/analyze
+/public/sw.js
+/public/sw.js.map
+/public/workbox-*.js
+/public/workbox-*.js.map
+/coverage
+/static/precach*
+/storybook
+.scannerwork
+/.loki
+.envrc
+.reg
+/cap
+/__screenshots__

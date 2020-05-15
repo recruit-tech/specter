@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.TimerCache = exports.LRUCache = exports.Storage = void 0;
 var lrucache_1 = require("./memstorage/lrucache");
-exports.LRUCache = lrucache_1.LRUCache;
+Object.defineProperty(exports, "LRUCache", { enumerable: true, get: function () { return lrucache_1.LRUCache; } });
 var timercache_1 = require("./memstorage/timercache");
-exports.TimerCache = timercache_1.TimerCache;
+Object.defineProperty(exports, "TimerCache", { enumerable: true, get: function () { return timercache_1.TimerCache; } });
 var Storage = /** @class */ (function () {
     function Storage(opts) {
         this.storage = opts.storage || new lrucache_1.LRUCache({});

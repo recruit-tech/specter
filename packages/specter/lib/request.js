@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class SpecterRequest {
-    constructor(resource, req) {
+var SpecterRequest = /** @class */ (function () {
+    function SpecterRequest(resource, req) {
         var _a;
         this.resource = resource;
         this.method = req.method;
@@ -13,23 +13,24 @@ class SpecterRequest {
         }
         this.req = req;
     }
-    static parseRequest(req) {
-        const parsed = JSON.parse(req);
+    SpecterRequest.parseRequest = function (req) {
+        var parsed = JSON.parse(req);
         return new SpecterRequest(parsed.resource, {
             method: parsed.method,
             headers: parsed.headers,
             query: parsed.query,
-            body: parsed.body
+            body: parsed.body,
         });
-    }
-    toString() {
+    };
+    SpecterRequest.prototype.toString = function () {
         return JSON.stringify({
             resource: this.resource,
             headers: this.headers,
             query: this.query,
             body: this.body,
-            method: this.method
+            method: this.method,
         });
-    }
-}
+    };
+    return SpecterRequest;
+}());
 exports.default = SpecterRequest;

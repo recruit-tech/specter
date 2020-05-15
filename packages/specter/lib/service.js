@@ -1,54 +1,79 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const errors_1 = require("./errors");
-class Service {
-    constructor(name, config) {
+var tslib_1 = require("tslib");
+var errors_1 = require("./errors");
+var Service = /** @class */ (function () {
+    function Service(name, config) {
         this.name = name;
         this.config = config;
     }
-    async execute(req) {
-        const check = await this.preCheck(req);
-        if (!check) {
-            return Promise.reject(new Error("Precheck failed."));
-        }
-        let res;
-        if (req.method === "GET" && this.read) {
-            res = await this.read(req);
-        }
-        else if (req.method === "POST" && this.create) {
-            res = await this.create(req);
-        }
-        else if (req.method === "PUT" && this.update) {
-            res = await this.update(req);
-        }
-        else if (req.method === "DELETE" && this.delete) {
-            res = await this.delete(req);
-        }
-        else if (req.method === "HEAD" && this.exist) {
-            res = await this.exist(req);
-        }
-        if (!res) {
-            return Promise.reject(errors_1.NotSupportedMethod);
-        }
-        return res;
-    }
-    create(req) {
+    Service.prototype.execute = function (req) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var check, res;
+            return tslib_1.__generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.preCheck(req)];
+                    case 1:
+                        check = _a.sent();
+                        if (!check) {
+                            return [2 /*return*/, Promise.reject(new Error("Precheck failed."))];
+                        }
+                        if (!(req.method === "GET" && this.read)) return [3 /*break*/, 3];
+                        return [4 /*yield*/, this.read(req)];
+                    case 2:
+                        res = _a.sent();
+                        return [3 /*break*/, 11];
+                    case 3:
+                        if (!(req.method === "POST" && this.create)) return [3 /*break*/, 5];
+                        return [4 /*yield*/, this.create(req)];
+                    case 4:
+                        res = _a.sent();
+                        return [3 /*break*/, 11];
+                    case 5:
+                        if (!(req.method === "PUT" && this.update)) return [3 /*break*/, 7];
+                        return [4 /*yield*/, this.update(req)];
+                    case 6:
+                        res = _a.sent();
+                        return [3 /*break*/, 11];
+                    case 7:
+                        if (!(req.method === "DELETE" && this.delete)) return [3 /*break*/, 9];
+                        return [4 /*yield*/, this.delete(req)];
+                    case 8:
+                        res = _a.sent();
+                        return [3 /*break*/, 11];
+                    case 9:
+                        if (!(req.method === "HEAD" && this.exist)) return [3 /*break*/, 11];
+                        return [4 /*yield*/, this.exist(req)];
+                    case 10:
+                        res = _a.sent();
+                        _a.label = 11;
+                    case 11:
+                        if (!res) {
+                            return [2 /*return*/, Promise.reject(errors_1.NotSupportedMethod)];
+                        }
+                        return [2 /*return*/, res];
+                }
+            });
+        });
+    };
+    Service.prototype.create = function (req) {
         return Promise.reject(errors_1.NotImplemented);
-    }
-    read(req) {
+    };
+    Service.prototype.read = function (req) {
         return Promise.reject(errors_1.NotImplemented);
-    }
-    update(req) {
+    };
+    Service.prototype.update = function (req) {
         return Promise.reject(errors_1.NotImplemented);
-    }
-    delete(req) {
+    };
+    Service.prototype.delete = function (req) {
         return Promise.reject(errors_1.NotImplemented);
-    }
-    exist(req) {
+    };
+    Service.prototype.exist = function (req) {
         return Promise.reject(errors_1.NotImplemented);
-    }
-    preCheck(req) {
+    };
+    Service.prototype.preCheck = function (req) {
         return Promise.resolve(true);
-    }
-}
+    };
+    return Service;
+}());
 exports.default = Service;

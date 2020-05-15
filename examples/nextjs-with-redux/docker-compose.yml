@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      BFF_HOST: bff
+
+  bff:
+    build:
+      context: .
+      dockerfile: ./docker/bff/Dockerfile
+      args:
+        node_version: 12.13.0
+    ports:
+      - "3000:3000"
+
+  # 本番環境はElastiCache
+  redis:
+    image: redis:5.0.6-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.TimerCache = exports.Entry = void 0;
 var Entry = /** @class */ (function () {
     function Entry(data, ttl) {
         this.expiredAt = Date.now() + ttl;

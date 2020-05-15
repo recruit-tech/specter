@@ -15,7 +15,7 @@ var SpecterRequest = /** @class */ (function () {
             headers: this.headers,
             query: this.query,
             body: this.body,
-            method: this.method
+            method: this.method,
         });
     };
     SpecterRequest.parseRequest = function (req) {
@@ -24,7 +24,7 @@ var SpecterRequest = /** @class */ (function () {
             headers: r.headers,
             query: r.query,
             body: r.body,
-            method: r.method
+            method: r.method,
         });
     };
     SpecterRequest.parseRequests = function (reqs) {

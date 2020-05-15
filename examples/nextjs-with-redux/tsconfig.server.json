@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "dist",
+    "allowJs": true,
+    "target": "es2019",
+    "isolatedModules": false,
+    "noEmit": false,
+    "incremental": true
+  },
+  "exclude": [
+    "node_modules",
+    "e2e",
+    ".next"
+  ],
+  "include": [
+    "**/*.js",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
+}
