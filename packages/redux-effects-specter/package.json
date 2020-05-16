@@ -39,7 +39,7 @@
     "@specter/specter": "^0.4.3",
     "jest": "26.0.1",
     "redux": "4.0.5",
-    "ts-jest": "25.5.1",
+    "ts-jest": "26.0.0",
     "typescript": "3.9.2"
   },
   "peerDependencies": {
