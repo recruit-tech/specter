@@ -13,7 +13,8 @@
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "lib",
+    "esm"
   ],
   "repository": {
     "type": "git",
