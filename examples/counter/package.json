@@ -2,6 +2,7 @@
   "name": "examples",
   "version": "0.0.9",
   "description": "",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "links": "npm link @specter/specter && npm link @specter/client",
@@ -15,8 +16,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@specter/client": "latest",
-    "@specter/specter": "latest",
+    "@specter/client": "^0.4.4",
+    "@specter/specter": "^0.4.4",
     "express": "^4.16.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"

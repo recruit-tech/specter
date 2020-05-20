@@ -3,6 +3,8 @@ import { Request as ExpressRequest } from "express";
 type Request = ExpressRequest | IncomingMessage;
 export type AnyRequest = SpecterRequest<{}, {}, {}>;
 
+const XSPECTER_METHOD = "x-specter-method";
+
 export default class SpecterRequest<
   H extends IncomingHttpHeaders,
   Q extends any,
@@ -26,6 +28,10 @@ export default class SpecterRequest<
     this.body = (req as ExpressRequest).body || {};
     if (!this.body) {
       throw new Error("Not Supported Yet.");
+    }
+    if (this.headers[XSPECTER_METHOD]) {
+      const xspecterMethod = this.headers[XSPECTER_METHOD] as string;
+      this.method = xspecterMethod;
     }
     this.req = req;
   }
