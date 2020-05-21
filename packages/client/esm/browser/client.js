@@ -1,4 +1,4 @@
-import { __assign, __awaiter, __generator, __rest } from "tslib";
+import { __assign, __awaiter, __generator } from "tslib";
 import SpecterResponse from "./response";
 import { stringify } from "querystring";
 import xfetch from "unfetch";
@@ -13,6 +13,7 @@ var SpecterClient = /** @class */ (function () {
         this.base = options.base;
         this.fetchOptions = options.fetchOptions;
         this.validateStatus = (_a = options.validateStatus) !== null && _a !== void 0 ? _a : (function (_s) { return true; });
+        this.fallbackMethod = options.fallbackMethod;
     }
     SpecterClient.prototype.createPath = function (request) {
         var q = stringify(request.query);
@@ -20,16 +21,23 @@ var SpecterClient = /** @class */ (function () {
         var path = this.base + "/" + request.resource + query;
         return path;
     };
-    SpecterClient.prototype.executeRequest = function (method, request) {
+    SpecterClient.prototype.executeRequest = function (m, request) {
+        var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var path, body, _a, defaultHeaders, options, head, response, json, h, entries, headers, result;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var path, body, defaultHeaders, options, head, shouldFallback, method, response, json, _b, h, entries, headers, result;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
                     case 0:
                         path = this.createPath(request);
                         body = request.body ? JSON.stringify(request.body) : null;
-                        _a = this.fetchOptions, defaultHeaders = _a.headers, options = __rest(_a, ["headers"]);
+                        defaultHeaders = (_a = this.fetchOptions) === null || _a === void 0 ? void 0 : _a.headers;
+                        options = this.fetchOptions;
                         head = __assign(__assign({}, defaultHeaders), request.headers);
+                        shouldFallback = this.shouldFallback(m);
+                        method = shouldFallback ? this.fallbackMethod : m;
+                        if (shouldFallback) {
+                            head["X-Specter-Method"] = m;
+                        }
                         if (body && !head["Content-Type"]) {
                             head["Content-Type"] = DefaultContentType;
                         }
@@ -37,10 +45,16 @@ var SpecterClient = /** @class */ (function () {
                                 ? fetch(path, __assign({ method: method, headers: head }, options))
                                 : fetch(path, __assign({ method: method, headers: head, body: body }, options)))];
                     case 1:
-                        response = _b.sent();
-                        return [4 /*yield*/, response.json()];
-                    case 2:
-                        json = _b.sent();
+                        response = _c.sent();
+                        if (!(response.status === 204)) return [3 /*break*/, 2];
+                        _b = {};
+                        return [3 /*break*/, 4];
+                    case 2: return [4 /*yield*/, response.json()];
+                    case 3:
+                        _b = _c.sent();
+                        _c.label = 4;
+                    case 4:
+                        json = _b;
                         h = response.headers.entries();
                         entries = 
                         /* eslint @typescript-eslint/ban-ts-ignore: [0] */
@@ -112,6 +126,9 @@ var SpecterClient = /** @class */ (function () {
                 }
             });
         });
+    };
+    SpecterClient.prototype.shouldFallback = function (method) {
+        return this.fallbackMethod && (method === "PUT" || method === "DELETE");
     };
     return SpecterClient;
 }());

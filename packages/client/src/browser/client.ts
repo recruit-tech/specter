@@ -15,14 +15,18 @@ export default class SpecterClient {
   base: string;
   fetchOptions: { headers?: Record<string, string> } & Record<string, any>;
   validateStatus: (status: number) => boolean;
+  // Use FallbackMethod instead of PUT / DELETE .
+  fallbackMethod?: string;
   constructor(options: {
     base: string;
     fetchOptions: { headers?: Record<string, string> } & Record<string, any>;
     validateStatus?: (status: number) => boolean;
+    fallbackMethod?: string;
   }) {
     this.base = options.base;
     this.fetchOptions = options.fetchOptions;
     this.validateStatus = options.validateStatus ?? ((_s: number) => true);
+    this.fallbackMethod = options.fallbackMethod;
   }
 
   private createPath(request: DefaultRequest): string {
@@ -33,16 +37,22 @@ export default class SpecterClient {
   }
 
   private async executeRequest<Res extends DefaultResponse>(
-    method: string,
+    m: string,
     request: DefaultRequest
   ): Promise<Res> {
     const path = this.createPath(request);
     const body = request.body ? JSON.stringify(request.body) : null;
-    const { headers: defaultHeaders, ...options } = this.fetchOptions;
+    const defaultHeaders = this.fetchOptions?.headers;
+    const options = this.fetchOptions;
     const head = {
       ...defaultHeaders,
       ...request.headers,
     };
+    const shouldFallback = this.shouldFallback(m);
+    const method = shouldFallback ? this.fallbackMethod : m;
+    if (shouldFallback) {
+      head["X-Specter-Method"] = m;
+    }
     if (body && !head["Content-Type"]) {
       head["Content-Type"] = DefaultContentType;
     }
@@ -59,7 +69,8 @@ export default class SpecterClient {
           ...options,
         }));
 
-    const json = await response.json();
+    // if NO content, return empty object
+    const json = response.status === 204 ? {} : await response.json();
     const h = response.headers.entries() as
       | IterableIterator<[string, string]>
       | Array<[string, string]>;
@@ -134,5 +145,9 @@ export default class SpecterClient {
       ...this.fetchOptions,
     });
     return response.ok;
+  }
+
+  shouldFallback(method: string) {
+    return this.fallbackMethod && (method === "PUT" || method === "DELETE");
   }
 }

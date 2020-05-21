@@ -11,7 +11,7 @@ export default function createApp(service: Service, ...services: Service[]) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header(
       "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept,XCSRF-Token,Authorization"
+      "Origin, X-Requested-With, Content-Type, Accept,XCSRF-Token,Authorization,X-Specter-Method"
     );
     next();
   });

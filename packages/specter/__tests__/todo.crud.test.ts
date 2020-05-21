@@ -159,3 +159,49 @@ test("Todo list", async () => {
   server.close();
   return;
 });
+
+test("Todo update with x-specter-method", async () => {
+  const { server } = await createApp(new Todo());
+  const { port } = await getPort(server);
+  const postRes = await fetch(`http://localhost:${port}/xhr/todo`, {
+    method: "POST",
+    body: JSON.stringify({
+      task: {
+        title: "test222",
+        desc: "desc222",
+        done: false,
+      },
+    }),
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  });
+  const postData = await postRes.json();
+  const res = await fetch(
+    `http://localhost:${port}/xhr/todo?id=${postData.id}`,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        task: {
+          title: "test",
+          desc: "desc",
+          done: true,
+        },
+      }),
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        "X-Specter-Method": "PUT",
+      },
+    }
+  );
+  const data = await res.json();
+  assert.deepStrictEqual(data, {
+    id: `${postData.id}`,
+    task: {
+      title: "test",
+      desc: "desc",
+      done: true,
+    },
+  });
+  server.close();
+});

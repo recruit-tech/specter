@@ -4,10 +4,14 @@ import Client, { Request, Response } from "@specter/client";
 const client = new Client({
   base: "/xhr",
   fetchOption: {},
+  fallbackMethod: "POST",
 });
 
-export default class Hello extends React.Component<{count: number}, {count: number}> {
-  constructor(props: {count: number}) {
+export default class Hello extends React.Component<
+  { count: number },
+  { count: number }
+> {
+  constructor(props: { count: number }) {
     super(props);
     this.state = {
       count: props.count,
@@ -16,11 +20,13 @@ export default class Hello extends React.Component<{count: number}, {count: numb
 
   static async countup(): Promise<number> {
     const request = new Request<{}, {}, null>("counter", {
-       headers: {},
-       query: {},
-       body: null,
+      headers: {},
+      query: {},
+      body: null,
     });
-    const count = (await client.update<Response<{}, { count: number }>>(request)).body.count;
+    const count = (
+      await client.update<Response<{}, { count: number }>>(request)
+    ).body.count;
     return count;
   }
 
@@ -30,7 +36,15 @@ export default class Hello extends React.Component<{count: number}, {count: numb
   }
 
   render() {
-    return (<div>Hello world {this.state.count}<input type="button" value="countup" onClick={this.onClick.bind(this)}/></div>);
+    return (
+      <div>
+        Hello world {this.state.count}
+        <input
+          type="button"
+          value="countup"
+          onClick={this.onClick.bind(this)}
+        />
+      </div>
+    );
   }
-
 }
