@@ -5,7 +5,7 @@ import {
   ResponseDef,
   Error404,
   Capture,
-} from "agreed-typed";
+} from "@agreed/typed";
 
 export type RequestBody = { count: Capture<"count", number> };
 export type ResponseBody = { results: { count: Capture<"count", number> } };

@@ -12,6 +12,7 @@ export default class Counter extends Service {
     request: Request<{}, {}, RequestBody>
   ): Promise<CounterResponse> {
     console.log("request body", request.body);
+    console.log("request session", (request.req as any).session);
     const res = await fetch("http://localhost:8080/counter", {
       method: "PUT",
       body: JSON.stringify({
