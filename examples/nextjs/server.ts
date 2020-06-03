@@ -1,4 +1,5 @@
 import * as express from "express";
+import expressSession from "express-session";
 import bodyParser from "body-parser";
 import next from "next";
 import Specter from "@specter/specter";
@@ -12,6 +13,9 @@ app.prepare().then(() => {
   const server = express.default();
   Specter.registerService(new Counter({}));
   server.use(bodyParser.json());
+  server.use(
+    expressSession({ secret: "keyboard cat", cookie: { maxAge: 60000 } })
+  );
   server.use("/xhr", Specter.createMiddleware({}));
   server.get("*", (req, res) => {
     return handle(req, res);

@@ -26,6 +26,7 @@ page.getInitialProps = async (context: NextPageContext) => {
       count: (count + 1),
     }
   });
+  request.req = context.req ?? {};
   console.log(request);
   const data = await client.update<CounterResponse>(request);
   return { count: data.body.count };
