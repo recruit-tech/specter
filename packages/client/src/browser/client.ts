@@ -43,7 +43,8 @@ export default class SpecterClient {
     const path = this.createPath(request);
     const body = request.body ? JSON.stringify(request.body) : null;
     const defaultHeaders = this.fetchOptions?.headers;
-    const options = this.fetchOptions;
+    const options = { ...this.fetchOptions };
+    delete options["headers"];
     const head = {
       ...defaultHeaders,
       ...request.headers,
