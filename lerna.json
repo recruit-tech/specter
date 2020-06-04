@@ -2,8 +2,7 @@
   "packages": [
     "packages/*",
     "examples/nextjs-with-redux",
-    "examples/counter",
-    "examples/nextjs"
+    "examples/counter"
   ],
   "publishConfig": {
     "access": "public"
