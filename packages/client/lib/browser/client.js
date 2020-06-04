@@ -33,7 +33,8 @@ var SpecterClient = /** @class */ (function () {
                         path = this.createPath(request);
                         body = request.body ? JSON.stringify(request.body) : null;
                         defaultHeaders = (_a = this.fetchOptions) === null || _a === void 0 ? void 0 : _a.headers;
-                        options = this.fetchOptions;
+                        options = tslib_1.__assign({}, this.fetchOptions);
+                        delete options["headers"];
                         head = tslib_1.__assign(tslib_1.__assign({}, defaultHeaders), request.headers);
                         shouldFallback = this.shouldFallback(m);
                         method = shouldFallback ? this.fallbackMethod : m;
