@@ -41,7 +41,7 @@
     "express": "4.17.1",
     "isomorphic-unfetch": "3.0.0",
     "jest": "26.0.1",
-    "typescript": "3.9.3"
+    "typescript": "3.9.5"
   },
   "gitHead": "6d1c92998c437535c9ca04603684dd50d0741b5f",
   "publishConfig": {
