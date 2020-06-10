@@ -1,5 +1,12 @@
 {
   "extends": [
     "config:base"
+  ],
+  "suppressNotifications": ["artifactErrors"],
+  "packageRules": [
+    {
+      "depTypeList": ["devDependencies"],
+      "automerge": true
+    }
   ]
 }
