@@ -46,7 +46,8 @@ var LRUCache = /** @class */ (function () {
             return Promise.resolve(null);
         }
         this.lruCacheList.remove(entry);
-        this.lruCacheList.unshift(entry.data);
+        var newEntry = this.lruCacheList.unshift(entry.data);
+        this.lruCacheMap.set(k, newEntry);
         return Promise.resolve(entry.data.value);
     };
     LRUCache.prototype.delete = function (key, options) {
