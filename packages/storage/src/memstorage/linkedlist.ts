@@ -76,10 +76,10 @@ export class LinkedList<E> {
   remove(entry: Entry<E>) {
     const { prev, next } = entry;
     if (this.head === entry) {
-        this.head = entry.next;
+      this.head = entry.next;
     }
     if (this.tail === entry) {
-        this.tail = entry.prev;
+      this.tail = entry.prev;
     }
     if (prev !== null) {
       prev.next = next;
