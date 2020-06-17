@@ -71,6 +71,12 @@ var LinkedList = /** @class */ (function () {
     };
     LinkedList.prototype.remove = function (entry) {
         var prev = entry.prev, next = entry.next;
+        if (this.head === entry) {
+            this.head = entry.next;
+        }
+        if (this.tail === entry) {
+            this.tail = entry.prev;
+        }
         if (prev !== null) {
             prev.next = next;
         }
