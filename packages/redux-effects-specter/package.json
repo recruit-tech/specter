@@ -38,7 +38,7 @@
   "devDependencies": {
     "@specter/client": "^0.5.3",
     "@specter/specter": "^0.5.3",
-    "jest": "26.0.1",
+    "jest": "26.1.0",
     "redux": "4.0.5",
     "ts-jest": "26.1.1",
     "typescript": "3.9.5"
