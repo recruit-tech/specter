@@ -41,6 +41,7 @@ export default class SpecterClient {
     request: DefaultRequest
   ): Promise<Res> {
     const path = this.createPath(request);
+
     const body = request.body ? JSON.stringify(request.body) : null;
     const defaultHeaders = this.fetchOptions?.headers;
     const options = { ...this.fetchOptions };
@@ -57,6 +58,7 @@ export default class SpecterClient {
     if (body && !head["Content-Type"]) {
       head["Content-Type"] = DefaultContentType;
     }
+    head["Accept"] = "application/json";
     const response = await (method === "GET" || method === "HEAD"
       ? fetch(path, {
           method,
@@ -70,8 +72,6 @@ export default class SpecterClient {
           ...options,
         }));
 
-    // if NO content, return empty object
-    const json = response.status === 204 ? {} : await response.json();
     const h = response.headers.entries() as
       | IterableIterator<[string, string]>
       | Array<[string, string]>;
@@ -89,7 +89,17 @@ export default class SpecterClient {
       }),
       {} as Record<string, string>
     );
-    const result = new SpecterResponse<any, any>(headers, json);
+
+    const contentType = (
+      headers["Content-Type"] || headers["content-type"]
+    ).includes("application/json")
+      ? "json"
+      : "text";
+
+    // if NO content, return empty object
+    const content =
+      response.status === 204 ? {} : await response[contentType]();
+    const result = new SpecterResponse<any, any>(headers, content);
 
     if (!this.validateStatus(response.status)) {
       throw new SpecterNetworkError(

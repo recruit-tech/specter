@@ -56,10 +56,10 @@ export default class Specter {
         const response = await service.execute(request);
         const headers: { [key: string]: any } = {};
 
+        headers["content-type"] = DefaultContentType;
         for (const [key, value] of Object.entries(response.headers)) {
           headers[key] = value;
         }
-        headers["Content-Type"] = DefaultContentType;
         headers["access-control-expose-headers"] = Object.keys(headers).join(
           ","
         );

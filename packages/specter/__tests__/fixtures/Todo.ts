@@ -4,7 +4,7 @@ export type tasks = task[];
 
 type CreateRequest = Request<{}, {}, { task: task }>;
 type CreateResponse = Response<{}, { task: task; id: number }>;
-type ReadRequest = Request<{}, { id: number }, null>;
+type ReadRequest = Request<{}, { id: number, invalidjson: string }, null>;
 type ReadResponse = Response<{}, { task: task; id: number }>;
 type ListRequest = Request<{}, {}, null>;
 type ListResponse = Response<{}, { tasks: tasks }>;
@@ -27,7 +27,10 @@ export default class Todo extends Service {
     );
   }
   async read(request: ReadRequest): Promise<ReadResponse> {
-    const { id } = request.query;
+    const { id, invalidjson } = request.query;
+    if (invalidjson) {
+      return new Response({ "content-type": "text/plain" }, "invalid json") as unknown as ReadResponse;
+    }
     const todo = this.todos[id];
     if (!todo) {
       const result = new Response(

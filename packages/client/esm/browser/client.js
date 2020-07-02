@@ -24,7 +24,7 @@ var SpecterClient = /** @class */ (function () {
     SpecterClient.prototype.executeRequest = function (m, request) {
         var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var path, body, defaultHeaders, options, head, shouldFallback, method, response, json, _b, h, entries, headers, result;
+            var path, body, defaultHeaders, options, head, shouldFallback, method, response, h, entries, headers, contentType, json, _b, result;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
@@ -47,15 +47,6 @@ var SpecterClient = /** @class */ (function () {
                                 : fetch(path, __assign({ method: method, headers: head, body: body }, options)))];
                     case 1:
                         response = _c.sent();
-                        if (!(response.status === 204)) return [3 /*break*/, 2];
-                        _b = {};
-                        return [3 /*break*/, 4];
-                    case 2: return [4 /*yield*/, response.json()];
-                    case 3:
-                        _b = _c.sent();
-                        _c.label = 4;
-                    case 4:
-                        json = _b;
                         h = response.headers.entries();
                         entries = 
                         /* eslint @typescript-eslint/ban-ts-ignore: [0] */
@@ -66,6 +57,18 @@ var SpecterClient = /** @class */ (function () {
                             var key = _a[0], value = _a[1];
                             return (__assign(__assign({}, acc), (_b = {}, _b[key] = value, _b)));
                         }, {});
+                        contentType = (headers["Content-Type"] || headers["content-type"]).includes("application/json")
+                            ? "json"
+                            : "text";
+                        if (!(response.status === 204)) return [3 /*break*/, 2];
+                        _b = {};
+                        return [3 /*break*/, 4];
+                    case 2: return [4 /*yield*/, response[contentType]()];
+                    case 3:
+                        _b = _c.sent();
+                        _c.label = 4;
+                    case 4:
+                        json = _b;
                         result = new SpecterResponse(headers, json);
                         if (!this.validateStatus(response.status)) {
                             throw new SpecterNetworkError("validationStatus failure: " + response.statusText, response.status, response.statusText, request, result);
