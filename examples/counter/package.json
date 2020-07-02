@@ -1,6 +1,6 @@
 {
   "name": "examples",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "",
   "private": true,
   "main": "index.js",
@@ -17,8 +17,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@specter/client": "^0.5.3",
-    "@specter/specter": "^0.5.3",
+    "@specter/client": "^0.5.4",
+    "@specter/specter": "^0.5.4",
     "express": "^4.16.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
