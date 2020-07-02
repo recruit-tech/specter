@@ -58,6 +58,7 @@ export default class SpecterClient {
     if (body && !head["Content-Type"]) {
       head["Content-Type"] = DefaultContentType;
     }
+    head["Accept"] = "application/json";
     const response = await (method === "GET" || method === "HEAD"
       ? fetch(path, {
           method,
@@ -96,8 +97,9 @@ export default class SpecterClient {
       : "text";
 
     // if NO content, return empty object
-    const json = response.status === 204 ? {} : await response[contentType]();
-    const result = new SpecterResponse<any, any>(headers, json);
+    const content =
+      response.status === 204 ? {} : await response[contentType]();
+    const result = new SpecterResponse<any, any>(headers, content);
 
     if (!this.validateStatus(response.status)) {
       throw new SpecterNetworkError(
