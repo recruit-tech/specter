@@ -21,6 +21,13 @@ export default function createApp(service: Service, ...services: Service[]) {
   });
   app.use(bodyParser.json());
   app.use("/xhr", Specter.createMiddleware({}));
+  app.use((err: any, _req: any, res: any, next: Function) => {
+    if (err.statusCode) {
+      res.status(err.statusCode);
+      res.send(err);
+    }
+    next(err);
+  });
   const server = app.listen(0);
   return { app, server };
 }

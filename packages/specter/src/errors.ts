@@ -40,11 +40,18 @@ class SpecterError {
   code: SpecterErrorType;
   message: string;
   error?: Error;
+  statusCode?: number;
 
-  constructor(code: SpecterErrorType, message: string, error?: Error) {
+  constructor(
+    code: SpecterErrorType,
+    message: string,
+    statusCode?: number,
+    error?: Error
+  ) {
     this.code = code;
     this.message = message;
     this.error = error;
+    this.statusCode = statusCode;
   }
 }
 enum SpecterErrorType {
@@ -54,9 +61,11 @@ enum SpecterErrorType {
 
 export const NotImplemented = new SpecterError(
   SpecterErrorType.NotImplemented,
-  "not implemented"
+  "not implemented",
+  400
 );
 export const NotSupportedMethod = new SpecterError(
   SpecterErrorType.NotSupportedMethod,
-  "not supported method"
+  "not supported method",
+  400
 );
