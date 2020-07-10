@@ -29,4 +29,5 @@ declare enum SpecterErrorType {
 }
 export declare const NotImplemented: SpecterError;
 export declare const NotSupportedMethod: SpecterError;
+export declare function isSpecterError(err: any): err is SpecterError;
 export {};

@@ -60,3 +60,7 @@ export const NotSupportedMethod = new SpecterError(
   SpecterErrorType.NotSupportedMethod,
   "not supported method"
 );
+
+export function isSpecterError(err: any): err is SpecterError {
+  return err && err instanceof SpecterError;
+}

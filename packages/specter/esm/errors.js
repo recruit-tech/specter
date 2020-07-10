@@ -33,3 +33,6 @@ var SpecterErrorType;
 })(SpecterErrorType || (SpecterErrorType = {}));
 export var NotImplemented = new SpecterError(SpecterErrorType.NotImplemented, "not implemented");
 export var NotSupportedMethod = new SpecterError(SpecterErrorType.NotSupportedMethod, "not supported method");
+export function isSpecterError(err) {
+    return err && err instanceof SpecterError;
+}
