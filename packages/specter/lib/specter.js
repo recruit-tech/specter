@@ -48,11 +48,11 @@ var Specter = /** @class */ (function () {
                     case 1:
                         response = _c.sent();
                         headers = {};
+                        headers["content-type"] = DefaultContentType;
                         for (_i = 0, _a = Object.entries(response.headers); _i < _a.length; _i++) {
                             _b = _a[_i], key = _b[0], value = _b[1];
                             headers[key] = value;
                         }
-                        headers["Content-Type"] = DefaultContentType;
                         headers["access-control-expose-headers"] = Object.keys(headers).join(",");
                         res.writeHead(response.status || 200, headers);
                         if (response.body) {

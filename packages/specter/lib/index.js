@@ -14,4 +14,7 @@ exports.Client = client_1.default;
 var errors_1 = require("./errors");
 Object.defineProperty(exports, "SpecterNetworkError", { enumerable: true, get: function () { return errors_1.SpecterNetworkError; } });
 Object.defineProperty(exports, "isSpecterNetworkError", { enumerable: true, get: function () { return errors_1.isSpecterNetworkError; } });
+Object.defineProperty(exports, "isSpecterError", { enumerable: true, get: function () { return errors_1.isSpecterError; } });
+Object.defineProperty(exports, "NotSupportedMethod", { enumerable: true, get: function () { return errors_1.NotSupportedMethod; } });
+Object.defineProperty(exports, "NotImplemented", { enumerable: true, get: function () { return errors_1.NotImplemented; } });
 exports.default = specter_1.default;
