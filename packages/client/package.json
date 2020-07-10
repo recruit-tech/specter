@@ -29,7 +29,7 @@
     "url": "git+https://github.com/recruit-tech/specter.git"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand --detectOpenHandles",
     "prepare": "npm run build",
     "prepublishOnly": "npm test",
     "build": "npm run build:esm && npm run build:cjs",
