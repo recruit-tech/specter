@@ -28,7 +28,7 @@
     "@types/react-dom": "16.8.4",
     "@types/styled-components": "4.1.16",
     "babel-plugin-styled-components": "^1.10.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "ts-node": "^8.3.0",
     "typescript": "^3.7.3"
   },
