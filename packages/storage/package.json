@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "ts-node": "8.10.2",
-    "typescript": "3.9.6"
+    "typescript": "3.9.7"
   },
   "gitHead": "6d1c92998c437535c9ca04603684dd50d0741b5f",
   "dependencies": {
