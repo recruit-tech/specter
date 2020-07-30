@@ -46,7 +46,7 @@
     "@specter/redux-effects-specter": "^0.5.5",
     "@specter/specter": "^0.5.5",
     "@specter/storage": "^0.5.4",
-    "jest": "26.1.0",
+    "jest": "26.2.1",
     "redux": "4.0.5",
     "ts-jest": "26.1.4",
     "typescript": "3.9.7"
