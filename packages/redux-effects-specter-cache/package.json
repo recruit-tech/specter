@@ -48,7 +48,7 @@
     "@specter/storage": "^0.5.4",
     "jest": "26.3.0",
     "redux": "4.0.5",
-    "ts-jest": "26.1.4",
+    "ts-jest": "26.2.0",
     "typescript": "3.9.7"
   },
   "peerDependencies": {
