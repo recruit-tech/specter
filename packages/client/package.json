@@ -47,7 +47,7 @@
     "express": "4.17.1",
     "isomorphic-unfetch": "3.0.0",
     "jest": "26.4.2",
-    "ts-jest": "26.2.0",
+    "ts-jest": "26.3.0",
     "typescript": "3.9.7"
   },
   "dependencies": {
