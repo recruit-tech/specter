@@ -54,7 +54,7 @@
     "tslib": "^2.0.0",
     "unfetch": "^4.1.0"
   },
-  "gitHead": "8a3dc9b4fbf95ad00baf227f8ee80fc6c7897b61",
+  "gitHead": "5ddd2885aa317427d90e9fb73c6427886ed7219a",
   "publishConfig": {
     "access": "public"
   }
