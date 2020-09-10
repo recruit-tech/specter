@@ -43,7 +43,7 @@
     "tslib": "^2.0.0"
   },
   "devDependencies": {
-    "@specter/redux-effects-specter": "^0.6.1",
+    "@specter/redux-effects-specter": "^0.5.5",
     "@specter/specter": "^0.6.1",
     "@specter/storage": "^0.6.1",
     "jest": "26.4.2",
