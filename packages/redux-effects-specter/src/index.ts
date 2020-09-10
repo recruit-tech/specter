@@ -1,12 +1,12 @@
 import { Request, Client } from "@specter/specter";
 import { Middleware } from "redux";
 
-export const SPECTER: "SPECTER" = "SPECTER";
+export const SPECTER = "SPECTER";
 
-const SPECTER_READ: "read" = "read";
-const SPECTER_DELETE: "delete" = "delete";
-const SPECTER_UPDATE: "update" = "update";
-const SPECTER_CREATE: "create" = "create";
+const SPECTER_READ = "read";
+const SPECTER_DELETE = "delete";
+const SPECTER_UPDATE = "update";
+const SPECTER_CREATE = "create";
 
 export type Payload<H, Q, B = object | undefined> =
   | {

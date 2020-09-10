@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Client = exports.Service = exports.Response = exports.Request = void 0;
+exports.Client = exports.Service = exports.Response = exports.Request = exports.NotImplemented = exports.NotSupportedMethod = exports.isSpecterError = exports.isSpecterNetworkError = exports.SpecterNetworkError = void 0;
 var tslib_1 = require("tslib");
 var specter_1 = tslib_1.__importDefault(require("./specter"));
 var request_1 = tslib_1.__importDefault(require("./request"));

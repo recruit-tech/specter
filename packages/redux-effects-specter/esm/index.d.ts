@@ -1,10 +1,10 @@
 import { Client } from "@specter/specter";
 import { Middleware } from "redux";
-export declare const SPECTER: "SPECTER";
-declare const SPECTER_READ: "read";
-declare const SPECTER_DELETE: "delete";
-declare const SPECTER_UPDATE: "update";
-declare const SPECTER_CREATE: "create";
+export declare const SPECTER = "SPECTER";
+declare const SPECTER_READ = "read";
+declare const SPECTER_DELETE = "delete";
+declare const SPECTER_UPDATE = "update";
+declare const SPECTER_CREATE = "create";
 export declare type Payload<H, Q, B = object | undefined> = {
     type: typeof SPECTER_READ;
     service: string;

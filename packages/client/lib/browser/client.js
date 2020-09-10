@@ -26,7 +26,7 @@ var SpecterClient = /** @class */ (function () {
     SpecterClient.prototype.executeRequest = function (m, request) {
         var _a;
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var path, body, defaultHeaders, options, head, shouldFallback, method, response, h, entries, headers, contentType, json, _b, result;
+            var path, body, defaultHeaders, options, head, shouldFallback, method, response, h, entries, headers, contentType, content, _b, result;
             return tslib_1.__generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
@@ -44,16 +44,14 @@ var SpecterClient = /** @class */ (function () {
                         if (body && !head["Content-Type"]) {
                             head["Content-Type"] = DefaultContentType;
                         }
+                        head["Accept"] = "application/json";
                         return [4 /*yield*/, (method === "GET" || method === "HEAD"
                                 ? fetch(path, tslib_1.__assign({ method: method, headers: head }, options))
                                 : fetch(path, tslib_1.__assign({ method: method, headers: head, body: body }, options)))];
                     case 1:
                         response = _c.sent();
                         h = response.headers.entries();
-                        entries = 
-                        /* eslint @typescript-eslint/ban-ts-ignore: [0] */
-                        // @ts-ignore
-                        typeof h.next === "function" ? Array.from(h) : [].slice.call(h);
+                        entries = typeof h.next === "function" ? Array.from(h) : [].slice.call(h);
                         headers = entries.reduce(function (acc, _a) {
                             var _b;
                             var key = _a[0], value = _a[1];
@@ -70,8 +68,8 @@ var SpecterClient = /** @class */ (function () {
                         _b = _c.sent();
                         _c.label = 4;
                     case 4:
-                        json = _b;
-                        result = new response_1.default(headers, json);
+                        content = _b;
+                        result = new response_1.default(headers, content);
                         if (!this.validateStatus(response.status)) {
                             throw new specter_1.SpecterNetworkError("validationStatus failure: " + response.statusText, response.status, response.statusText, request, result);
                         }

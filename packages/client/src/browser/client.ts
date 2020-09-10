@@ -75,13 +75,9 @@ export default class SpecterClient {
     const h = response.headers.entries() as
       | IterableIterator<[string, string]>
       | Array<[string, string]>;
-    // CAUTION:
-    // This type guard is not complete, but do not want to inject polyfill of `Symbol`,
-    // so whether Array or Iterator decide by next() method.
-    const entries =
-      /* eslint @typescript-eslint/ban-ts-ignore: [0] */
-      // @ts-ignore
-      typeof h.next === "function" ? Array.from(h) : [].slice.call(h);
+    // prettier-ignore
+    // @ts-expect-error This type guard is not complete, but do not want to inject polyfill of `Symbol`, so whether Array or Iterator decide by next() method.
+    const entries = typeof h.next === "function" ? Array.from(h) : [].slice.call(h);
     const headers = entries.reduce(
       (acc, [key, value]: [string, string]) => ({
         ...acc,
