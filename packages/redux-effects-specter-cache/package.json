@@ -1,6 +1,6 @@
 {
   "name": "@specter/redux-effects-specter-cache",
-  "version": "0.5.5",
+  "version": "0.6.0",
   "description": "cache structure for redux middleware of specter",
   "keywords": [
     "redux",
@@ -43,9 +43,9 @@
     "tslib": "^2.0.0"
   },
   "devDependencies": {
-    "@specter/redux-effects-specter": "^0.5.5",
-    "@specter/specter": "^0.5.5",
-    "@specter/storage": "^0.5.4",
+    "@specter/redux-effects-specter": "^0.6.0",
+    "@specter/specter": "^0.6.0",
+    "@specter/storage": "^0.6.0",
     "jest": "26.4.2",
     "redux": "4.0.5",
     "ts-jest": "26.3.0",
