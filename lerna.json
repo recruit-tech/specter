@@ -1,11 +1,16 @@
 {
   "packages": [
-    "packages/*",
+    "packages/specter",
+    "packages/client",
+    "packages/storage",
+    "packages/storage-redis",
+    "packages/redux-effects-specter",
+    "packages/redux-effects-cache",
     "examples/nextjs-with-redux",
     "examples/counter"
   ],
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.6.0"
+  "version": "0.6.1"
 }
