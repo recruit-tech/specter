@@ -24,7 +24,7 @@ var SpecterClient = /** @class */ (function () {
     SpecterClient.prototype.executeRequest = function (m, request) {
         var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var path, body, defaultHeaders, options, head, shouldFallback, method, response, h, entries, headers, contentType, json, _b, result;
+            var path, body, defaultHeaders, options, head, shouldFallback, method, response, h, entries, headers, contentType, content, _b, result;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
@@ -42,6 +42,7 @@ var SpecterClient = /** @class */ (function () {
                         if (body && !head["Content-Type"]) {
                             head["Content-Type"] = DefaultContentType;
                         }
+                        head["Accept"] = "application/json";
                         return [4 /*yield*/, (method === "GET" || method === "HEAD"
                                 ? fetch(path, __assign({ method: method, headers: head }, options))
                                 : fetch(path, __assign({ method: method, headers: head, body: body }, options)))];
@@ -68,8 +69,8 @@ var SpecterClient = /** @class */ (function () {
                         _b = _c.sent();
                         _c.label = 4;
                     case 4:
-                        json = _b;
-                        result = new SpecterResponse(headers, json);
+                        content = _b;
+                        result = new SpecterResponse(headers, content);
                         if (!this.validateStatus(response.status)) {
                             throw new SpecterNetworkError("validationStatus failure: " + response.statusText, response.status, response.statusText, request, result);
                         }
