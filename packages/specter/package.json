@@ -43,7 +43,7 @@
     "jest": "26.4.2",
     "typescript": "4.0.2"
   },
-  "gitHead": "6d1c92998c437535c9ca04603684dd50d0741b5f",
+  "gitHead": "8a3dc9b4fbf95ad00baf227f8ee80fc6c7897b61",
   "publishConfig": {
     "access": "public"
   }
