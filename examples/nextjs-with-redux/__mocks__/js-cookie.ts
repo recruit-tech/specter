@@ -1,5 +1,3 @@
-/* eslint @typescript-eslint/ban-ts-ignore: [0] */
-// @ts-ignore
 jest.mock("js-cookie", () => {
   return {
     _map: new Map<string, string>(),

@@ -78,9 +78,8 @@ export default class SpecterClient {
     // CAUTION:
     // This type guard is not complete, but do not want to inject polyfill of `Symbol`,
     // so whether Array or Iterator decide by next() method.
+    // @ts-expected-error
     const entries =
-      /* eslint @typescript-eslint/ban-ts-ignore: [0] */
-      // @ts-ignore
       typeof h.next === "function" ? Array.from(h) : [].slice.call(h);
     const headers = entries.reduce(
       (acc, [key, value]: [string, string]) => ({
