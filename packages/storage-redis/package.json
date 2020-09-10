@@ -43,7 +43,8 @@
     "tslib": "^2.0.0"
   },
   "devDependencies": {
+    "jest": "^26.4.2",
     "typescript": "4.0.2"
   },
-  "gitHead": "5ddd2885aa317427d90e9fb73c6427886ed7219a"
+  "gitHead": "4b108902c13806e79e019479f404f5009f31392c"
 }
