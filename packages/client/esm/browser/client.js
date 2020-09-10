@@ -49,10 +49,7 @@ var SpecterClient = /** @class */ (function () {
                     case 1:
                         response = _c.sent();
                         h = response.headers.entries();
-                        entries = 
-                        /* eslint @typescript-eslint/ban-ts-ignore: [0] */
-                        // @ts-ignore
-                        typeof h.next === "function" ? Array.from(h) : [].slice.call(h);
+                        entries = typeof h.next === "function" ? Array.from(h) : [].slice.call(h);
                         headers = entries.reduce(function (acc, _a) {
                             var _b;
                             var key = _a[0], value = _a[1];
