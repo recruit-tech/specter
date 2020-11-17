@@ -1,39 +1,37 @@
 import Specter from "./specter";
-var SpecterClient = /** @class */ (function () {
-    function SpecterClient(options) {
+export default class SpecterClient {
+    constructor(options) {
         this.options = options;
     }
-    SpecterClient.prototype.execute = function (request, restype) {
+    execute(request, restype) {
         if (!request.method) {
             throw new Error("Request method not found");
         }
         if (!Specter.isRegistered(request.resource)) {
-            throw new Error("Service is not registered " + request.resource);
+            throw new Error(`Service is not registered ${request.resource}`);
         }
-        var service = Specter.getService(request.resource);
-        var response = service.execute(request);
+        const service = Specter.getService(request.resource);
+        const response = service.execute(request);
         return response;
-    };
-    SpecterClient.prototype.create = function (request) {
+    }
+    create(request) {
         request.method = "POST";
         return this.execute(request);
-    };
-    SpecterClient.prototype.read = function (request) {
+    }
+    read(request) {
         request.method = "GET";
         return this.execute(request);
-    };
-    SpecterClient.prototype.update = function (request) {
+    }
+    update(request) {
         request.method = "PUT";
         return this.execute(request);
-    };
-    SpecterClient.prototype.delete = function (request) {
+    }
+    delete(request) {
         request.method = "DELETE";
         return this.execute(request);
-    };
-    SpecterClient.prototype.exists = function (request) {
+    }
+    exists(request) {
         request.method = "HEAD";
         return this.execute(request);
-    };
-    return SpecterClient;
-}());
-export default SpecterClient;
+    }
+}
