@@ -7,7 +7,8 @@
     "packages/redux-effects-specter",
     "packages/redux-effects-cache",
     "examples/nextjs-with-redux",
-    "examples/counter"
+    "examples/counter",
+    "examples/esm-call"
   ],
   "publishConfig": {
     "access": "public"

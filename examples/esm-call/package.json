@@ -1,0 +1,29 @@
+{
+  "name": "esm-call",
+  "version": "0.6.5",
+  "description": "> TODO: description",
+  "author": "yosuke-furukawa <yosuke.furukawa@gmail.com>",
+  "homepage": "https://github.com/recruit-tech/specter#readme",
+  "license": "ISC",
+  "main": "lib/esm-call.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/recruit-tech/specter.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/recruit-tech/specter/issues"
+  },
+  "dependencies": {
+    "@specter/specter": "^0.6.5"
+  }
+}

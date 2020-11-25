@@ -8,6 +8,17 @@
   "main": "lib/index.js",
   "module": "esm/index.js",
   "types": "lib/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "require": "./lib/index.js",
+      "import": "./esm/index.js"
+    },
+    "./browser": {
+      "require": "./lib/browser/index.js",
+      "import": "./esm/browser/index.js"
+    }
+  },
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -22,7 +33,7 @@
   },
   "scripts": {
     "test": "jest",
-    "prepare": "npm run build",
+    "prepublish": "npm run build",
     "prepublishOnly": "npm test",
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc -d -p ./tsconfig.json",

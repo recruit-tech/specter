@@ -1,6 +1,6 @@
-var XSPECTER_METHOD = "x-specter-method";
-var SpecterRequest = /** @class */ (function () {
-    function SpecterRequest(resource, req) {
+const XSPECTER_METHOD = "x-specter-method";
+export default class SpecterRequest {
+    constructor(resource, req) {
         var _a;
         this.resource = resource;
         this.method = req.method;
@@ -11,21 +11,21 @@ var SpecterRequest = /** @class */ (function () {
             throw new Error("Not Supported Yet.");
         }
         if (this.headers[XSPECTER_METHOD]) {
-            var xspecterMethod = this.headers[XSPECTER_METHOD];
+            const xspecterMethod = this.headers[XSPECTER_METHOD];
             this.method = xspecterMethod;
         }
         this.req = req;
     }
-    SpecterRequest.parseRequest = function (req) {
-        var parsed = JSON.parse(req);
+    static parseRequest(req) {
+        const parsed = JSON.parse(req);
         return new SpecterRequest(parsed.resource, {
             method: parsed.method,
             headers: parsed.headers,
             query: parsed.query,
             body: parsed.body,
         });
-    };
-    SpecterRequest.prototype.toString = function () {
+    }
+    toString() {
         return JSON.stringify({
             resource: this.resource,
             headers: this.headers,
@@ -33,7 +33,5 @@ var SpecterRequest = /** @class */ (function () {
             body: this.body,
             method: this.method,
         });
-    };
-    return SpecterRequest;
-}());
-export default SpecterRequest;
+    }
+}
