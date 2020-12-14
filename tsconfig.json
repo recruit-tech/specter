@@ -9,7 +9,7 @@
     "experimentalDecorators": true
   },
   "include": [
-    "packages/**/*"
+    "packages/**/*", "examples/esm-call"
   ],
   "exclude": [
     "node_modules"

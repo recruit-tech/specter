@@ -1,8 +1,9 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2019",
     "module": "esnext",
+    "importHelpers": false,
     "outDir": "./esm"
   },
   "include": [

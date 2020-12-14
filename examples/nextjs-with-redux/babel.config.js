@@ -7,7 +7,6 @@ module.exports = api => {
         {
           'preset-env': {
             targets: {
-              ie: 11,
               esmodules: true
             },
             useBuiltIns: 'usage',
@@ -15,7 +14,6 @@ module.exports = api => {
           }
         }
       ]
-    ],
-    plugins: ['emotion']
+    ]
   }
 }

@@ -11,7 +11,7 @@ var createFetchAction = function (payload) { return ({
     type: exports.SPECTER,
     payload: payload,
 }); };
-exports.specterRead = function (service, args) {
+var specterRead = function (service, args) {
     if (args === void 0) { args = {}; }
     return createFetchAction({
         type: SPECTER_READ,
@@ -20,7 +20,8 @@ exports.specterRead = function (service, args) {
         query: args.query || {},
     });
 };
-exports.specterDelete = function (service, args) {
+exports.specterRead = specterRead;
+var specterDelete = function (service, args) {
     if (args === void 0) { args = {}; }
     return createFetchAction({
         type: SPECTER_DELETE,
@@ -29,7 +30,8 @@ exports.specterDelete = function (service, args) {
         query: args.query || {},
     });
 };
-exports.specterCreate = function (service, args) {
+exports.specterDelete = specterDelete;
+var specterCreate = function (service, args) {
     if (args === void 0) { args = {}; }
     return createFetchAction({
         type: SPECTER_CREATE,
@@ -39,7 +41,8 @@ exports.specterCreate = function (service, args) {
         query: args.query || {},
     });
 };
-exports.specterUpdate = function (service, args) {
+exports.specterCreate = specterCreate;
+var specterUpdate = function (service, args) {
     if (args === void 0) { args = {}; }
     return createFetchAction({
         type: SPECTER_UPDATE,
@@ -49,6 +52,7 @@ exports.specterUpdate = function (service, args) {
         query: args.query || {},
     });
 };
+exports.specterUpdate = specterUpdate;
 function reduxEffectsSpector(client) {
     return function () { return function (next) { return function (action) {
         var type = action.type, payload = action.payload;
