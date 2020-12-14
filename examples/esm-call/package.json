@@ -18,7 +18,7 @@
     "url": "git+https://github.com/recruit-tech/specter.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"TODO\""
   },
   "bugs": {
     "url": "https://github.com/recruit-tech/specter/issues"
