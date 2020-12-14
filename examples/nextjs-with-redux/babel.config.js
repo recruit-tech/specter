@@ -4,7 +4,15 @@ module.exports = api => {
     presets: [
       [
         'next/babel',
-        'preset-env'
+        {
+          'preset-env': {
+            targets: {
+              esmodules: true
+            },
+            useBuiltIns: 'usage',
+            corejs: 3
+          }
+        }
       ]
     ],
     plugins: ['emotion']
