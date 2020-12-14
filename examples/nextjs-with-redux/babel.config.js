@@ -14,7 +14,6 @@ module.exports = api => {
           }
         }
       ]
-    ],
-    plugins: ['emotion']
+    ]
   }
 }
