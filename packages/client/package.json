@@ -42,7 +42,7 @@
   "devDependencies": {
     "@specter/specter": "0.6.5",
     "@types/express": "4.17.11",
-    "@types/jest": "26.0.20",
+    "@types/jest": "26.0.21",
     "@types/node-fetch": "2.5.8",
     "express": "4.17.1",
     "isomorphic-unfetch": "3.1.0",
