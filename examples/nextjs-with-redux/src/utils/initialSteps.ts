@@ -35,14 +35,13 @@ export function initialServerOnlySteps(...actions: Array<Function>) {
  * getInitialPropsで使うことを期待した関数
  * @param redirectPath
  */
-export const redirectOnServer = (redirectPath: string) => (
-  ctx: NextPageContext
-) => {
-  if (isServer) {
-    ctx.res.writeHead(301, { Location: redirectPath });
-    ctx.res.end();
-    return { redirected: true };
-  } else {
-    return { redirected: false };
-  }
-};
+export const redirectOnServer =
+  (redirectPath: string) => (ctx: NextPageContext) => {
+    if (isServer) {
+      ctx.res.writeHead(301, { Location: redirectPath });
+      ctx.res.end();
+      return { redirected: true };
+    } else {
+      return { redirected: false };
+    }
+  };

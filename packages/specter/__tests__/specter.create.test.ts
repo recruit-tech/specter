@@ -17,9 +17,7 @@ test("CRUD situation", async () => {
       super("echo", {});
       this.data = [];
     }
-    async create(
-      request: Request<{}, {}, { foo: string }>
-    ): Promise<
+    async create(request: Request<{}, {}, { foo: string }>): Promise<
       Response<
         {},
         {
@@ -40,9 +38,7 @@ test("CRUD situation", async () => {
         }
       );
     }
-    async read(
-      request: Request<{}, { id: number; foo: string }, {}>
-    ): Promise<
+    async read(request: Request<{}, { id: number; foo: string }, {}>): Promise<
       Response<
         {},
         {

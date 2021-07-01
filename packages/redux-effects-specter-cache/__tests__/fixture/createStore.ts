@@ -9,23 +9,28 @@ import fetcherCacheMiddleware, { MiddlewareOption } from "../../src";
 
 export const dummySpecterResolvedActionType = "DUMMY_SPECTER_RESOLVED";
 
-const logger: Middleware = ({ dispatch }) => (next) => (action) => {
-  if (action.type === "logging") return next(action);
-  return next(action);
-};
+const logger: Middleware =
+  ({ dispatch }) =>
+  (next) =>
+  (action) => {
+    if (action.type === "logging") return next(action);
+    return next(action);
+  };
 
 function dummySpecterMiddleware(): Middleware {
-  return ({ dispatch }) => (next) => (action: AnyAction) => {
-    if (action.type !== SPECTER) return next(action);
-    dispatch({
-      type: "logging",
-      payload: action,
-    });
-    return Promise.resolve({
-      type: dummySpecterResolvedActionType,
-      payload: action.payload,
-    });
-  };
+  return ({ dispatch }) =>
+    (next) =>
+    (action: AnyAction) => {
+      if (action.type !== SPECTER) return next(action);
+      dispatch({
+        type: "logging",
+        payload: action,
+      });
+      return Promise.resolve({
+        type: dummySpecterResolvedActionType,
+        payload: action.payload,
+      });
+    };
 }
 
 const INITIAL_STATE = {

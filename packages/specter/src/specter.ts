@@ -60,9 +60,8 @@ export default class Specter {
         for (const [key, value] of Object.entries(response.headers)) {
           headers[key] = value;
         }
-        headers["access-control-expose-headers"] = Object.keys(headers).join(
-          ","
-        );
+        headers["access-control-expose-headers"] =
+          Object.keys(headers).join(",");
         res.writeHead(response.status || 200, headers);
         if (response.body) {
           res.end(JSON.stringify(response.body));
