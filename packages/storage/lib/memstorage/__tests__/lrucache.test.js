@@ -18,7 +18,7 @@ describe.each([
             [2, 3],
             [3, 4],
             [5, 6],
-        ],
+        ], // result
     ],
     [
         [
@@ -35,7 +35,7 @@ describe.each([
             [{ foo: 2 }, 3],
             [{ foo: 3 }, 4],
             [5, 6],
-        ],
+        ], // result
     ],
 ])("lrucache", function (data, option, newData, result) {
     test("put", function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
@@ -80,7 +80,7 @@ describe.each([
         [
             [1, 2],
             [3, 4],
-        ],
+        ], // result
     ],
 ])("lrucache", function (data, option, del, result) {
     test("delete", function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
@@ -138,7 +138,7 @@ describe.each([
         [
             [1, null],
             [3, null],
-        ],
+        ], // result
     ],
 ])("lrucache", function (data, option, result) {
     test("clearall", function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {

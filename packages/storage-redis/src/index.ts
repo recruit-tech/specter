@@ -54,7 +54,7 @@ export class RedisCache<K, V> implements Cacheable<K, V> {
       return v;
     }
     const deserialize = options?.deserialize || this.deserialize;
-    const value = deserialize ? deserialize(v) : ((v as unknown) as V);
+    const value = deserialize ? deserialize(v) : (v as unknown as V);
     return value;
   }
   delete(

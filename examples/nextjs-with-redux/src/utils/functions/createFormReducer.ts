@@ -7,10 +7,10 @@ export const createFormReducer = <
   P = any
 >(
   keyName: string,
-  decideNextValue: (stateAndPayload: {
+  decideNextValue: (stateAndPayload: { state: S; payload: P }) => {
     state: S;
-    payload: P;
-  }) => { state: S; payload: V },
+    payload: V;
+  },
   validator?: (args: S["form"]["value"]) => ValidationResultType
 ): ((state: S, payload: P) => S) => {
   return (state: S, payload: P) => {
@@ -40,19 +40,15 @@ export const createFormReducer = <
  * 指定した長さより大きい入力は入力不可とする
  * @param maxLength
  */
-export const decideNextValueWithMaxLength = (maxLength: number) => ({
-  state,
-  payload,
-}: {
-  state: any;
-  payload: any;
-}) => {
-  if (payload && payload.length > maxLength) {
-    return { state, payload: payload.slice(0, maxLength) };
-  } else {
-    return { state, payload: payload };
-  }
-};
+export const decideNextValueWithMaxLength =
+  (maxLength: number) =>
+  ({ state, payload }: { state: any; payload: any }) => {
+    if (payload && payload.length > maxLength) {
+      return { state, payload: payload.slice(0, maxLength) };
+    } else {
+      return { state, payload: payload };
+    }
+  };
 
 /**
  * decideNextValueのヘルパー

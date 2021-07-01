@@ -16,7 +16,7 @@ describe.each([
             [2, 3],
             [3, 4],
             [5, 6],
-        ],
+        ], // result
     ],
 ])("timercache", function (data, option, newData, result) {
     test("put", function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {

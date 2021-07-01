@@ -14,7 +14,7 @@ describe.each([
             ["aaa", 3],
             ["bbb", 4],
             ["ccc", 6],
-        ],
+        ], // result
     ],
 ])("storage", function (data, option, newData, result) {
     test("put", function () { return __awaiter(void 0, void 0, void 0, function () {
