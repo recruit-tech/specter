@@ -37,7 +37,7 @@
     "ts-node": "10.0.0",
     "typescript": "4.3.5"
   },
-  "gitHead": "4b108902c13806e79e019479f404f5009f31392c",
+  "gitHead": "2fd4b702363f2a24d3bae2f2a2763b761c4e3798",
   "dependencies": {
     "tslib": "2.3.0"
   }

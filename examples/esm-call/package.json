@@ -25,5 +25,6 @@
   },
   "dependencies": {
     "@specter/specter": "^0.7.0"
-  }
+  },
+  "gitHead": "2fd4b702363f2a24d3bae2f2a2763b761c4e3798"
 }
