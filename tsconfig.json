@@ -6,7 +6,8 @@
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "skipLibCheck": true
   },
   "include": [
     "packages/**/*", "examples/esm-call"

@@ -53,7 +53,8 @@ var Specter = /** @class */ (function () {
                             _b = _a[_i], key = _b[0], value = _b[1];
                             headers[key] = value;
                         }
-                        headers["access-control-expose-headers"] = Object.keys(headers).join(",");
+                        headers["access-control-expose-headers"] =
+                            Object.keys(headers).join(",");
                         res.writeHead(response.status || 200, headers);
                         if (response.body) {
                             res.end(JSON.stringify(response.body));
