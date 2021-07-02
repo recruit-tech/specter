@@ -1,6 +1,6 @@
 {
   "name": "@specter/client",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Specter client",
   "keywords": [
     "Specter",
@@ -40,7 +40,7 @@
     "url": "https://github.com/recruit-tech/specter/issues"
   },
   "devDependencies": {
-    "@specter/specter": "^0.7.0",
+    "@specter/specter": "^0.7.1",
     "@types/express": "4.17.12",
     "@types/jest": "26.0.23",
     "@types/node-fetch": "2.5.10",
