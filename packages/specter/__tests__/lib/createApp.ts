@@ -1,5 +1,5 @@
 import Specter, { Service } from "../../src";
-import express from "express";
+import express, { RequestHandler } from "express";
 import bodyParser from "body-parser";
 export default function createApp(service: Service, ...services: Service[]) {
   Specter.registerService(service);
@@ -19,7 +19,7 @@ export default function createApp(service: Service, ...services: Service[]) {
   app.options("*", function(_req, res) {
     res.sendStatus(200);
   });
-  app.use(bodyParser.json());
+  app.use(bodyParser.json() as RequestHandler);
   app.use("/xhr", Specter.createMiddleware({}));
   const server = app.listen(0);
   return { app, server };

@@ -6,7 +6,7 @@ import { Cacheable } from "../cache";
 export class LRUCache<K, V> implements Cacheable<K, V> {
   lruCacheList: LinkedList<{ key: string; value: V }>;
   lruCacheMap: Map<string, Entry<{ key: string; value: V }>>;
-  timers: Map<string, NodeJS.Timeout>;
+  timers: Map<string, number>;
   limit: number;
   identify?: (key: K) => string;
   serialize?: (value: V) => string;
@@ -52,7 +52,7 @@ export class LRUCache<K, V> implements Cacheable<K, V> {
     const ttl = options?.ttl || Infinity;
     if (ttl !== Infinity) {
       const timer = setTimeout(
-        (k) => {
+        (k: K) => {
           this.delete(k);
         },
         ttl,

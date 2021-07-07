@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import Todo from "../../specter/__tests__/fixtures/Todo";
 import getPort from "../../specter/__tests__/lib/getPort";
 import createApp from "../../specter/__tests__/lib/createApp";

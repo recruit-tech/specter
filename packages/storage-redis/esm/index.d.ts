@@ -14,7 +14,7 @@ export declare class RedisCache<K, V> implements Cacheable<K, V> {
         identify?: (key: K) => Redis.KeyType;
         serialize?: (value: V) => string;
         ttl?: number;
-    }): Promise<"OK">;
+    }): Promise<"OK" | null>;
     get(key: K, options?: {
         identify?: (key: K) => Redis.KeyType;
         deserialize?: (v: string) => V;

@@ -11,8 +11,6 @@ function main() {
     global.gc();
     global.gc();
     global.gc();
-    global.gc();
-    global.gc();
     var start = process.memoryUsage().heapUsed;
     console.log(process.memoryUsage());
     var lrucache = new LRUCache({ limit: max });
@@ -21,10 +19,6 @@ function main() {
         lrucache.put(a, a);
     }
     lrucache.clearAll();
-    global.gc();
-    global.gc();
-    global.gc();
-    global.gc();
     global.gc();
     var end = process.memoryUsage().heapUsed;
     console.log(end - start);

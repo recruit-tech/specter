@@ -25,7 +25,7 @@ describe("middlewares", () => {
       const middlewares = [middleware(client)];
       return createReduxStore(
         (state) => state,
-        {},
+        undefined,
         compose(applyMiddleware(...middlewares))
       );
     };

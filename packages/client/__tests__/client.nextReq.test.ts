@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import getPort from "../../specter/__tests__/lib/getPort";
 import createApp from "../../specter/__tests__/lib/createApp";
 import Client, { Request, Response } from "../src/browser";

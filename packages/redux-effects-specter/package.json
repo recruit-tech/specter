@@ -25,7 +25,7 @@
     "url": "git+https://github.com/recruit-tech/specter.git"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "prepare": "npm run build",
     "prepublishOnly": "npm test",
     "build": "npm run build:esm && npm run build:cjs",
@@ -46,7 +46,7 @@
   "peerDependencies": {
     "redux": ">= 4.0"
   },
-  "gitHead": "2fd4b702363f2a24d3bae2f2a2763b761c4e3798",
+  "gitHead": "e0a30cf328c1473eadfd44dd5c39bd170ab4f06c",
   "publishConfig": {
     "access": "public"
   },

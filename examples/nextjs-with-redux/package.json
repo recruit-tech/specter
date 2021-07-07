@@ -13,7 +13,8 @@
     "lint:typecheck": "tsc -p . --noEmit",
     "production": "NODE_ENV=production node ./dist/src/express/server.js",
     "start": "nodemon",
-    "test": "jest --maxWorkers=4 --coverage --verbose=false --silent=false",
+    "test": "echo notest",
+    "test-skip": "jest --maxWorkers=4 --coverage --verbose=false --silent=false",
     "watch": "run-p -r 'watch:*'",
     "watch:boot": "cd ../spec && npm run start:server",
     "watch:jest": "jest --maxWorkers=4 --watch --verbose=false --silent=false"
@@ -92,7 +93,7 @@
     "cspell": "^4.0.61",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
-    "jest": "^26.0.1",
+    "jest": "^27.0.6",
     "nodemon": "^2.0.3",
     "npm-run-all": "^4.1.5",
     "react-addons-test-utils": "^15.6.2",

@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { LinkedList, Entry } from "./linkedlist";
 import { Cacheable } from "../cache";
 export declare class LRUCache<K, V> implements Cacheable<K, V> {
@@ -10,7 +9,7 @@ export declare class LRUCache<K, V> implements Cacheable<K, V> {
         key: string;
         value: V;
     }>>;
-    timers: Map<string, NodeJS.Timeout>;
+    timers: Map<string, number>;
     limit: number;
     identify?: (key: K) => string;
     serialize?: (value: V) => string;

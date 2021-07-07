@@ -28,23 +28,23 @@ function benchTimerCache() {
 }
 
 function main() {
-  global.gc();
+  (global as any).gc();
   console.time("timer");
   for (let i = 0; i < 100; i++) {
     benchTimerCache();
   }
   console.log(process.memoryUsage().heapUsed / (1024 * 1024));
   console.timeEnd("timer");
-  global.gc();
+  (global as any).gc();
 
-  global.gc();
+  (global as any).gc();
   console.time("lru");
   for (let i = 0; i < 100; i++) {
     benchLRUCache();
   }
   console.log(process.memoryUsage().heapUsed / (1024 * 1024));
   console.timeEnd("lru");
-  global.gc();
+  (global as any).gc();
 }
 
 // timer: 5.484s

@@ -7,14 +7,12 @@ for (let i = 1; i <= max; i++) {
 }
 
 function main() {
-  global.gc();
-  global.gc();
-  global.gc();
-  global.gc();
-  global.gc();
-  global.gc();
-  global.gc();
-  global.gc();
+  (global as any).gc();
+  (global as any).gc();
+  (global as any).gc();
+  (global as any).gc();
+  (global as any).gc();
+  (global as any).gc();
   const start = process.memoryUsage().heapUsed;
   console.log(process.memoryUsage());
   const lrucache: LRUCache<any, any> | null = new LRUCache({ limit: max });
@@ -22,18 +20,14 @@ function main() {
     lrucache!.put(a, a);
   }
   lrucache.clearAll();
-  global.gc();
-  global.gc();
-  global.gc();
-  global.gc();
-  global.gc();
+  (global as any).gc();
   let end = process.memoryUsage().heapUsed;
   console.log(end - start);
   console.log(process.memoryUsage());
-  global.gc();
+  (global as any).gc();
   end = process.memoryUsage().heapUsed;
   console.log(end - start);
   console.log(process.memoryUsage());
-  global.gc();
+  (global as any).gc();
 }
 main();

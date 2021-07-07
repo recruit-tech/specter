@@ -8,7 +8,6 @@
   "main": "lib/index.js",
   "module": "esm/index.js",
   "types": "lib/index.d.ts",
-  "type": "module",
   "exports": {
     ".": {
       "require": "./lib/index.js",
@@ -52,9 +51,10 @@
     "express": "4.17.1",
     "isomorphic-unfetch": "3.1.0",
     "jest": "27.0.6",
+    "ts-jest": "27.0.3",
     "typescript": "4.3.5"
   },
-  "gitHead": "2fd4b702363f2a24d3bae2f2a2763b761c4e3798",
+  "gitHead": "e0a30cf328c1473eadfd44dd5c39bd170ab4f06c",
   "publishConfig": {
     "access": "public"
   }
