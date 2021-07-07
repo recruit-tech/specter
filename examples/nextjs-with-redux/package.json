@@ -1,6 +1,6 @@
 {
   "name": "@specter/nextjs-with-redux",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "private": true,
   "scripts": {
     "bundlesize": "ANALYZE=true npm run build",
@@ -24,11 +24,11 @@
     "@emotion/styled": "^10.0.27",
     "@sentry/browser": "^5.15.5",
     "@sentry/webpack-plugin": "^1.11.1",
-    "@specter/client": "^0.7.1",
-    "@specter/redux-effects-specter": "^0.7.1",
+    "@specter/client": "^0.7.2",
+    "@specter/redux-effects-specter": "^0.7.2",
     "@specter/redux-effects-specter-cache": "0.5.5",
-    "@specter/specter": "^0.7.1",
-    "@specter/storage": "^0.7.1",
+    "@specter/specter": "^0.7.2",
+    "@specter/storage": "^0.7.2",
     "@types/csurf": "^1.9.36",
     "@types/js-cookie": "^2.2.6",
     "axios": "^0.21.1",
