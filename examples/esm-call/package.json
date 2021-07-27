@@ -1,6 +1,6 @@
 {
   "name": "esm-call",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "> TODO: description",
   "author": "yosuke-furukawa <yosuke.furukawa@gmail.com>",
   "homepage": "https://github.com/recruit-tech/specter#readme",
@@ -24,7 +24,7 @@
     "url": "https://github.com/recruit-tech/specter/issues"
   },
   "dependencies": {
-    "@specter/specter": "^0.7.2"
+    "@specter/specter": "^0.7.3"
   },
   "gitHead": "e0a30cf328c1473eadfd44dd5c39bd170ab4f06c",
   "devDependencies": {
