@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@specter/redux-effects-specter": "0.7.3",
-    "@specter/specter": "0.7.2",
+    "@specter/specter": "0.7.3",
     "@specter/storage": "0.7.2",
     "jest": "27.0.6",
     "redux": "4.1.0",
