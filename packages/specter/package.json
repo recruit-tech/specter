@@ -13,6 +13,10 @@
       "require": "./lib/index.js",
       "import": "./esm/index.js"
     },
+    "./lib/*": {
+      "require": "./lib/index.js",
+      "import": "./esm/index.js"
+    },
     "./browser": {
       "require": "./lib/browser/index.js",
       "import": "./esm/browser/index.js"
