@@ -56,7 +56,7 @@
     "isomorphic-unfetch": "3.1.0",
     "jest": "27.0.6",
     "ts-jest": "27.0.5",
-    "typescript": "4.3.5"
+    "typescript": "4.4.2"
   },
   "gitHead": "e0a30cf328c1473eadfd44dd5c39bd170ab4f06c",
   "publishConfig": {
