@@ -33,7 +33,7 @@
     "url": "https://github.com/recruit-tech/specter/issues"
   },
   "devDependencies": {
-    "jest": "27.0.6",
+    "jest": "27.1.0",
     "ts-jest": "27.0.5",
     "ts-node": "10.2.1",
     "typescript": "4.4.2"
