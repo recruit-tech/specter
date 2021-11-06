@@ -8,9 +8,9 @@ var Service = /** @class */ (function () {
         this.config = config;
     }
     Service.prototype.execute = function (req) {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
             var check, res;
-            return tslib_1.__generator(this, function (_a) {
+            return (0, tslib_1.__generator)(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.preCheck(req)];
                     case 1:

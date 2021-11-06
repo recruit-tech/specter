@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var url_1 = require("url");
-var request_1 = tslib_1.__importDefault(require("./request"));
+var request_1 = (0, tslib_1.__importDefault)(require("./request"));
 var DefaultContentType = "application/json";
 var Specter = /** @class */ (function () {
     function Specter() {
@@ -22,16 +22,16 @@ var Specter = /** @class */ (function () {
     };
     Specter.createMiddleware = function (options) {
         var _this = this;
-        return function (req, res, next) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+        return function (req, res, next) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
             var url, resource, request, service, response, headers, _i, _a, _b, key, value, e_1;
-            return tslib_1.__generator(this, function (_c) {
+            return (0, tslib_1.__generator)(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         if (!req.url) {
                             throw new Error("req url is not found.");
                         }
-                        url = url_1.parse(req.url);
+                        url = (0, url_1.parse)(req.url);
                         if (!url.pathname) {
                             throw new Error("url pathname is not found.");
                         }

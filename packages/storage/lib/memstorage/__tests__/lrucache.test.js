@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-var assert_1 = tslib_1.__importDefault(require("assert"));
+var assert_1 = (0, tslib_1.__importDefault)(require("assert"));
 var lrucache_1 = require("../lrucache");
 describe.each([
     [
@@ -38,9 +38,9 @@ describe.each([
         ], // result
     ],
 ])("lrucache", function (data, option, newData, result) {
-    test("put", function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
+    test("put", function () { return (0, tslib_1.__awaiter)(void 0, void 0, void 0, function () {
         var lrucache, _i, result_1, d, r;
-        return tslib_1.__generator(this, function (_a) {
+        return (0, tslib_1.__generator)(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     lrucache = new lrucache_1.LRUCache(option);
@@ -83,9 +83,9 @@ describe.each([
         ], // result
     ],
 ])("lrucache", function (data, option, del, result) {
-    test("delete", function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
+    test("delete", function () { return (0, tslib_1.__awaiter)(void 0, void 0, void 0, function () {
         var lrucache, _i, del_1, d, r, _a, result_2, d, r;
-        return tslib_1.__generator(this, function (_b) {
+        return (0, tslib_1.__generator)(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     lrucache = new lrucache_1.LRUCache(option);
@@ -141,9 +141,9 @@ describe.each([
         ], // result
     ],
 ])("lrucache", function (data, option, result) {
-    test("clearall", function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
+    test("clearall", function () { return (0, tslib_1.__awaiter)(void 0, void 0, void 0, function () {
         var lrucache, _i, result_3, d, r;
-        return tslib_1.__generator(this, function (_a) {
+        return (0, tslib_1.__generator)(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     lrucache = new lrucache_1.LRUCache(option);

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var assert_1 = tslib_1.__importDefault(require("assert"));
+var assert_1 = (0, tslib_1.__importDefault)(require("assert"));
 var linkedlist_1 = require("../linkedlist");
 // unshift
 describe.each([
@@ -17,7 +17,7 @@ describe.each([
     ],
 ])("unshift %p %p", function (init, arg, result) {
     test("unshift", function () {
-        var list = new (linkedlist_1.LinkedList.bind.apply(linkedlist_1.LinkedList, tslib_1.__spreadArray([void 0], init)))();
+        var list = new (linkedlist_1.LinkedList.bind.apply(linkedlist_1.LinkedList, (0, tslib_1.__spreadArray)([void 0], init, false)))();
         arg.forEach(function (a) {
             list.unshift(a);
         });
@@ -36,7 +36,7 @@ describe.each([
     ],
 ])("pop %p %p", function (init, poped, result) {
     test("pop", function () {
-        var list = new (linkedlist_1.LinkedList.bind.apply(linkedlist_1.LinkedList, tslib_1.__spreadArray([void 0], init)))();
+        var list = new (linkedlist_1.LinkedList.bind.apply(linkedlist_1.LinkedList, (0, tslib_1.__spreadArray)([void 0], init, false)))();
         var entry = list.pop();
         assert_1.default.deepStrictEqual(entry === null || entry === void 0 ? void 0 : entry.data, poped[0]);
         result.forEach(function (r, i) {
@@ -59,7 +59,7 @@ describe.each([
     ],
 ])("remove %p %p", function (init, removeIndex, result) {
     test("remove", function () {
-        var list = new (linkedlist_1.LinkedList.bind.apply(linkedlist_1.LinkedList, tslib_1.__spreadArray([void 0], init)))();
+        var list = new (linkedlist_1.LinkedList.bind.apply(linkedlist_1.LinkedList, (0, tslib_1.__spreadArray)([void 0], init, false)))();
         var entry = list.get(removeIndex);
         if (!entry) {
             assert_1.default.fail("null pointer");

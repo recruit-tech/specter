@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.isSpecterError = exports.NotSupportedMethod = exports.NotImplemented = exports.isSpecterNetworkError = exports.SpecterNetworkError = void 0;
 var tslib_1 = require("tslib");
 var SpecterNetworkError = /** @class */ (function (_super) {
-    tslib_1.__extends(SpecterNetworkError, _super);
+    (0, tslib_1.__extends)(SpecterNetworkError, _super);
     function SpecterNetworkError(message, status, statusText, request, response) {
         var _this = _super.call(this, "Specter Error: " + message) || this;
         _this.isSpecterNetworkError = true;

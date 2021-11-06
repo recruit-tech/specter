@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var assert_1 = tslib_1.__importDefault(require("assert"));
+var assert_1 = (0, tslib_1.__importDefault)(require("assert"));
 var storage_1 = require("../storage");
 describe.each([
     [
@@ -19,9 +19,9 @@ describe.each([
         ], // result
     ],
 ])("storage", function (data, option, newData, result) {
-    test("put", function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
+    test("put", function () { return (0, tslib_1.__awaiter)(void 0, void 0, void 0, function () {
         var storage, _i, result_1, d, r;
-        return tslib_1.__generator(this, function (_a) {
+        return (0, tslib_1.__generator)(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     storage = new storage_1.Storage(option);

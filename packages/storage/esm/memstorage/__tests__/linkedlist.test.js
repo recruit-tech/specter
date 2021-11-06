@@ -15,7 +15,7 @@ describe.each([
     ],
 ])("unshift %p %p", function (init, arg, result) {
     test("unshift", function () {
-        var list = new (LinkedList.bind.apply(LinkedList, __spreadArray([void 0], init)))();
+        var list = new (LinkedList.bind.apply(LinkedList, __spreadArray([void 0], init, false)))();
         arg.forEach(function (a) {
             list.unshift(a);
         });
@@ -34,7 +34,7 @@ describe.each([
     ],
 ])("pop %p %p", function (init, poped, result) {
     test("pop", function () {
-        var list = new (LinkedList.bind.apply(LinkedList, __spreadArray([void 0], init)))();
+        var list = new (LinkedList.bind.apply(LinkedList, __spreadArray([void 0], init, false)))();
         var entry = list.pop();
         assert.deepStrictEqual(entry === null || entry === void 0 ? void 0 : entry.data, poped[0]);
         result.forEach(function (r, i) {
@@ -57,7 +57,7 @@ describe.each([
     ],
 ])("remove %p %p", function (init, removeIndex, result) {
     test("remove", function () {
-        var list = new (LinkedList.bind.apply(LinkedList, __spreadArray([void 0], init)))();
+        var list = new (LinkedList.bind.apply(LinkedList, __spreadArray([void 0], init, false)))();
         var entry = list.get(removeIndex);
         if (!entry) {
             assert.fail("null pointer");

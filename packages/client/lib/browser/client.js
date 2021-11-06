@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var response_1 = tslib_1.__importDefault(require("./response"));
+var response_1 = (0, tslib_1.__importDefault)(require("./response"));
 var querystring_1 = require("querystring");
-var unfetch_1 = tslib_1.__importDefault(require("unfetch"));
+var unfetch_1 = (0, tslib_1.__importDefault)(require("unfetch"));
 var specter_1 = require("@specter/specter");
 // refs: https://github.com/developit/unfetch/issues/46
 // refs: https://github.com/developit/unfetch/issues/46#issuecomment-552492844
@@ -18,24 +18,24 @@ var SpecterClient = /** @class */ (function () {
         this.fallbackMethod = options.fallbackMethod;
     }
     SpecterClient.prototype.createPath = function (request) {
-        var q = querystring_1.stringify(request.query);
+        var q = (0, querystring_1.stringify)(request.query);
         var query = q ? "?" + q : "";
         var path = this.base + "/" + request.resource + query;
         return path;
     };
     SpecterClient.prototype.executeRequest = function (m, request) {
         var _a;
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
             var path, body, defaultHeaders, options, head, shouldFallback, method, response, h, entries, headers, contentType, content, _b, result;
-            return tslib_1.__generator(this, function (_c) {
+            return (0, tslib_1.__generator)(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         path = this.createPath(request);
                         body = request.body ? JSON.stringify(request.body) : null;
                         defaultHeaders = (_a = this.fetchOptions) === null || _a === void 0 ? void 0 : _a.headers;
-                        options = tslib_1.__assign({}, this.fetchOptions);
+                        options = (0, tslib_1.__assign)({}, this.fetchOptions);
                         delete options["headers"];
-                        head = tslib_1.__assign(tslib_1.__assign({}, defaultHeaders), request.headers);
+                        head = (0, tslib_1.__assign)((0, tslib_1.__assign)({}, defaultHeaders), request.headers);
                         shouldFallback = this.shouldFallback(m);
                         method = shouldFallback ? this.fallbackMethod : m;
                         if (shouldFallback) {
@@ -46,8 +46,8 @@ var SpecterClient = /** @class */ (function () {
                         }
                         head["Accept"] = "application/json";
                         return [4 /*yield*/, (method === "GET" || method === "HEAD"
-                                ? fetch(path, tslib_1.__assign({ method: method, headers: head }, options))
-                                : fetch(path, tslib_1.__assign({ method: method, headers: head, body: body }, options)))];
+                                ? fetch(path, (0, tslib_1.__assign)({ method: method, headers: head }, options))
+                                : fetch(path, (0, tslib_1.__assign)({ method: method, headers: head, body: body }, options)))];
                     case 1:
                         response = _c.sent();
                         h = response.headers.entries();
@@ -55,7 +55,7 @@ var SpecterClient = /** @class */ (function () {
                         headers = entries.reduce(function (acc, _a) {
                             var _b;
                             var key = _a[0], value = _a[1];
-                            return (tslib_1.__assign(tslib_1.__assign({}, acc), (_b = {}, _b[key] = value, _b)));
+                            return ((0, tslib_1.__assign)((0, tslib_1.__assign)({}, acc), (_b = {}, _b[key] = value, _b)));
                         }, {});
                         contentType = (headers["Content-Type"] || headers["content-type"]).includes("application/json")
                             ? "json"
@@ -79,8 +79,8 @@ var SpecterClient = /** @class */ (function () {
         });
     };
     SpecterClient.prototype.execute = function (request) {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
-            return tslib_1.__generator(this, function (_a) {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
+            return (0, tslib_1.__generator)(this, function (_a) {
                 if (!request.method) {
                     throw new Error("Request method is not found.");
                 }
@@ -89,41 +89,41 @@ var SpecterClient = /** @class */ (function () {
         });
     };
     SpecterClient.prototype.create = function (request) {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
-            return tslib_1.__generator(this, function (_a) {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
+            return (0, tslib_1.__generator)(this, function (_a) {
                 return [2 /*return*/, this.executeRequest("POST", request)];
             });
         });
     };
     SpecterClient.prototype.read = function (request) {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
-            return tslib_1.__generator(this, function (_a) {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
+            return (0, tslib_1.__generator)(this, function (_a) {
                 return [2 /*return*/, this.executeRequest("GET", request)];
             });
         });
     };
     SpecterClient.prototype.update = function (request) {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
-            return tslib_1.__generator(this, function (_a) {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
+            return (0, tslib_1.__generator)(this, function (_a) {
                 return [2 /*return*/, this.executeRequest("PUT", request)];
             });
         });
     };
     SpecterClient.prototype.delete = function (request) {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
-            return tslib_1.__generator(this, function (_a) {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
+            return (0, tslib_1.__generator)(this, function (_a) {
                 return [2 /*return*/, this.executeRequest("DELETE", request)];
             });
         });
     };
     SpecterClient.prototype.exists = function (request) {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
             var path, response;
-            return tslib_1.__generator(this, function (_a) {
+            return (0, tslib_1.__generator)(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         path = this.createPath(request);
-                        return [4 /*yield*/, fetch(path, tslib_1.__assign({ method: "HEAD", headers: request.headers, body: JSON.stringify(request.body) }, this.fetchOptions))];
+                        return [4 /*yield*/, fetch(path, (0, tslib_1.__assign)({ method: "HEAD", headers: request.headers, body: JSON.stringify(request.body) }, this.fetchOptions))];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.ok];

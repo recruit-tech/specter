@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RedisCache = void 0;
 var tslib_1 = require("tslib");
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-var ioredis_1 = tslib_1.__importDefault(require("ioredis"));
+var ioredis_1 = (0, tslib_1.__importDefault)(require("ioredis"));
 var RedisCache = /** @class */ (function () {
     function RedisCache(opts) {
         this.redis = new ioredis_1.default(opts);
@@ -23,9 +23,9 @@ var RedisCache = /** @class */ (function () {
         return this.redis.set(k, v);
     };
     RedisCache.prototype.get = function (key, options) {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
             var identify, k, v, deserialize, value;
-            return tslib_1.__generator(this, function (_a) {
+            return (0, tslib_1.__generator)(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         identify = (options === null || options === void 0 ? void 0 : options.identify) || this.identify;
@@ -49,9 +49,9 @@ var RedisCache = /** @class */ (function () {
         return this.redis.del(k);
     };
     RedisCache.prototype.clearAll = function () {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
             var keys, dels, _i, keys_1, key;
-            return tslib_1.__generator(this, function (_a) {
+            return (0, tslib_1.__generator)(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.redis.keys("*")];
                     case 1:

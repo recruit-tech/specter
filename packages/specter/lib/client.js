@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var specter_1 = tslib_1.__importDefault(require("./specter"));
+var specter_1 = (0, tslib_1.__importDefault)(require("./specter"));
 var SpecterClient = /** @class */ (function () {
     function SpecterClient(options) {
         this.options = options;

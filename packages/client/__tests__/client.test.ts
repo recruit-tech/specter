@@ -82,8 +82,9 @@ test("request was rejected if implements a validateStatus and validation failure
   try {
     await client.read(request);
   } catch (err) {
-    assert.deepStrictEqual(err.status, 404);
-    assert.deepStrictEqual(err.statusText, "Not Found");
+    const e = err as any;
+    assert.deepStrictEqual(e.status, 404);
+    assert.deepStrictEqual(e.statusText, "Not Found");
   }
 
   server.close();
