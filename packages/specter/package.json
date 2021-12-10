@@ -51,7 +51,7 @@
     "unfetch": "^4.1.0"
   },
   "devDependencies": {
-    "body-parser": "1.19.0",
+    "body-parser": "1.19.1",
     "express": "4.17.1",
     "isomorphic-unfetch": "3.1.0",
     "jest": "27.4.4",
