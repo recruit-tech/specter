@@ -55,7 +55,7 @@
     "express": "4.17.2",
     "isomorphic-unfetch": "3.1.0",
     "jest": "27.4.7",
-    "ts-jest": "27.1.3",
+    "ts-jest": "27.1.4",
     "typescript": "4.5.5"
   },
   "gitHead": "e0a30cf328c1473eadfd44dd5c39bd170ab4f06c",
