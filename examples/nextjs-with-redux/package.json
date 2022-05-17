@@ -31,7 +31,7 @@
     "@specter/storage": "^0.7.4",
     "@types/csurf": "^1.9.36",
     "@types/js-cookie": "^2.2.6",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "connect-redis": "^4.0.4",
     "cookie-parser": "^1.4.5",
     "core-js": "^3.6.5",
