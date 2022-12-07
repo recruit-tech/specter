@@ -10,9 +10,9 @@
   "dependencies": {
     "@specter/client": "latest",
     "@specter/specter": "latest",
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "cross-env": "^6.0.3",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^11.1.0",
     "node-cache": "^5.1.0",
