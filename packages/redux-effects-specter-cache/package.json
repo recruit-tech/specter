@@ -38,7 +38,7 @@
     "url": "https://github.com/recruit-tech/specter/issues"
   },
   "dependencies": {
-    "@types/lru-cache": "^5.1.0",
+    "@types/lru-cache": "^7.0.0",
     "@types/redux": "^3.6.0",
     "tslib": "^2.0.0"
   },
