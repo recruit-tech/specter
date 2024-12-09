@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "jest": "29.7.0",
-    "ts-jest": "29.1.2",
+    "ts-jest": "29.2.5",
     "typescript": "5.0.4"
   },
   "gitHead": "e0a30cf328c1473eadfd44dd5c39bd170ab4f06c"
