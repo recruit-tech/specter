@@ -36,7 +36,7 @@
     "jest": "29.7.0",
     "ts-jest": "29.4.0",
     "ts-node": "10.9.2",
-    "typescript": "5.0.4"
+    "typescript": "5.9.2"
   },
   "gitHead": "e0a30cf328c1473eadfd44dd5c39bd170ab4f06c",
   "dependencies": {
