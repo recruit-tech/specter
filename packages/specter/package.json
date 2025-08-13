@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "body-parser": "2.2.0",
-    "express": "4.19.2",
+    "express": "4.20.0",
     "isomorphic-unfetch": "4.0.2",
     "jest": "29.7.0",
     "ts-jest": "29.4.0",
